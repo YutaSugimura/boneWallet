@@ -1,0 +1,80 @@
+{
+  "name": "bornWallet",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}' --quiet",
+    "lint:fix": "eslint '**/*.{js,jsx,ts,tsx}' --quiet --fix",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "bundle-visualize": "./node_modules/.bin/react-native-bundle-visualizer",
+    "ios:clean": "cd ios && rm -fr Pods Podfile.lock && pod install && cd ..",
+    "ios:pod": "cd ios && pod install && cd ..",
+    "android:clean": "cd android && ./gradlew clean && cd ..",
+    "android:build": "cd android && ./gradlew bundleRelease && cd ..",
+    "android:releaseTest": "react-native run-android --variant=release",
+    "storybook": "start-storybook",
+    "storybook:build": "build-storybook -o ./build/site",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@ethersproject/shims": "^5.1.1",
+    "ethers": "^5.1.4",
+    "react": "17.0.1",
+    "react-native": "0.64.1",
+    "react-native-get-random-values": "^1.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-knobs": "^6.2.9",
+    "@storybook/addon-viewport": "^6.2.9",
+    "@storybook/react": "^6.2.9",
+    "@testing-library/react-hooks": "^5.1.2",
+    "@types/jest": "^26.0.23",
+    "@types/react-native": "^0.64.5",
+    "@types/react-test-renderer": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
+    "@welldone-software/why-did-you-render": "^6.1.1",
+    "babel-jest": "^26.6.3",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^6.0.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.64.0",
+    "prettier": "^2.3.0",
+    "react-dom": "17.0.1",
+    "react-native-bundle-visualizer": "^2.2.1",
+    "react-native-web": "^0.16.2",
+    "react-test-renderer": "17.0.1",
+    "typescript": "4.2.4"
+  },
+  "resolutions": {
+    "@types/react": "^17"
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "setupFiles": [
+      "./jest/jest.setup.js"
+    ]
+  }
+}

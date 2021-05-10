@@ -1,0 +1,16 @@
+node_modules
+package.json
+package-lock.json
+yarn.lock
+index.js
+
+tsconfig.json
+metro.config.js
+babel.config.js
+app.json
+jest
+
+.watchmanconfig
+.buckconfig
+android
+ios
