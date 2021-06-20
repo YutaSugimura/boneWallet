@@ -12,12 +12,15 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import NavigationRoot from './navigation';
+import NetworkContext from './context/network/url';
 
 const App: React.VFC = () => {
   return (
-    <NavigationContainer>
-      <NavigationRoot />
-    </NavigationContainer>
+    <NetworkContext>
+      <NavigationContainer>
+        <NavigationRoot />
+      </NavigationContainer>
+    </NetworkContext>
   );
 };
 
