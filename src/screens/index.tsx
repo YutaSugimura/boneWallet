@@ -21,6 +21,7 @@ const Screen: React.VFC<Props> = () => {
   const { isLoading, toggle } = require('../hooks/loading').useIsLoading();
   const { mnemonic, getMnemonic } = require('../hooks/mnemonic').useMnemonic();
   const { address, privateKey, getAccount } = require('../hooks/account').useAccount();
+  const { balance, getBalance } = require('../hooks/balance').useBalance();
 
   const wrapGetMnemonic = async () => {
     toggle(true);
@@ -41,6 +42,10 @@ const Screen: React.VFC<Props> = () => {
     }, 300);
   };
 
+  const getCurrentBalance = () => {
+    getBalance(address);
+  };
+
   const networkScreen = () => {
     navigation.navigate('Network');
   };
@@ -55,15 +60,19 @@ const Screen: React.VFC<Props> = () => {
         <Text>Address: {address}</Text>
         <Text>PrivateKey: {privateKey}</Text>
 
-        <DefaultButton
-          title="getMnemonic"
-          disabled={isLoading ? true : false}
-          onPress={wrapGetMnemonic}
-        />
+        <Text>Balance: {balance}</Text>
+
+        <DefaultButton title="getMnemonic" disabled={isLoading} onPress={wrapGetMnemonic} />
         <DefaultButton
           title="getAccount"
-          disabled={isLoading ? true : mnemonic === '' ? true : false}
+          disabled={isLoading ?? mnemonic === ''}
           onPress={wrapGetAccount}
+        />
+
+        <DefaultButton
+          title="getBalance"
+          disabled={isLoading ?? address === ''}
+          onPress={getCurrentBalance}
         />
 
         <View style={styles.container}>

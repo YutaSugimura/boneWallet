@@ -40,7 +40,7 @@ export const Button: React.VFC<Props> = ({
   };
 
   const textStyle = {
-    fontColor: fontColor ?? COLORS.black,
+    color: fontColor ?? COLORS.black,
     fontSize: fontSize ?? 15,
     fontWeight: fontWeight ?? '400',
   };
