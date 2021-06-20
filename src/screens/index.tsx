@@ -50,6 +50,10 @@ const Screen: React.VFC<Props> = () => {
     navigation.navigate('Network');
   };
 
+  const transferScreen = () => {
+    navigation.navigate('Transfer');
+  };
+
   return (
     <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -77,6 +81,7 @@ const Screen: React.VFC<Props> = () => {
 
         <View style={styles.container}>
           <Button label="Setting Network" onPress={networkScreen} height={48} />
+          <Button label="Transfer" onPress={transferScreen} height={48} />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -3,10 +3,12 @@ import { RouteProp } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
 import TopScreen from '../screens/index';
 import NetworkScreen from '../screens/network';
+import TransferScreen from '../screens/transfer';
 
 type RootStackParamList = {
   Top: undefined;
   Network: undefined;
+  Transfer: undefined;
 };
 
 type RootScreens = keyof RootStackParamList;
@@ -21,6 +23,7 @@ const Navigation: React.VFC = () => {
     <RootStack.Navigator initialRouteName="Top">
       <RootStack.Screen name="Top" component={TopScreen} />
       <RootStack.Screen name="Network" component={NetworkScreen} />
+      <RootStack.Screen name="Transfer" component={TransferScreen} />
     </RootStack.Navigator>
   );
 };

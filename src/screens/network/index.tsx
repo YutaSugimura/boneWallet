@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
-import { RootNavigationProp } from '../../navigation';
+import type { RootNavigationProp } from '../../navigation';
 import { DEVICE_WIDTH } from '../../common';
 import { Button } from '../../components/button';
 import { InputUrl } from '../../components/input/url';

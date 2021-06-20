@@ -13,13 +13,16 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import NavigationRoot from './navigation';
 import NetworkContext from './context/network/url';
+import ProviderContext from './context/provider';
 
 const App: React.VFC = () => {
   return (
     <NetworkContext>
-      <NavigationContainer>
-        <NavigationRoot />
-      </NavigationContainer>
+      <ProviderContext>
+        <NavigationContainer>
+          <NavigationRoot />
+        </NavigationContainer>
+      </ProviderContext>
     </NetworkContext>
   );
 };
