@@ -46,6 +46,10 @@ const Screen: React.VFC<Props> = () => {
     getBalance(address);
   };
 
+  const createWallet = () => {
+    navigation.navigate('CreateWallet');
+  };
+
   const networkScreen = () => {
     navigation.navigate('Network');
   };
@@ -80,6 +84,7 @@ const Screen: React.VFC<Props> = () => {
         />
 
         <View style={styles.container}>
+          <Button label="Create Wallet" onPress={createWallet} height={48} />
           <Button label="Setting Network" onPress={networkScreen} height={48} />
           <Button label="Transfer" onPress={transferScreen} height={48} />
         </View>
