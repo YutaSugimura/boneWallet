@@ -54,6 +54,10 @@ const Screen: React.VFC<Props> = () => {
     navigation.navigate('ImportPrivateKey');
   };
 
+  const importMnemonic = () => {
+    navigation.navigate('ImportMnemonic');
+  };
+
   const networkScreen = () => {
     navigation.navigate('Network');
   };
@@ -90,6 +94,7 @@ const Screen: React.VFC<Props> = () => {
         <View style={styles.container}>
           <Button label="Create Wallet" onPress={createWallet} height={48} />
           <Button label="importPrivateKey" onPress={importPrivateKey} height={48} />
+          <Button label="importMnemonic" onPress={importMnemonic} height={48} />
           <Button label="Setting Network" onPress={networkScreen} height={48} />
           <Button label="Transfer" onPress={transferScreen} height={48} />
         </View>

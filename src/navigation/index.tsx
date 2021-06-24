@@ -4,6 +4,7 @@ import { createStackNavigator, StackNavigationProp } from '@react-navigation/sta
 import TopScreen from '../screens/index';
 import CreateWalletScreen from '../screens/createWallet';
 import ImportPrivateKeyStack from './importPrivateKey';
+import ImportMnemonicStack from './importMnemonic';
 import NetworkScreen from '../screens/network';
 import TransferScreen from '../screens/transfer';
 
@@ -11,6 +12,7 @@ type RootStackParamList = {
   Top: undefined;
   CreateWallet: undefined;
   ImportPrivateKey: undefined;
+  ImportMnemonic: undefined;
   Network: undefined;
   Transfer: undefined;
 };
@@ -28,6 +30,7 @@ const Navigation: React.VFC = () => {
       <RootStack.Screen name="Top" component={TopScreen} />
       <RootStack.Screen name="CreateWallet" component={CreateWalletScreen} />
       <RootStack.Screen name="ImportPrivateKey" component={ImportPrivateKeyStack} />
+      <RootStack.Screen name="ImportMnemonic" component={ImportMnemonicStack} />
       <RootStack.Screen name="Network" component={NetworkScreen} />
       <RootStack.Screen name="Transfer" component={TransferScreen} />
     </RootStack.Navigator>
