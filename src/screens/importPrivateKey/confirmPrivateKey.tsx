@@ -16,6 +16,7 @@ const Screen: React.VFC<Props> = () => {
   const onPress = () => {
     console.log({ address, privateKey });
     navigation.popToTop();
+    navigation.goBack();
   };
 
   return (
