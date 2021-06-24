@@ -1,6 +1,4 @@
-import React from 'react';
-import { useContext } from 'react';
-import { createContext } from 'react';
+import React, { useContext, createContext } from 'react';
 import type { Control, FormState, UseFormHandleSubmit } from 'react-hook-form';
 import type { PrivateKeyFormData } from '../../types/form';
 import { usePrivateKeyFormCore } from '../../hooks/account/setPrivateKey';
