@@ -14,14 +14,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import NavigationRoot from './navigation';
 import NetworkContext from './context/network/url';
 import ProviderContext from './context/provider';
+import AccountListContext from './context/account';
+import SelectedAccountContext from './context/account/selectedAccount';
 
 const App: React.VFC = () => {
   return (
     <NetworkContext>
       <ProviderContext>
-        <NavigationContainer>
-          <NavigationRoot />
-        </NavigationContainer>
+        <AccountListContext>
+          <SelectedAccountContext>
+            <NavigationContainer>
+              <NavigationRoot />
+            </NavigationContainer>
+          </SelectedAccountContext>
+        </AccountListContext>
       </ProviderContext>
     </NetworkContext>
   );
