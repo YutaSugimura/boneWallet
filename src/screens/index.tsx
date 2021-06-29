@@ -21,12 +21,10 @@ const Screen: React.VFC<Props> = () => {
   const { isLoading, toggle } = require('../hooks/loading').useIsLoading();
   const { mnemonic, getMnemonic } = require('../hooks/mnemonic').useMnemonic();
   const { address, privateKey, getAccount } = require('../hooks/account').useAccount();
-  const { balance, getBalance } = require('../hooks/balance').useBalance();
+  const { balance } = require('../hooks/account/balance').useBalance();
 
   const { selectedAccount } =
     require('../context/account/selectedAccount').useSelectedAccountState();
-
-  console.log(selectedAccount);
 
   const wrapGetMnemonic = async () => {
     toggle(true);
@@ -45,10 +43,6 @@ const Screen: React.VFC<Props> = () => {
       getAccount(mnemonic);
       toggle(false);
     }, 300);
-  };
-
-  const getCurrentBalance = () => {
-    getBalance(address);
   };
 
   const createWallet = () => {
@@ -93,12 +87,6 @@ const Screen: React.VFC<Props> = () => {
           title="getAccount"
           disabled={isLoading ?? mnemonic === ''}
           onPress={wrapGetAccount}
-        />
-
-        <DefaultButton
-          title="getBalance"
-          disabled={isLoading ?? address === ''}
-          onPress={getCurrentBalance}
         />
 
         <View style={styles.container}>
