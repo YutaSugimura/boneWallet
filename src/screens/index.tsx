@@ -23,6 +23,11 @@ const Screen: React.VFC<Props> = () => {
   const { address, privateKey, getAccount } = require('../hooks/account').useAccount();
   const { balance, getBalance } = require('../hooks/balance').useBalance();
 
+  const { selectedAccount } =
+    require('../context/account/selectedAccount').useSelectedAccountState();
+
+  console.log(selectedAccount);
+
   const wrapGetMnemonic = async () => {
     toggle(true);
 
@@ -77,6 +82,11 @@ const Screen: React.VFC<Props> = () => {
         <Text>PrivateKey: {privateKey}</Text>
 
         <Text>Balance: {balance}</Text>
+
+        <Text>
+          selectedAccount(address):
+          {selectedAccount !== null ? selectedAccount.address : ''}
+        </Text>
 
         <DefaultButton title="getMnemonic" disabled={isLoading} onPress={wrapGetMnemonic} />
         <DefaultButton

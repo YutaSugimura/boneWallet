@@ -13,6 +13,7 @@ export const usePrivateKeyFormCore = () => {
     require('@react-navigation/native').useNavigation();
   const { control, handleSubmit, formState, reset }: UseFormReturn<PrivateKeyFormData> =
     require('react-hook-form').useFormContext();
+  const { setAccount } = require('../../context/account').useAccountDispatch();
 
   const onSubmit = (data: PrivateKeyFormData) => {
     const ethers: typeof Ethers = require('ethers');
@@ -21,6 +22,7 @@ export const usePrivateKeyFormCore = () => {
       let wallet = new ethers.Wallet(data.privateKey);
       setAddress(wallet.address);
       setPrivateKey(data.privateKey);
+      setAccount(wallet.address, 'account1');
       navigation.navigate('ConfirmPrivateKey');
     } catch {
       setErrors('PrivateKey is incorrect.');
