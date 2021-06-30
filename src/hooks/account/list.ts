@@ -4,8 +4,8 @@ import type { Accounts } from '../../types/account';
 export const useAccountCore = (initialState: Accounts = []) => {
   const [state, setState] = useState<Accounts>(initialState);
 
-  const setAccount = (address: string, label: string) => {
-    setState([...state, { address, label }]);
+  const setAccount = (address: string, privateKey: string, label: string) => {
+    setState([...state, { address, privateKey, label }]);
   };
 
   const removeAccount = (address: string) => {

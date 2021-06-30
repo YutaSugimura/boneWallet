@@ -5,11 +5,11 @@ import type { Accounts } from '../../types/account';
 const StateContext = createContext<{ account: Accounts }>({ account: [] });
 
 const DispatchContext = createContext<{
-  setAccount: (address: string, label: string) => void;
+  setAccount: (address: string, privateKey: string, label: string) => void;
   removeAccount: (address: string) => void;
   resetAccount: () => void;
 }>({
-  setAccount: (_, __) => {},
+  setAccount: (_, __, ___) => {},
   removeAccount: (_) => {},
   resetAccount: () => {},
 });
