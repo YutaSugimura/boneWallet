@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   ActivityIndicator,
-  Button as DefaultButton,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -13,37 +12,19 @@ import {
 import { Button } from '../components/button';
 import { RootNavigationProp } from '../navigation';
 
+import type { Wallet } from '../types/wallet';
+import { formatEther } from '../utils/formatEther';
+
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const navigation: RootNavigationProp<'Top'> = require('@react-navigation/native').useNavigation();
-  const { isLoading, toggle } = require('../hooks/loading').useIsLoading();
-  const { mnemonic, getMnemonic } = require('../hooks/mnemonic').useMnemonic();
-  const { address, privateKey, getAccount } = require('../hooks/account').useAccount();
-  const { balance } = require('../hooks/account/balance').useBalance();
+  const { isLoading } = require('../hooks/loading').useIsLoading();
 
-  const { selectedAccount } =
-    require('../context/account/selectedAccount').useSelectedAccountState();
-
-  const wrapGetMnemonic = async () => {
-    toggle(true);
-
-    setTimeout(() => {
-      getMnemonic();
-      toggle(false);
-    }, 300);
-  };
-
-  const wrapGetAccount = async () => {
-    if (mnemonic === '') return;
-
-    toggle(true);
-    setTimeout(() => {
-      getAccount(mnemonic);
-      toggle(false);
-    }, 300);
-  };
+  require('../hooks/wallet/switching').useSwitchingEffect();
+  const { wallet }: { wallet: Wallet } = require('../context/wallet').useWalletState();
+  const { balance }: { balance: string } = require('../hooks/wallet/balance').useBalance();
 
   const createWallet = () => {
     navigation.navigate('CreateWallet');
@@ -71,23 +52,9 @@ const Screen: React.VFC<Props> = () => {
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         {isLoading && <ActivityIndicator size="large" />}
 
-        <Text>Mnemonic: {mnemonic}</Text>
-        <Text>Address: {address}</Text>
-        <Text>PrivateKey: {privateKey}</Text>
-
-        <Text>Balance: {balance}</Text>
-
-        <Text>
-          selectedAccount(address):
-          {selectedAccount !== null ? selectedAccount.address : ''}
-        </Text>
-
-        <DefaultButton title="getMnemonic" disabled={isLoading} onPress={wrapGetMnemonic} />
-        <DefaultButton
-          title="getAccount"
-          disabled={isLoading ?? mnemonic === ''}
-          onPress={wrapGetAccount}
-        />
+        <Text>Address: {wallet !== null ? wallet.address : ''}</Text>
+        <Text>PrivateKey: {wallet !== null ? wallet.privateKey : ''}</Text>
+        <Text>Balance: {balance !== '' ? formatEther(balance) : ''}</Text>
 
         <View style={styles.container}>
           <Button label="Create Wallet" onPress={createWallet} height={48} />

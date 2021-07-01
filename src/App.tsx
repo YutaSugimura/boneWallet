@@ -15,18 +15,18 @@ import NavigationRoot from './navigation';
 import NetworkContext from './context/network/url';
 import ProviderContext from './context/provider';
 import AccountListContext from './context/account';
-import SelectedAccountContext from './context/account/selectedAccount';
+import WalletContext from './context/wallet';
 
 const App: React.VFC = () => {
   return (
     <NetworkContext>
       <ProviderContext>
         <AccountListContext>
-          <SelectedAccountContext>
+          <WalletContext>
             <NavigationContainer>
               <NavigationRoot />
             </NavigationContainer>
-          </SelectedAccountContext>
+          </WalletContext>
         </AccountListContext>
       </ProviderContext>
     </NetworkContext>

@@ -22,7 +22,7 @@ export const usePrivateKeyFormCore = () => {
       let wallet = new ethers.Wallet(data.privateKey);
       setAddress(wallet.address);
       setPrivateKey(data.privateKey);
-      setAccount(wallet.address, 'account1');
+      setAccount(wallet.address, data.privateKey, 'account1');
       navigation.navigate('ConfirmPrivateKey');
     } catch {
       setErrors('PrivateKey is incorrect.');

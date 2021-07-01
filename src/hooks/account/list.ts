@@ -10,7 +10,6 @@ export const useAccountCore = (initialState: Accounts = []) => {
 
   const removeAccount = (address: string) => {
     const newList = state.filter((item) => item.address !== address);
-
     setState([...newList]);
   };
 
