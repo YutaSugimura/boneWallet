@@ -1,32 +1,43 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import TransferFormContext, {
+  useTransferFormDispatch,
+  useTransferFormState,
+} from '../../context/transfer';
+import { useTransfer } from '../../hooks/transfer';
 import { DEVICE_WIDTH } from '../../common';
 import { InputAddress } from '../../components/input/address';
 import { InputAmount } from '../../components/input/amount';
 import { Button } from '../../components/button';
-import { useTransfer } from '../../hooks/transfer';
+import { useCheckBalance } from '../../hooks/transfer/checkBalance';
+import { useWalletState } from '../../context/wallet';
+import { useBalance } from '../../hooks/wallet/balance';
+import { formatEther } from '../../utils/formatEther';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
-  const { address, changeAddressValue } = require('../../hooks/transfer/address').useAddress();
-  const { amount, changeAmountValue } = require('../../hooks/transfer/amount').useAmount();
-
+  const { wallet } = useWalletState();
   const { transfer } = useTransfer();
+  const { balance } = useBalance();
+  const checkBalance = useCheckBalance();
+  const { to, amount } = useTransferFormState();
+  const { changeToAddress, changeSendAmount } = useTransferFormDispatch();
 
   return (
     <SafeAreaView>
       <Text>Transfer</Text>
 
-      <Text>From: {''}</Text>
-      <Text>Balance: {''}</Text>
+      <Text>From: {wallet?.address}</Text>
+      <Text>Balance: {balance !== '' ? formatEther(balance) : ''}</Text>
 
       <Text />
       <Text>To:</Text>
-      <InputAddress value={address} onChangeText={changeAddressValue} />
+      <InputAddress value={to} onChangeText={changeToAddress} />
 
       <Text>Amount: </Text>
-      <InputAmount value={amount} onChangeText={changeAmountValue} />
+      <InputAmount value={amount} onChangeText={changeSendAmount} />
+      <Text>{checkBalance ? 'ok' : 'no'}</Text>
 
       <View style={styles.buttonContainer}>
         <Button label="Transfer" onPress={transfer} width={DEVICE_WIDTH * 0.6} height={48} />
@@ -35,7 +46,15 @@ const Screen: React.VFC<Props> = () => {
   );
 };
 
-export default Screen;
+const Wrap: React.VFC<Props> = (props) => {
+  return (
+    <TransferFormContext>
+      <Screen {...props} />
+    </TransferFormContext>
+  );
+};
+
+export default Wrap;
 
 const styles = StyleSheet.create({
   buttonContainer: {
