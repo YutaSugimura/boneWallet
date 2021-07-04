@@ -1,6 +1,6 @@
 import type Ethers from 'ethers';
 
-export const createWallet = (
+export const createWalletFromPrivateKey = (
   privateKey: string,
   provider: Ethers.ethers.providers.JsonRpcProvider,
 ) => {

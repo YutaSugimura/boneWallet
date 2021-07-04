@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useAccountState } from '../../context/account';
 import { useProviderState } from '../../context/provider';
 import { useWalletDispatch } from '../../context/wallet';
-import { createWallet } from '../../utils/createWallet';
+import { createWalletFromPrivateKey } from '../../utils/createWallet';
 
 export const useSwitchingEffect = () => {
   const { account } = useAccountState();
@@ -13,7 +13,7 @@ export const useSwitchingEffect = () => {
     let isMounted = true;
 
     if (isMounted && provider !== null && account.length === 1) {
-      const wallet = createWallet(account[0].privateKey, provider);
+      const wallet = createWalletFromPrivateKey(account[0].privateKey, provider);
       setWallet(wallet);
     }
 
