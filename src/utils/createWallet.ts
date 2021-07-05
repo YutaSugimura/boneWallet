@@ -8,3 +8,9 @@ export const createWalletFromPrivateKey = (
 
   return new ethers.Wallet(privateKey, provider);
 };
+
+export const createWallet = () => {
+  const ethers: typeof Ethers = require('ethers');
+
+  return ethers.Wallet.createRandom();
+};

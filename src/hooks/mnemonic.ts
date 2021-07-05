@@ -1,13 +1,12 @@
 import { useState } from 'react';
+import { createWallet } from '../utils/createWallet';
 
 export const useMnemonic = () => {
   const [mnemonic, setMnemonic] = useState<string>('');
 
   const getMnemonic = async () => {
-    const ethers = require('ethers');
-    const wallet = ethers.Wallet.createRandom();
-    const newMnemonic = wallet.mnemonic;
-    setMnemonic(newMnemonic.phrase);
+    const wallet = createWallet();
+    setMnemonic(wallet.mnemonic.phrase);
   };
 
   return {
