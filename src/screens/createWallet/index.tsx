@@ -6,7 +6,8 @@ type Props = {};
 
 const Screen: React.VFC<Props> = () => {
   const { isLoading, toggle } = require('../../hooks/loading').useIsLoading();
-  const { mnemonic, getMnemonic } = require('../../hooks/mnemonic').useMnemonic();
+  const { mnemonic, getMnemonic } =
+    require('../../hooks/account/generateMnemonic').useGenerateMnemonic();
 
   const wrapGetMnemonic = async () => {
     toggle(true);

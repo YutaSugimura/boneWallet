@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { createWallet } from '../utils/createWallet';
+import { createWallet } from '../../utils/createWallet';
 
-export const useMnemonic = () => {
+export const useGenerateMnemonic = () => {
   const [mnemonic, setMnemonic] = useState<string>('');
 
   const getMnemonic = async () => {
