@@ -12,9 +12,9 @@ export const useSwitchingEffect = () => {
   useEffect(() => {
     let isMounted = true;
 
-    if (isMounted && provider !== null && account.length === 1) {
+    if (provider !== null && account.length === 1) {
       const wallet = createWalletFromPrivateKey(account[0].privateKey, provider);
-      setWallet(wallet);
+      isMounted && setWallet(wallet);
     }
 
     return () => {

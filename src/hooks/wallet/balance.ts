@@ -8,13 +8,13 @@ export const useBalance = () => {
 
   useEffect(() => {
     const init = async () => {
+      if (wallet === null) return;
+
       const balance = await wallet.getBalance();
       setState(balance.toString());
     };
 
-    if (wallet !== null) {
-      init();
-    }
+    init();
   }, [wallet]);
 
   return {

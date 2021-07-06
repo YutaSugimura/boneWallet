@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import type Ethers from 'ethers';
 import type { Provider } from '../../types/ether';
+import { useNetworkUrlState } from '../../context/network/url';
 
 export const useProviderCore = () => {
-  const networkUrl: string = require('../../context/network/url').useNetworkUrlState().networkUrl;
+  const networkUrl: string = useNetworkUrlState().networkUrl;
+
   const [state, setState] = useState<Provider>(null);
 
   useEffect(() => {
     let isMounted = true;
-    const setProvider = () => {
-      const ethers: typeof Ethers = require('ethers');
-      const newProvider = new ethers.providers.JsonRpcProvider(networkUrl);
-      if (isMounted) setState(newProvider);
-    };
+
+    const ethers: typeof Ethers = require('ethers');
 
     if (networkUrl !== '') {
-      setProvider();
+      const newProvider = new ethers.providers.JsonRpcProvider(networkUrl);
+      isMounted && setState(newProvider);
     }
 
     return () => {
