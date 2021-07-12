@@ -12,24 +12,21 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import NavigationRoot from './navigation';
-import NetworkContext from './context/network/url';
 import ProviderContext from './context/provider';
 import AccountListContext from './context/account';
 import WalletContext from './context/wallet';
 
 const App: React.VFC = () => {
   return (
-    <NetworkContext>
-      <ProviderContext>
-        <AccountListContext>
-          <WalletContext>
-            <NavigationContainer>
-              <NavigationRoot />
-            </NavigationContainer>
-          </WalletContext>
-        </AccountListContext>
-      </ProviderContext>
-    </NetworkContext>
+    <ProviderContext>
+      <AccountListContext>
+        <WalletContext>
+          <NavigationContainer>
+            <NavigationRoot />
+          </NavigationContainer>
+        </WalletContext>
+      </AccountListContext>
+    </ProviderContext>
   );
 };
 
