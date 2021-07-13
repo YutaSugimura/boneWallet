@@ -32,8 +32,9 @@ const Screen: React.VFC<Props> = () => {
           <CurrentNetwork />
 
           <View>
-            {DEFAULT_NETWORK_LIST.map((item) => (
+            {DEFAULT_NETWORK_LIST.map((item, index) => (
               <Button
+                key={`network-${item}-${index}`}
                 label={item}
                 onPress={changeNetwork(item)}
                 width={DEVICE_WIDTH * 0.6}

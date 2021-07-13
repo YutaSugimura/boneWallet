@@ -21,9 +21,11 @@ const App: React.VFC = () => {
     <ProviderContext>
       <AccountListContext>
         <WalletContext>
+          {/** Navigation */}
           <NavigationContainer>
             <NavigationRoot />
           </NavigationContainer>
+          {/** /Navigation */}
         </WalletContext>
       </AccountListContext>
     </ProviderContext>
