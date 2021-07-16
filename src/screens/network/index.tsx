@@ -1,11 +1,10 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import type { RootNavigationProp } from '../../navigation';
-import NetworkContext from '../../context/network/url';
 import { DEVICE_WIDTH } from '../../common';
 import { DEFAULT_NETWORK_LIST } from '../../common/network';
 import { Button } from '../../components/button';
-import { InputUrl } from '../../components/input/url';
+import { CustomNetworkUrlForm } from '../../components/form/customNetworkUrl';
 import { CurrentNetwork } from '../../components/currentNetwork';
 
 type Props = {};
@@ -13,8 +12,6 @@ type Props = {};
 const Screen: React.VFC<Props> = () => {
   const navigation: RootNavigationProp<'Network'> =
     require('@react-navigation/native').useNavigation();
-  const networkUrl = require('../../context/network/url').useNetworkUrlState().networkUrl;
-
   const { setBaseProvider } = require('../../context/provider').useProviderDispatch();
 
   const changeNetwork = (newNetwork: string) => () => {
@@ -26,36 +23,33 @@ const Screen: React.VFC<Props> = () => {
   };
 
   return (
-    <NetworkContext>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.inner}>
-          <CurrentNetwork />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.inner}>
+        <CurrentNetwork />
 
-          <View>
-            {DEFAULT_NETWORK_LIST.map((item, index) => (
-              <Button
-                key={`network-${item}-${index}`}
-                label={item}
-                onPress={changeNetwork(item)}
-                width={DEVICE_WIDTH * 0.6}
-                height={48}
-              />
-            ))}
-          </View>
+        <View>
+          {DEFAULT_NETWORK_LIST.map((item, index) => (
+            <Button
+              key={`network-${item}-${index}`}
+              label={item}
+              onPress={changeNetwork(item)}
+              width={DEVICE_WIDTH * 0.6}
+              height={48}
+            />
+          ))}
+        </View>
 
-          <View>
-            <Text>Custom URL</Text>
+        <View>
+          <Text>Custom URL</Text>
 
-            <Text>current network url: {networkUrl}</Text>
-            <InputUrl />
+          <CustomNetworkUrlForm />
 
-            <View style={styles.buttonContainer}>
-              <Button label="Back" onPress={goBack} width={DEVICE_WIDTH * 0.6} height={48} />
-            </View>
+          <View style={styles.buttonContainer}>
+            <Button label="Back" onPress={goBack} width={DEVICE_WIDTH * 0.8} height={48} />
           </View>
         </View>
-      </SafeAreaView>
-    </NetworkContext>
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -71,6 +65,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     alignItems: 'center',
-    paddingTop: 20,
+    paddingTop: 50,
   },
 });
