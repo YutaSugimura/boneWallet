@@ -26,20 +26,20 @@ const Screen: React.VFC<Props> = () => {
   const { wallet }: { wallet: Wallet } = require('../context/wallet').useWalletState();
   const { balance }: { balance: string } = require('../hooks/wallet/balance').useBalance();
 
-  const networkScreen = () => {
-    navigation.navigate('Network');
-  };
-
   const createWallet = () => {
     navigation.navigate('CreateWallet');
+  };
+
+  const importMnemonic = () => {
+    navigation.navigate('ImportMnemonic');
   };
 
   const importPrivateKey = () => {
     navigation.navigate('ImportPrivateKey');
   };
 
-  const importMnemonic = () => {
-    navigation.navigate('ImportMnemonic');
+  const networkScreen = () => {
+    navigation.navigate('Network');
   };
 
   const transferScreen = () => {
@@ -57,11 +57,22 @@ const Screen: React.VFC<Props> = () => {
         <Text>Balance: {balance !== '' ? formatEther(balance) : ''}</Text>
 
         <View style={styles.container}>
-          <Button label="Setting Network" onPress={networkScreen} height={48} />
-          <Button label="Create Wallet" onPress={createWallet} height={48} />
-          <Button label="importPrivateKey" onPress={importPrivateKey} height={48} />
-          <Button label="importMnemonic" onPress={importMnemonic} height={48} />
-          <Button label="Transfer" onPress={transferScreen} height={48} />
+          <View style={styles.section}>
+            <Text>Account</Text>
+            <Button label="Create Wallet" onPress={createWallet} height={48} />
+            <Button label="importMnemonic" onPress={importMnemonic} height={48} />
+            <Button label="importPrivateKey" onPress={importPrivateKey} height={48} />
+          </View>
+
+          <View style={styles.section}>
+            <Text>Network</Text>
+            <Button label="Setting Network" onPress={networkScreen} height={48} />
+          </View>
+
+          <View style={styles.section}>
+            <Text>Transaction</Text>
+            <Button label="Transfer" onPress={transferScreen} height={48} />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -73,5 +84,8 @@ export default Screen;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+  },
+  section: {
+    paddingTop: 20,
   },
 });
