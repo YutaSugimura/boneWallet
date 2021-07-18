@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Text, View, SafeAreaView } from 'react-native';
+import { ActivityIndicator, Text, View, SafeAreaView, StyleSheet } from 'react-native';
 import { Button } from '../../components/button';
 
 type Props = {};
@@ -20,16 +20,48 @@ const Screen: React.VFC<Props> = () => {
 
   return (
     <SafeAreaView>
-      <View>
-        <Text>Create Wallet</Text>
-
+      <View style={styles.container}>
         {isLoading && <ActivityIndicator size="large" />}
 
-        <Text>Mnemonic: {mnemonic}</Text>
-        <Button label="generate mnemonic" onPress={wrapGetMnemonic} />
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>Mnemonic</Text>
+          <Text style={styles.value}>{mnemonic}</Text>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <Button
+            label="Generate Mnemonic"
+            onPress={wrapGetMnemonic}
+            disabled={isLoading}
+            fontSize={16}
+            fontWeight="bold"
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
 };
 
 export default Screen;
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  textContainer: {
+    alignItems: 'center',
+    paddingTop: 10,
+  },
+  buttonContainer: {
+    paddingTop: 10,
+  },
+  title: {
+    color: 'rgba(0, 0, 0, 0.8)',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  value: {
+    color: 'rgba(0, 0, 0, 0.8)',
+    fontSize: 14,
+  },
+});

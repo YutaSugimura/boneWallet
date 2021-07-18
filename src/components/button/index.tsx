@@ -6,6 +6,7 @@ import { COLORS, DEVICE_WIDTH } from '../../common';
 type Props = {
   label: string;
   onPress: () => void;
+  disabled?: boolean;
   width?: number;
   height?: number;
   backgroundColor?: Color;
@@ -20,6 +21,7 @@ type Props = {
 export const Button: React.VFC<Props> = ({
   label,
   onPress,
+  disabled,
   width,
   height,
   backgroundColor,
@@ -46,7 +48,7 @@ export const Button: React.VFC<Props> = ({
   };
 
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.container, buttonStyle]}>
+    <TouchableOpacity onPress={onPress} disabled={disabled} style={[styles.container, buttonStyle]}>
       <Text style={textStyle}>{label}</Text>
     </TouchableOpacity>
   );
