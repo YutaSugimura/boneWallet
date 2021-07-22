@@ -20,5 +20,5 @@ export const useSwitchingEffect = () => {
     return () => {
       isMounted = false;
     };
-  }, [account.length, provider]);
+  }, [account, account.length, provider, setWallet]);
 };
