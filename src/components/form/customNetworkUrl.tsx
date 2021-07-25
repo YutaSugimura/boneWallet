@@ -8,7 +8,7 @@ type Props = {};
 export const CustomNetworkUrlForm: React.VFC<Props> = () => {
   const [state, setState] = useState<string>('');
 
-  const { setJsonRpcProvider } = require('../../context/provider').useProviderDispatch();
+  const { setJsonRpcProvider } = require('../../hooks/provider').useProvider();
 
   const onSubmitEditing = () => {
     setJsonRpcProvider(state);

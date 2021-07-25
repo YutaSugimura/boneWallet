@@ -1,14 +1,17 @@
 import type Ethers from 'ethers';
+import { useRecoilValue } from 'recoil';
+import { walletState } from '../../recoil/atoms/wallet';
 import { useTransferFormState } from '../../context/transfer';
-import { useWalletState } from '../../context/wallet';
 import { parseEther } from '../../utils/parseEther';
 
 export const useTransfer = () => {
-  const { wallet } = useWalletState();
+  const wallet = useRecoilValue(walletState);
   const { to, amount } = useTransferFormState();
 
   const transfer = async () => {
-    if (wallet === null) return;
+    if (wallet === null) {
+      return;
+    }
 
     let tx: Ethers.ethers.utils.Deferrable<Ethers.ethers.providers.TransactionRequest> = {
       to,

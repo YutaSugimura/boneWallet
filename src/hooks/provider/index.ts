@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import type Ethers from 'ethers';
-import type { Provider } from '../../types/ether';
+import { providerState } from '../../recoil/atoms/provider';
 
-export const useProviderCore = (initialState: Provider = null) => {
-  const [state, setState] = useState<Provider>(initialState);
+export const useProvider = () => {
+  const [state, setState] = useRecoilState(providerState);
 
   const setBaseProvider = (network: string) => {
-    if (network === '') return;
+    if (network === '') {
+      return;
+    }
 
     const ethers: typeof Ethers = require('ethers');
 
@@ -15,7 +17,9 @@ export const useProviderCore = (initialState: Provider = null) => {
   };
 
   const setJsonRpcProvider = (customUrl: string) => {
-    if (customUrl === '') return;
+    if (customUrl === '') {
+      return;
+    }
 
     const ethers: typeof Ethers = require('ethers');
     const newProvider = new ethers.providers.JsonRpcProvider(customUrl);

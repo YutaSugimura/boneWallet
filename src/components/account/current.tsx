@@ -1,13 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import type { Wallet } from '../../types/wallet';
+import { useRecoilValue } from 'recoil';
+import { walletState } from '../../recoil/atoms/wallet';
 import { formatEther } from '../../utils/formatEther';
 
 type Props = {};
 
 export const CurrentAccount: React.VFC<Props> = () => {
   require('../../hooks/wallet/switching').useSwitchingEffect();
-  const { wallet }: { wallet: Wallet } = require('../../context/wallet').useWalletState();
+  const wallet = useRecoilValue(walletState);
   const { balance }: { balance: string } = require('../../hooks/wallet/balance').useBalance();
 
   return (

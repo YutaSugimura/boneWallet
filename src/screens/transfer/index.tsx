@@ -10,14 +10,16 @@ import { InputAddress } from '../../components/input/address';
 import { InputAmount } from '../../components/input/amount';
 import { Button } from '../../components/button';
 import { useCheckBalance } from '../../hooks/transfer/checkBalance';
-import { useWalletState } from '../../context/wallet';
 import { useBalance } from '../../hooks/wallet/balance';
 import { formatEther } from '../../utils/formatEther';
+
+import { useRecoilValue } from 'recoil';
+import { walletState } from '../../recoil/atoms/wallet';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
-  const { wallet } = useWalletState();
+  const wallet = useRecoilValue(walletState);
   const { transfer } = useTransfer();
   const { balance } = useBalance();
   const checkBalance = useCheckBalance();

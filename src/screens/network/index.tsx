@@ -12,7 +12,7 @@ type Props = {};
 const Screen: React.VFC<Props> = () => {
   const navigation: RootNavigationProp<'Network'> =
     require('@react-navigation/native').useNavigation();
-  const { setBaseProvider } = require('../../context/provider').useProviderDispatch();
+  const { setBaseProvider } = require('../../hooks/provider').useProvider();
 
   const changeNetwork = (newNetwork: string) => () => {
     setBaseProvider(newNetwork);

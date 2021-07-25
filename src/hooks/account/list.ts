@@ -1,26 +1,14 @@
-import { useState } from 'react';
-import type { Accounts } from '../../types/account';
+import { useRecoilState } from 'recoil';
+import { accountState } from '../../recoil/atoms/account';
 
-export const useAccountCore = (initialState: Accounts = []) => {
-  const [state, setState] = useState<Accounts>(initialState);
+export const useAccountlist = () => {
+  const [state, setState] = useRecoilState(accountState);
 
-  const setAccount = (address: string, privateKey: string, label: string) => {
+  const addAccountList = (address: string, privateKey: string, label: string) => {
     setState([...state, { address, privateKey, label }]);
   };
 
-  const removeAccount = (address: string) => {
-    const newList = state.filter((item) => item.address !== address);
-    setState([...newList]);
-  };
-
-  const resetAccount = () => {
-    setState([]);
-  };
-
   return {
-    account: state,
-    setAccount,
-    removeAccount,
-    resetAccount,
+    addAccountList,
   };
 };
