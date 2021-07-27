@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { DEVICE_WIDTH } from '../../common';
-import { useMnemonicFormDispatch, useMnemonicFormState } from '../../context/mnemonicForm';
 import { Button } from '../button';
 import { InputMnemonic } from '../input/mnemonic';
 
 type Props = {};
 
 export const MnemonicForm: React.VFC<Props> = () => {
-  const { errors } = useMnemonicFormState();
-  const { handleSubmit, onSubmit } = useMnemonicFormDispatch();
+  const { errors } = require('../../context/mnemonicForm').useMnemonicFormState();
+  const { handleSubmit, onSubmit } =
+    require('../../context/mnemonicForm').useMnemonicFormDispatch();
 
   if (!handleSubmit) {
     return <></>;
