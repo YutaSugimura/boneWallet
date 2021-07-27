@@ -1,23 +1,14 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
-import type { ImportMnemonicNavigationProp } from '../../navigation/importMnemonic';
 import { DEVICE_WIDTH } from '../../common';
-import { useMnemonicFormState } from '../../context/mnemonicForm';
+import { useMnemonicFormDispatch, useMnemonicFormState } from '../../context/mnemonicForm';
 import { Button } from '../../components/button';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
-  const navigation: ImportMnemonicNavigationProp<'ConfirmMnemonic'> =
-    require('@react-navigation/native').useNavigation();
-
   const { address, mnemonic } = useMnemonicFormState();
-
-  const onPress = () => {
-    console.log({ address, mnemonic });
-    navigation.popToTop();
-    navigation.goBack();
-  };
+  const { importMnemonic } = useMnemonicFormDispatch();
 
   return (
     <SafeAreaView>
@@ -36,7 +27,7 @@ const Screen: React.VFC<Props> = () => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <Button label="OK" onPress={onPress} height={42} width={DEVICE_WIDTH * 0.6} />
+        <Button label="OK" onPress={importMnemonic} height={42} width={DEVICE_WIDTH * 0.6} />
       </View>
     </SafeAreaView>
   );

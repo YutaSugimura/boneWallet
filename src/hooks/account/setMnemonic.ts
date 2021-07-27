@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import type { UseFormReturn } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
+import { useNavigation } from '@react-navigation/native';
 import type Ethers from 'ethers';
 import type { ImportMnemonicNavigationProp } from '../../navigation/importMnemonic';
 import type { MnemonicFormData } from '../../types/form';
@@ -9,10 +10,8 @@ export const useMnemonicFormCore = () => {
   const [mnemonic, setMnemonic] = useState<string>('');
   const [errors, setErrors] = useState<string>('');
 
-  const navigation: ImportMnemonicNavigationProp<'ImportMnemonic'> =
-    require('@react-navigation/native').useNavigation();
-  const { control, handleSubmit, formState, reset }: UseFormReturn<MnemonicFormData> =
-    require('react-hook-form').useFormContext();
+  const navigation = useNavigation<ImportMnemonicNavigationProp<'ImportMnemonic'>>();
+  const { control, handleSubmit, formState, reset } = useFormContext<MnemonicFormData>();
 
   const onSubmit = (data: MnemonicFormData) => {
     const ethers: typeof Ethers = require('ethers');
@@ -29,6 +28,16 @@ export const useMnemonicFormCore = () => {
     }
   };
 
+  const importMnemonic = () => {
+    if (mnemonic.length === 0) {
+      return;
+    }
+
+    console.log({ address, mnemonic });
+    navigation.popToTop();
+    navigation.goBack();
+  };
+
   const resetForm = () => {
     reset();
   };
@@ -42,5 +51,6 @@ export const useMnemonicFormCore = () => {
     formState,
     resetForm,
     onSubmit,
+    importMnemonic,
   };
 };
