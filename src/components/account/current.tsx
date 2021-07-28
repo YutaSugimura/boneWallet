@@ -1,26 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useRecoilValue } from 'recoil';
-import { walletState } from '../../recoil/atoms/wallet';
+import { currentAddressState } from '../../recoil/selector/currentAddress';
 import { formatEther } from '../../utils/formatEther';
 
 type Props = {};
 
 export const CurrentAccount: React.VFC<Props> = () => {
   require('../../hooks/wallet/switching').useSwitchingEffect();
-  const wallet = useRecoilValue(walletState);
+  const { address, privateKey } = useRecoilValue(currentAddressState);
+
   const { balance }: { balance: string } = require('../../hooks/wallet/balance').useBalance();
 
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.title}>Address</Text>
-        <Text style={styles.value}>{wallet !== null ? wallet.address : ''}</Text>
+        <Text style={styles.value}>{address}</Text>
       </View>
 
       <View style={styles.section}>
         <Text style={styles.title}>PrivateKey</Text>
-        <Text style={styles.value}>{wallet !== null ? wallet.privateKey : ''}</Text>
+        <Text style={styles.value}>{privateKey}</Text>
       </View>
 
       <View style={styles.section}>
