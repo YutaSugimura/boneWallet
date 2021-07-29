@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { walletState } from '../../recoil/atoms/wallet';
+import { balanceState } from '../../recoil/atoms/balance';
 
-export const useBalance = () => {
-  const [state, setState] = useState<string>('');
-
+export const useBalanceEffect = () => {
   const wallet = useRecoilValue(walletState);
+  const setState = useSetRecoilState(balanceState);
 
   useEffect(() => {
     (async () => {
@@ -14,9 +14,5 @@ export const useBalance = () => {
         setState(balance.toString());
       }
     })();
-  }, [wallet]);
-
-  return {
-    balance: state,
-  };
+  }, [wallet, setState]);
 };

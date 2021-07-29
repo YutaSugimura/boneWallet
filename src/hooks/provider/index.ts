@@ -1,16 +1,16 @@
-import { useRecoilState } from 'recoil';
 import type Ethers from 'ethers';
+import { useSetRecoilState } from 'recoil';
 import { providerState } from '../../recoil/atoms/provider';
 
+const ethers: typeof Ethers = require('ethers');
+
 export const useProvider = () => {
-  const [state, setState] = useRecoilState(providerState);
+  const setState = useSetRecoilState(providerState);
 
   const setBaseProvider = (network: string) => {
     if (network === '') {
       return;
     }
-
-    const ethers: typeof Ethers = require('ethers');
 
     const newProvider = ethers.getDefaultProvider(network);
     setState(newProvider);
@@ -21,13 +21,11 @@ export const useProvider = () => {
       return;
     }
 
-    const ethers: typeof Ethers = require('ethers');
     const newProvider = new ethers.providers.JsonRpcProvider(customUrl);
     setState(newProvider);
   };
 
   return {
-    provider: state,
     setBaseProvider,
     setJsonRpcProvider,
   };

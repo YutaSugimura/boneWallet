@@ -11,15 +11,9 @@ export const useSwitchingEffect = () => {
   const setWallet = useSetRecoilState(walletState);
 
   useEffect(() => {
-    let isMounted = true;
-
     if (provider !== null && account.length === 1) {
       const wallet = createWalletFromPrivateKey(account[0].privateKey, provider);
-      isMounted && setWallet(wallet);
+      setWallet(wallet);
     }
-
-    return () => {
-      isMounted = false;
-    };
-  }, [account, account.length, provider, setWallet]);
+  }, [provider, account, setWallet]);
 };
