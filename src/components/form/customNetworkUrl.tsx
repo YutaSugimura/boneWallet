@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, TextInput, Text } from 'react-native';
+import { useRecoilState } from 'recoil';
+import { networkFormState } from '../../recoil/atoms/networkForm';
 import { IS_IOS, DEVICE_WIDTH } from '../../common';
+import { useNetworkForm } from '../../hooks/network/form';
 import { Button } from '../button';
 
 type Props = {};
 
 export const CustomNetworkUrlForm: React.VFC<Props> = () => {
-  const [state, setState] = useState<string>('');
-
-  const { setJsonRpcProvider } = require('../../hooks/provider').useProvider();
-
-  const onSubmitEditing = () => {
-    setJsonRpcProvider(state);
-  };
+  const [state, setState] = useRecoilState(networkFormState);
+  const { onSubmitEditing } = useNetworkForm();
 
   return (
     <View style={styles.container}>

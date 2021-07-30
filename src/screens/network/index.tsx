@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import type { RootNavigationProp } from '../../navigation';
 import { DEVICE_WIDTH } from '../../common';
+import { useNetworkHooks } from '../../hooks/network';
 import { DEFAULT_NETWORK_LIST } from '../../common/network';
 import { Button } from '../../components/button';
 import { CustomNetworkUrlForm } from '../../components/form/customNetworkUrl';
@@ -12,11 +13,8 @@ type Props = {};
 const Screen: React.VFC<Props> = () => {
   const navigation: RootNavigationProp<'Network'> =
     require('@react-navigation/native').useNavigation();
-  const { setBaseProvider } = require('../../hooks/provider').useProvider();
 
-  const changeNetwork = (newNetwork: string) => () => {
-    setBaseProvider(newNetwork);
-  };
+  const { changeNetwork } = useNetworkHooks();
 
   const goBack = () => {
     navigation.goBack();
