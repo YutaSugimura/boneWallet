@@ -8,19 +8,11 @@ export const useProvider = () => {
   const setState = useSetRecoilState(providerState);
 
   const setBaseProvider = (network: string) => {
-    if (network === '') {
-      return;
-    }
-
     const newProvider = ethers.getDefaultProvider(network);
     setState(newProvider);
   };
 
-  const setJsonRpcProvider = (customUrl: string) => {
-    if (customUrl === '') {
-      return;
-    }
-
+  const setJsonRpcProvider = async (customUrl: string) => {
     const newProvider = new ethers.providers.JsonRpcProvider(customUrl);
     setState(newProvider);
   };

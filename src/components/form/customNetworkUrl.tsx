@@ -1,34 +1,48 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Text } from 'react-native';
-import { useRecoilState } from 'recoil';
-import { networkFormState } from '../../recoil/atoms/networkForm';
+import { View, StyleSheet, TextInput } from 'react-native';
+import { Controller, useForm } from 'react-hook-form';
+import { useProvider } from '../../hooks/provider';
 import { IS_IOS, DEVICE_WIDTH } from '../../common';
-import { useNetworkForm } from '../../hooks/network/form';
 import { Button } from '../button';
 
 type Props = {};
 
 export const CustomNetworkUrlForm: React.VFC<Props> = () => {
-  const [state, setState] = useRecoilState(networkFormState);
-  const { onSubmitEditing } = useNetworkForm();
+  const { setJsonRpcProvider } = useProvider();
+  const { control, handleSubmit } = useForm<{ customUrl: string }>();
+
+  const onSubmit = (data: { customUrl: string }) => {
+    setJsonRpcProvider(data.customUrl);
+  };
 
   return (
     <View style={styles.container}>
-      <Text>current network url: {state}</Text>
-
-      <TextInput
-        keyboardType={IS_IOS ? 'url' : 'default'}
-        placeholder="url"
-        value={state}
-        onChangeText={setState}
-        onSubmitEditing={onSubmitEditing}
-        clearButtonMode="while-editing"
-        returnKeyType="done"
-        style={styles.inputContainer}
+      <Controller
+        control={control}
+        name="customUrl"
+        rules={{ required: true }}
+        defaultValue=""
+        render={({ field: { value, onChange, onBlur } }) => (
+          <TextInput
+            keyboardType={IS_IOS ? 'url' : 'default'}
+            placeholder="url"
+            clearButtonMode="while-editing"
+            returnKeyType="done"
+            value={value}
+            onChangeText={onChange}
+            onBlur={onBlur}
+            style={styles.inputContainer}
+          />
+        )}
       />
 
       <View style={styles.buttonContainer}>
-        <Button label="Set URL" onPress={onSubmitEditing} width={DEVICE_WIDTH * 0.6} height={48} />
+        <Button
+          label="Set URL"
+          onPress={handleSubmit(onSubmit)}
+          width={DEVICE_WIDTH * 0.6}
+          height={48}
+        />
       </View>
     </View>
   );
