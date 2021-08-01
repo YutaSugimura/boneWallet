@@ -1,30 +1,33 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import type { Wallet } from '../../types/wallet';
+import { useRecoilValue } from 'recoil';
+import { balanceState } from '../../recoil/atoms/balance';
+import { currentAddressState } from '../../recoil/selector/currentAddress';
 import { formatEther } from '../../utils/formatEther';
 
 type Props = {};
 
 export const CurrentAccount: React.VFC<Props> = () => {
   require('../../hooks/wallet/switching').useSwitchingEffect();
-  const { wallet }: { wallet: Wallet } = require('../../context/wallet').useWalletState();
-  const { balance }: { balance: string } = require('../../hooks/wallet/balance').useBalance();
+  require('../../hooks/wallet/balance').useBalanceEffect();
+  const { address, privateKey } = useRecoilValue(currentAddressState);
+  const balance = useRecoilValue(balanceState);
 
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.title}>Address</Text>
-        <Text style={styles.value}>{wallet !== null ? wallet.address : ''}</Text>
+        <Text style={styles.value}>{address}</Text>
       </View>
 
       <View style={styles.section}>
         <Text style={styles.title}>PrivateKey</Text>
-        <Text style={styles.value}>{wallet !== null ? wallet.privateKey : ''}</Text>
+        <Text style={styles.value}>{privateKey}</Text>
       </View>
 
       <View style={styles.section}>
         <Text style={styles.title}>Balance</Text>
-        <Text style={styles.value}>{balance !== '' ? formatEther(balance) : ''}</Text>
+        <Text style={styles.value}>{balance !== '' ? formatEther(balance) : ''}eth</Text>
       </View>
     </View>
   );

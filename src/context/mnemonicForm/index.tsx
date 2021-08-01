@@ -19,9 +19,11 @@ const DispatchContext = createContext<{
   handleSubmit?: UseFormHandleSubmit<MnemonicFormData>;
   resetForm: () => void;
   onSubmit: (data: MnemonicFormData) => void;
+  importMnemonic: () => void;
 }>({
   resetForm: () => {},
   onSubmit: (_) => {},
+  importMnemonic: () => {},
 });
 
 type Props = {
@@ -29,12 +31,21 @@ type Props = {
 };
 
 const Provider: React.VFC<Props> = ({ children }) => {
-  const { address, mnemonic, errors, control, handleSubmit, formState, resetForm, onSubmit } =
-    useMnemonicFormCore();
+  const {
+    address,
+    mnemonic,
+    errors,
+    control,
+    handleSubmit,
+    formState,
+    resetForm,
+    onSubmit,
+    importMnemonic,
+  } = useMnemonicFormCore();
 
   return (
     <StateContext.Provider value={{ address, mnemonic, errors, control, formState }}>
-      <DispatchContext.Provider value={{ handleSubmit, resetForm, onSubmit }}>
+      <DispatchContext.Provider value={{ handleSubmit, resetForm, onSubmit, importMnemonic }}>
         {children}
       </DispatchContext.Provider>
     </StateContext.Provider>

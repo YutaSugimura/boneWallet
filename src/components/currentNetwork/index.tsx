@@ -1,30 +1,19 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { View, Text } from 'react-native';
-import { useProviderState } from '../../context/provider';
-import { getNetwork } from '../../utils/getNetwork';
+import { useRecoilValue } from 'recoil';
+import { networkState } from '../../recoil/atoms/network';
 
 type Props = {};
 
 export const CurrentNetwork: React.VFC<Props> = () => {
-  const provider = useProviderState();
-  const [state, setState] = useState<string>('');
-
-  useEffect(() => {
-    (async () => {
-      if (provider === null) return;
-
-      const network = await getNetwork(provider);
-      if (network) {
-        setState(network.name);
-      }
-    })();
-  }, [provider]);
+  const networkValue = useRecoilValue(networkState);
 
   return (
     <View>
-      <Text>Current Network: {state}</Text>
+      <Text>Current Network</Text>
+      <Text>chainId: {networkValue.chainId}</Text>
+      <Text>name: {networkValue.name}</Text>
+      <Text>isJsonRpcProvider {networkValue.isJsonRpcProvider}</Text>
     </View>
   );
 };

@@ -1,23 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useWalletState } from '../../context/wallet';
+import { useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { walletState } from '../../recoil/atoms/wallet';
+import { balanceState } from '../../recoil/atoms/balance';
 
-export const useBalance = () => {
-  const [state, setState] = useState<string>('');
-
-  const { wallet } = useWalletState();
+export const useBalanceEffect = () => {
+  const wallet = useRecoilValue(walletState);
+  const setState = useSetRecoilState(balanceState);
 
   useEffect(() => {
-    const init = async () => {
-      if (wallet === null) return;
-
-      const balance = await wallet.getBalance();
-      setState(balance.toString());
-    };
-
-    init();
-  }, [wallet]);
-
-  return {
-    balance: state,
-  };
+    (async () => {
+      if (wallet !== null) {
+        const balance = await wallet.getBalance();
+        setState(balance.toString());
+      }
+    })();
+  }, [wallet, setState]);
 };

@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { balanceState } from '../../recoil/atoms/balance';
 import { useTransferFormState } from '../../context/transfer';
 import { formatEther } from '../../utils/formatEther';
-import { useBalance } from '../wallet/balance';
 
 export const useCheckBalance = () => {
   const { amount } = useTransferFormState();
-  const { balance } = useBalance();
+  const balance = useRecoilValue(balanceState);
 
   const [state, setState] = useState<boolean>(false);
 
   useEffect(() => {
-    if (balance !== null && Number(amount) !== 0) {
+    if (balance !== '' && Number(amount) !== 0) {
       setTimeout(() => {
         setState(Number(amount) < Number(formatEther(balance)));
       }, 1000);

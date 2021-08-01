@@ -1,29 +1,39 @@
-import { useState } from 'react';
 import type Ethers from 'ethers';
-import type { Provider } from '../../types/ether';
+import { useSetRecoilState } from 'recoil';
+import { providerState } from '../../recoil/atoms/provider';
+import { networkState } from '../../recoil/atoms/network';
 
-export const useProviderCore = (initialState: Provider = null) => {
-  const [state, setState] = useState<Provider>(initialState);
+const ethers: typeof Ethers = require('ethers');
 
-  const setBaseProvider = (network: string) => {
-    if (network === '') return;
+export const useProvider = () => {
+  const setProviderState = useSetRecoilState(providerState);
+  const setNetworkState = useSetRecoilState(networkState);
 
-    const ethers: typeof Ethers = require('ethers');
-
+  const setBaseProvider = async (network: string) => {
     const newProvider = ethers.getDefaultProvider(network);
-    setState(newProvider);
+    const newNetwork = await newProvider.getNetwork();
+
+    setProviderState(newProvider);
+    setNetworkState({
+      chainId: newNetwork.chainId,
+      name: newNetwork.name,
+      isJsonRpcProvider: false,
+    });
   };
 
-  const setJsonRpcProvider = (customUrl: string) => {
-    if (customUrl === '') return;
-
-    const ethers: typeof Ethers = require('ethers');
+  const setJsonRpcProvider = async (customUrl: string) => {
     const newProvider = new ethers.providers.JsonRpcProvider(customUrl);
-    setState(newProvider);
+    const newNetwork = await newProvider.getNetwork();
+
+    setProviderState(newProvider);
+    setNetworkState({
+      chainId: newNetwork.chainId,
+      name: newNetwork.name,
+      isJsonRpcProvider: true,
+    });
   };
 
   return {
-    provider: state,
     setBaseProvider,
     setJsonRpcProvider,
   };

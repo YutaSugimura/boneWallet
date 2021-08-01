@@ -10,16 +10,18 @@ import { InputAddress } from '../../components/input/address';
 import { InputAmount } from '../../components/input/amount';
 import { Button } from '../../components/button';
 import { useCheckBalance } from '../../hooks/transfer/checkBalance';
-import { useWalletState } from '../../context/wallet';
-import { useBalance } from '../../hooks/wallet/balance';
 import { formatEther } from '../../utils/formatEther';
+
+import { useRecoilValue } from 'recoil';
+import { walletState } from '../../recoil/atoms/wallet';
+import { balanceState } from '../../recoil/atoms/balance';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
-  const { wallet } = useWalletState();
+  const wallet = useRecoilValue(walletState);
   const { transfer } = useTransfer();
-  const { balance } = useBalance();
+  const balance = useRecoilValue(balanceState);
   const checkBalance = useCheckBalance();
   const { to, amount } = useTransferFormState();
   const { changeToAddress, changeSendAmount } = useTransferFormDispatch();
@@ -29,7 +31,7 @@ const Screen: React.VFC<Props> = () => {
       <Text>Transfer</Text>
 
       <Text>From: {wallet?.address}</Text>
-      <Text>Balance: {balance !== '' ? formatEther(balance) : ''}</Text>
+      <Text>Balance: {balance !== '' ? formatEther(balance) : ''} eth</Text>
 
       <Text />
       <Text>To:</Text>
