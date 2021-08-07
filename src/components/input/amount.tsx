@@ -13,7 +13,7 @@ export const InputAmount: React.VFC<Props> = ({ value, onChangeText }) => {
       <TextInput
         keyboardType="decimal-pad"
         placeholder="eth"
-        value={String(value)}
+        value={value}
         onChangeText={onChangeText}
         clearButtonMode="while-editing"
         returnKeyType="done"
