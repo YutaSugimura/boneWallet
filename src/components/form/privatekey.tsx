@@ -1,18 +1,17 @@
 import React from 'react';
-import { TextInput, StyleSheet, View, Text } from 'react-native';
 import { Controller } from 'react-hook-form';
+import { View, StyleSheet, TextInput } from 'react-native';
+import { usePrivatekeyFormHooks } from '../../hooks/form/privatekey';
 import { COLORS, DEVICE_WIDTH } from '../../common';
-import { usePrivateKeyFormState } from '../../context/privateKeyForm';
+import { Button } from '../button';
 
 type Props = {};
 
-export const InputPrivateKey: React.VFC<Props> = () => {
-  const { control } = usePrivateKeyFormState();
+export const PrivatekeyForm: React.VFC<Props> = () => {
+  const { control, handleSubmit, onSubmit } = usePrivatekeyFormHooks();
 
   return (
-    <View>
-      <Text style={styles.label}>PrivateKey</Text>
-
+    <View style={styles.container}>
       <Controller
         name="privateKey"
         control={control}
@@ -30,11 +29,27 @@ export const InputPrivateKey: React.VFC<Props> = () => {
           />
         )}
       />
+
+      <View style={styles.buttonContainer}>
+        <Button
+          label="Import PrivateKey"
+          onPress={handleSubmit(onSubmit)}
+          height={42}
+          width={DEVICE_WIDTH * 0.6}
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    paddingTop: 60,
+  },
+  buttonContainer: {
+    paddingTop: 18,
+  },
   input: {
     height: 36,
     width: DEVICE_WIDTH * 0.9,

@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { providerState } from '../../recoil/atoms/provider';
 import { walletState } from '../../recoil/atoms/wallet';
-import { accountState } from '../../recoil/atoms/account';
+import { accountListState } from '../../recoil/atoms/account';
 import { createWalletFromPrivateKey } from '../../utils/createWallet';
 
 export const useSwitchingEffect = () => {
   const provider = useRecoilValue(providerState);
-  const account = useRecoilValue(accountState);
+  const account = useRecoilValue(accountListState);
   const setWallet = useSetRecoilState(walletState);
 
   useEffect(() => {

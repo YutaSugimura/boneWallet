@@ -1,14 +1,21 @@
 import React from 'react';
-import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { useSetMnemonic } from '../../hooks/form/mnemonic';
 import { DEVICE_WIDTH } from '../../common';
-import { useMnemonicFormDispatch, useMnemonicFormState } from '../../context/mnemonicForm';
 import { Button } from '../../components/button';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
-  const { address, mnemonic } = useMnemonicFormState();
-  const { importMnemonic } = useMnemonicFormDispatch();
+  const { address, errors, mnemonic, setStorageMnemonic } = useSetMnemonic();
+
+  if (!address && !errors) {
+    return (
+      <SafeAreaView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" />
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView>
@@ -27,7 +34,7 @@ const Screen: React.VFC<Props> = () => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <Button label="OK" onPress={importMnemonic} height={42} width={DEVICE_WIDTH * 0.6} />
+        <Button label="OK" onPress={setStorageMnemonic} height={42} width={DEVICE_WIDTH * 0.6} />
       </View>
     </SafeAreaView>
   );
@@ -36,6 +43,10 @@ const Screen: React.VFC<Props> = () => {
 export default Screen;
 
 const styles = StyleSheet.create({
+  loadingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',

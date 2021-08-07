@@ -1,27 +1,18 @@
 import React from 'react';
 import { ActivityIndicator, Text, View, SafeAreaView, StyleSheet } from 'react-native';
+import { useGenerateMnemonic } from '../../hooks/account/generateMnemonic';
 import { Button } from '../../components/button';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
-  const { isLoading, toggle } = require('../../hooks/loading').useIsLoading();
-  const { mnemonic, getMnemonic } =
-    require('../../hooks/account/generateMnemonic').useGenerateMnemonic();
-
-  const wrapGetMnemonic = async () => {
-    toggle(true);
-
-    setTimeout(() => {
-      getMnemonic();
-      toggle(false);
-    }, 300);
-  };
+  const { isLoading, mnemonic, generate } = useGenerateMnemonic();
 
   return (
     <SafeAreaView>
       <View style={styles.container}>
         {isLoading && <ActivityIndicator size="large" />}
+        {isLoading && <Text style={styles.alertText}>This process will take some time.</Text>}
 
         <View style={styles.textContainer}>
           <Text style={styles.title}>Mnemonic</Text>
@@ -30,8 +21,8 @@ const Screen: React.VFC<Props> = () => {
 
         <View style={styles.buttonContainer}>
           <Button
-            label="Generate Mnemonic"
-            onPress={wrapGetMnemonic}
+            label="Regeneration"
+            onPress={generate}
             disabled={isLoading}
             fontSize={16}
             fontWeight="bold"
@@ -63,5 +54,9 @@ const styles = StyleSheet.create({
   value: {
     color: 'rgba(0, 0, 0, 0.8)',
     fontSize: 14,
+  },
+  alertText: {
+    fontSize: 12,
+    color: 'rgba(0, 0, 0, 0.6)',
   },
 });

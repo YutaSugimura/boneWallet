@@ -27,7 +27,7 @@ const Screen: React.VFC<Props> = () => {
   };
 
   const importPrivateKey = () => {
-    navigation.navigate('ImportPrivateKey');
+    navigation.navigate('ImportPrivatekey');
   };
 
   const networkScreen = () => {

@@ -3,21 +3,18 @@ import { View, StyleSheet, TextInput } from 'react-native';
 import { DEVICE_WIDTH } from '../../common';
 
 type Props = {
-  value: string;
-  onChangeText: (newValue: string) => void;
+  value?: string;
+  onChangeText?: (newValue: string) => void;
 };
 
 export const InputAmount: React.VFC<Props> = ({ value, onChangeText }) => {
-  const wrap = (newValue: string) => {
-    onChangeText(newValue);
-  };
   return (
     <View style={styles.container}>
       <TextInput
         keyboardType="decimal-pad"
         placeholder="eth"
-        value={String(value)}
-        onChangeText={wrap}
+        value={value}
+        onChangeText={onChangeText}
         clearButtonMode="while-editing"
         returnKeyType="done"
         style={styles.inputContainer}
