@@ -3,8 +3,8 @@ import { View, StyleSheet, TextInput } from 'react-native';
 import { DEVICE_WIDTH } from '../../common';
 
 type Props = {
-  value: string;
-  onChangeText: (newValue: string) => void;
+  value?: string;
+  onChangeText?: (newValue: string) => void;
 };
 
 export const InputAddress: React.VFC<Props> = ({ value, onChangeText }) => {
