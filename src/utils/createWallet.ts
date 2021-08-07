@@ -14,3 +14,40 @@ export const createWallet = () => {
 
   return ethers.Wallet.createRandom();
 };
+
+export const createHDWalletFromMnemonic = (mnemonic: string) => {
+  const ethers: typeof Ethers = require('ethers');
+
+  const result: Result = {};
+
+  try {
+    const hdnode = ethers.utils.HDNode.fromMnemonic(mnemonic);
+    const account1 = hdnode.derivePath("m/44'/60'/0'/0");
+
+    result.address = account1.address;
+  } catch {
+    result.errors = 'PrivateKey is incorrect.';
+  }
+
+  return result;
+};
+
+export const privatekeyToAddress = (privatekey: string) => {
+  const ethers: typeof Ethers = require('ethers');
+
+  const result: Result = {};
+
+  try {
+    const wallet = new ethers.Wallet(privatekey);
+    result.address = wallet.address;
+  } catch {
+    result.errors = 'Failed to generate';
+  }
+
+  return result;
+};
+
+type Result = {
+  address?: string;
+  errors?: string;
+};

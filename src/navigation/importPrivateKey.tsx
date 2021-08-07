@@ -3,7 +3,6 @@ import { RouteProp } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
 import { useForm, FormProvider } from 'react-hook-form';
 import type { PrivateKeyFormData } from '../types/form';
-import PrivateKeyFormContext from '../context/privateKeyForm';
 import ImportPrivateKeyScreen from '../screens/importPrivateKey';
 import ConfirmPrivateKeyScreen from '../screens/importPrivateKey/confirmPrivateKey';
 
@@ -30,18 +29,13 @@ const Navigation: React.VFC = () => {
 
   return (
     <FormProvider {...methods}>
-      <PrivateKeyFormContext>
-        <ImportPrivateKeyStack.Navigator initialRouteName="ImportPrivateKey" mode="modal">
-          <ImportPrivateKeyStack.Screen
-            name="ImportPrivateKey"
-            component={ImportPrivateKeyScreen}
-          />
-          <ImportPrivateKeyStack.Screen
-            name="ConfirmPrivateKey"
-            component={ConfirmPrivateKeyScreen}
-          />
-        </ImportPrivateKeyStack.Navigator>
-      </PrivateKeyFormContext>
+      <ImportPrivateKeyStack.Navigator initialRouteName="ImportPrivateKey" mode="modal">
+        <ImportPrivateKeyStack.Screen name="ImportPrivateKey" component={ImportPrivateKeyScreen} />
+        <ImportPrivateKeyStack.Screen
+          name="ConfirmPrivateKey"
+          component={ConfirmPrivateKeyScreen}
+        />
+      </ImportPrivateKeyStack.Navigator>
     </FormProvider>
   );
 };

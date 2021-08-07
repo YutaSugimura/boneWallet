@@ -1,23 +1,21 @@
 import React from 'react';
-import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
-import type { ImportPrivateKeyNavigationProp } from '../../navigation/importPrivateKey';
+import { SafeAreaView, View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { DEVICE_WIDTH } from '../../common';
-import { usePrivateKeyFormState } from '../../context/privateKeyForm';
 import { Button } from '../../components/button';
+import { useSetPrivatekey } from '../../hooks/form/privateKey';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
-  const navigation: ImportPrivateKeyNavigationProp<'ConfirmPrivateKey'> =
-    require('@react-navigation/native').useNavigation();
+  const { privatekey, address, errors, setStoragePrivatekey } = useSetPrivatekey();
 
-  const { address, privateKey } = usePrivateKeyFormState();
-
-  const onPress = () => {
-    console.log({ address, privateKey });
-    navigation.popToTop();
-    navigation.goBack();
-  };
+  if (!address && !errors) {
+    return (
+      <SafeAreaView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" />
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView>
@@ -31,12 +29,12 @@ const Screen: React.VFC<Props> = () => {
 
         <View style={styles.stateBox}>
           <Text style={styles.label}>PRIVATEKEY</Text>
-          <Text style={styles.value}>{privateKey}</Text>
+          <Text style={styles.value}>{privatekey}</Text>
         </View>
       </View>
 
       <View style={styles.buttonContainer}>
-        <Button label="OK" onPress={onPress} height={42} width={DEVICE_WIDTH * 0.6} />
+        <Button label="OK" onPress={setStoragePrivatekey} height={42} width={DEVICE_WIDTH * 0.6} />
       </View>
     </SafeAreaView>
   );
@@ -45,6 +43,10 @@ const Screen: React.VFC<Props> = () => {
 export default Screen;
 
 const styles = StyleSheet.create({
+  loadingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',

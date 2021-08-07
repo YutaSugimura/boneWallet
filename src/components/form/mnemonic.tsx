@@ -1,24 +1,34 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { DEVICE_WIDTH } from '../../common';
+import { View, StyleSheet, TextInput } from 'react-native';
+import { Controller } from 'react-hook-form';
+import { COLORS, DEVICE_WIDTH } from '../../common';
 import { Button } from '../button';
-import { InputMnemonic } from '../input/mnemonic';
+import { useMnemonicFormHooks } from '../../hooks/form/mnemonic';
 
 type Props = {};
 
 export const MnemonicForm: React.VFC<Props> = () => {
-  const { errors } = require('../../context/mnemonicForm').useMnemonicFormState();
-  const { handleSubmit, onSubmit } =
-    require('../../context/mnemonicForm').useMnemonicFormDispatch();
-
-  if (!handleSubmit) {
-    return <></>;
-  }
+  const { control, onSubmit, handleSubmit } = useMnemonicFormHooks();
 
   return (
     <View style={styles.container}>
-      <InputMnemonic />
-      {errors !== '' && <Text>{errors}</Text>}
+      <Controller
+        name="mnemonic"
+        control={control}
+        rules={{ required: true }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            keyboardType="default"
+            placeholder="rock stone ..."
+            value={value}
+            onChangeText={onChange}
+            onBlur={onBlur}
+            clearButtonMode="while-editing"
+            returnKeyType="done"
+            style={styles.input}
+          />
+        )}
+      />
 
       <View style={styles.buttonContainer}>
         <Button
@@ -39,5 +49,22 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     paddingTop: 18,
+  },
+  input: {
+    height: 36,
+    width: DEVICE_WIDTH * 0.9,
+    backgroundColor: COLORS.white,
+    paddingLeft: 6,
+    paddingRight: 6,
+    borderColor: COLORS.gray,
+    borderWidth: 1,
+    borderRadius: 3,
+    marginTop: 2,
+    color: COLORS.black,
+    fontSize: 16,
+  },
+  label: {
+    color: 'rgba(0, 0, 0, 0.6)',
+    fontSize: 15,
   },
 });
