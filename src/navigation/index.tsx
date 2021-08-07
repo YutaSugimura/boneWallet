@@ -3,7 +3,7 @@ import { RouteProp } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
 import TopScreen from '../screens/index';
 import CreateWalletScreen from '../screens/createWallet';
-import ImportPrivateKeyStack from './importPrivateKey';
+import ImportPrivatekeyStack from './importPrivatekey';
 import ImportMnemonicStack from './importMnemonic';
 import NetworkScreen from '../screens/network';
 import TransferScreen from '../screens/transfer';
@@ -11,7 +11,7 @@ import TransferScreen from '../screens/transfer';
 type RootStackParamList = {
   Top: undefined;
   CreateWallet: undefined;
-  ImportPrivateKey: undefined;
+  ImportPrivatekey: undefined;
   ImportMnemonic: undefined;
   Network: undefined;
   Transfer: undefined;
@@ -29,7 +29,7 @@ const Navigation: React.VFC = () => {
     <RootStack.Navigator initialRouteName="Top">
       <RootStack.Screen name="Top" component={TopScreen} />
       <RootStack.Screen name="CreateWallet" component={CreateWalletScreen} />
-      <RootStack.Screen name="ImportPrivateKey" component={ImportPrivateKeyStack} />
+      <RootStack.Screen name="ImportPrivatekey" component={ImportPrivatekeyStack} />
       <RootStack.Screen name="ImportMnemonic" component={ImportMnemonicStack} />
       <RootStack.Screen name="Network" component={NetworkScreen} />
       <RootStack.Screen name="Transfer" component={TransferScreen} />
