@@ -10,11 +10,16 @@ export const currentAccountState = selector({
     const storage = await getStorageCurrentAccountIndex();
     const index = storage !== null ? storage : 0;
 
+    const account = accountList[index];
+    const label = account ? account.label : '';
+    const address = account ? account.address : '';
+    const secretkeyType = account ? account.secretkeyType : 'privatekey';
+
     return {
       currentIndex: index,
-      label: accountList[index].label,
-      address: accountList[index].address,
-      secretkeyType: accountList[index].secretkeyType,
+      label,
+      address,
+      secretkeyType,
     };
   },
 });
