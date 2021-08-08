@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { useRecoilValue } from 'recoil';
 import { accountListState } from '../../recoil/atoms/account';
-import { currentAccountState } from '../../recoil/selector/currentAccountIndex';
+import { currentAccountState } from '../../recoil/selector/currentAccount';
 import { useAccountlist, useAccountlistEffect } from '../../hooks/account/list';
 
 type Props = {};
