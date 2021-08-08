@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, Text, View, SafeAreaView, StyleSheet } from 'react-native';
-import { useGenerateMnemonic } from '../../hooks/account/generateMnemonic';
+import { useGenerateMnemonic } from '../../hooks/account/mnemonic';
 import { Button } from '../../components/button';
 
 type Props = {};

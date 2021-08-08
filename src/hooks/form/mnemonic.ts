@@ -4,7 +4,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { mnemonicFormState } from '../../recoil/atoms/input/mnemonic';
 import type { ImportMnemonicNavigationProp } from '../../navigation/importMnemonic';
 import { mnemonicToAddressState } from '../../recoil/selector/input/mnemonicToAddress';
-import { useMnemonicHooks } from '../account/generateMnemonic';
+import { useMnemonicHooks } from '../account/mnemonic';
 
 type MnemonicFormState = {
   mnemonic: string;
