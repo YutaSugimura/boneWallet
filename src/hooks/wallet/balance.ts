@@ -1,18 +1,36 @@
-import { useEffect } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { walletState } from '../../recoil/atoms/wallet';
-import { balanceState } from '../../recoil/atoms/balance';
+import type Ethers from 'ethers';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { currentNetworkState } from '../../recoil/atoms/network';
+import { currentAccountState } from '../../recoil/selector/currentAccount';
 
-export const useBalanceEffect = () => {
-  const wallet = useRecoilValue(walletState);
-  const setState = useSetRecoilState(balanceState);
+const ethers: typeof Ethers = require('ethers');
+
+export const useBalance = () => {
+  const currentNetwork = useRecoilValue(currentNetworkState);
+  const currentAccount = useRecoilValue(currentAccountState);
+  const [state, setState] = useState<string>('');
 
   useEffect(() => {
+    let isMounted = true;
     (async () => {
-      if (wallet !== null) {
-        const balance = await wallet.getBalance();
-        setState(balance.toString());
+      if (currentAccount.address !== '') {
+        if (currentNetwork.type === 'basic') {
+          const provider = ethers.getDefaultProvider(currentNetwork.network);
+          const balance = await provider.getBalance(currentAccount.address);
+          isMounted && setState(ethers.utils.formatEther(balance));
+        } else if (currentNetwork.type === 'custom') {
+          const provider = new ethers.providers.JsonRpcProvider(currentNetwork.url);
+          const balance = await provider.getBalance(currentAccount.address);
+          isMounted && setState(ethers.utils.formatEther(balance));
+        }
       }
     })();
-  }, [wallet, setState]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [currentNetwork, currentAccount.address]);
+
+  return state;
 };

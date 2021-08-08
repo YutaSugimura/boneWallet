@@ -9,7 +9,9 @@ import {
   View,
 } from 'react-native';
 import { useNetworkEffect } from '../hooks/network/list';
-import { CurrentAccount } from '../components/account/current';
+import { useAccountlistEffect } from '../hooks/account/list';
+import { CurrentAddress } from '../components/account/address';
+import { CurrentBalance } from '../components/account/balance';
 import { MainAccount } from '../components/account/main';
 import { Button } from '../components/button';
 import type { RootNavigationProp } from '../navigation';
@@ -20,6 +22,7 @@ const Screen: React.VFC<Props> = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const navigation: RootNavigationProp<'Top'> = require('@react-navigation/native').useNavigation();
   useNetworkEffect();
+  useAccountlistEffect();
 
   const createWallet = () => {
     navigation.navigate('CreateWallet');
@@ -50,7 +53,8 @@ const Screen: React.VFC<Props> = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <MainAccount />
-        <CurrentAccount />
+        <CurrentAddress />
+        <CurrentBalance />
 
         <View style={styles.container}>
           <View style={styles.section}>
