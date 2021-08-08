@@ -8,16 +8,18 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { useNetworkEffect } from '../hooks/network/list';
 import { CurrentAccount } from '../components/account/current';
 import { MainAccount } from '../components/account/main';
 import { Button } from '../components/button';
-import { RootNavigationProp } from '../navigation';
+import type { RootNavigationProp } from '../navigation';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const navigation: RootNavigationProp<'Top'> = require('@react-navigation/native').useNavigation();
+  useNetworkEffect();
 
   const createWallet = () => {
     navigation.navigate('CreateWallet');
