@@ -3,14 +3,15 @@ import type { Secretkey, SecretKeyType } from '../../types/account';
 
 const basekey = 'secretkey';
 
-export const getStorageSecretkey = async (key: string) => {
+export const getStorageSecretkey = async (key: string): Promise<Secretkey | null> => {
   try {
     const session = await EncryptedStorage.getItem(basekey + key);
     if (session && session !== null) {
-      return JSON.parse(session) as Secretkey;
+      return { ...(JSON.parse(session) as Secretkey) };
     }
+    return null;
   } catch {
-    return {};
+    return null;
   }
 };
 

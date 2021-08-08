@@ -9,6 +9,7 @@ import NetworkScreen from '../screens/network';
 import AccountListScreen from '../screens/accountList';
 import TransferScreen from '../screens/transfer';
 import ExportMnemonicScreen from '../screens/export/mnemonic';
+import ExportPrivatekeyScreen from '../screens/export/privatekey';
 
 type RootStackParamList = {
   Top: undefined;
@@ -19,6 +20,7 @@ type RootStackParamList = {
   AccountList: undefined;
   Transfer: undefined;
   ExportMnemonic: undefined;
+  ExportPrivatekey: undefined;
 };
 
 type RootScreens = keyof RootStackParamList;
@@ -39,6 +41,7 @@ const Navigation: React.VFC = () => {
       <RootStack.Screen name="AccountList" component={AccountListScreen} />
       <RootStack.Screen name="Transfer" component={TransferScreen} />
       <RootStack.Screen name="ExportMnemonic" component={ExportMnemonicScreen} />
+      <RootStack.Screen name="ExportPrivatekey" component={ExportPrivatekeyScreen} />
     </RootStack.Navigator>
   );
 };
