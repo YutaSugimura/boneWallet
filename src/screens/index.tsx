@@ -12,7 +12,6 @@ import { useNetworkEffect } from '../hooks/network/list';
 import { useAccountlistEffect } from '../hooks/account/list';
 import { CurrentAddress } from '../components/account/address';
 import { CurrentBalance } from '../components/account/balance';
-import { MainAccount } from '../components/account/main';
 import { Button } from '../components/button';
 import type { RootNavigationProp } from '../navigation';
 
@@ -48,11 +47,14 @@ const Screen: React.VFC<Props> = () => {
     navigation.navigate('Transfer');
   };
 
+  const exportMnemonicScreen = () => {
+    navigation.navigate('ExportMnemonic');
+  };
+
   return (
     <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <MainAccount />
         <CurrentAddress />
         <CurrentBalance />
 
@@ -77,6 +79,11 @@ const Screen: React.VFC<Props> = () => {
           <View style={styles.section}>
             <Text>Transaction</Text>
             <Button label="Transfer" onPress={transferScreen} height={48} />
+          </View>
+
+          <View style={styles.section}>
+            <Text>Export</Text>
+            <Button label="Export Mnemonic" onPress={exportMnemonicScreen} height={48} />
           </View>
         </View>
       </ScrollView>

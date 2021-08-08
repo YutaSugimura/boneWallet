@@ -8,6 +8,7 @@ import ImportMnemonicStack from './importMnemonic';
 import NetworkScreen from '../screens/network';
 import AccountListScreen from '../screens/accountList';
 import TransferScreen from '../screens/transfer';
+import ExportMnemonicScreen from '../screens/export/mnemonic';
 
 type RootStackParamList = {
   Top: undefined;
@@ -17,6 +18,7 @@ type RootStackParamList = {
   Network: undefined;
   AccountList: undefined;
   Transfer: undefined;
+  ExportMnemonic: undefined;
 };
 
 type RootScreens = keyof RootStackParamList;
@@ -36,6 +38,7 @@ const Navigation: React.VFC = () => {
       <RootStack.Screen name="Network" component={NetworkScreen} />
       <RootStack.Screen name="AccountList" component={AccountListScreen} />
       <RootStack.Screen name="Transfer" component={TransferScreen} />
+      <RootStack.Screen name="ExportMnemonic" component={ExportMnemonicScreen} />
     </RootStack.Navigator>
   );
 };

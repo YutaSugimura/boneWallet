@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { setStorageCurrentAccountIndex } from '../../storage/account/currentIndex';
 import { setStorageAccountList } from '../../storage/account/list';
-import { removeStorageMnemonic, setStorageMnemonic } from '../../storage/account/mnemonic';
+import {
+  getStorageMnemonic,
+  removeStorageMnemonic,
+  setStorageMnemonic,
+} from '../../storage/account/mnemonic';
 import { createHDWalletFromMnemonic, createWallet } from '../../utils/createWallet';
 
 export const useGenerateMnemonic = () => {
@@ -48,6 +52,22 @@ export const useGenerateMnemonic = () => {
     mnemonic,
     regenerate: regenerateMnemonic,
     saveMnemonic,
+  };
+};
+
+export const useExportMnemonic = () => {
+  const [mnemonic, setMnemonic] = useState<string>('');
+
+  const readMnemonic = async () => {
+    const storage = await getStorageMnemonic();
+    if (storage !== null) {
+      setMnemonic(storage);
+    }
+  };
+
+  return {
+    mnemonic,
+    readMnemonic,
   };
 };
 
