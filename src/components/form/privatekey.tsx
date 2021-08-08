@@ -13,6 +13,23 @@ export const PrivatekeyForm: React.VFC<Props> = () => {
   return (
     <View style={styles.container}>
       <Controller
+        name="label"
+        control={control}
+        rules={{ required: true }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            keyboardType="default"
+            placeholder="main address"
+            value={value}
+            onChangeText={onChange}
+            onBlur={onBlur}
+            clearButtonMode="while-editing"
+            returnKeyType="done"
+            style={styles.input}
+          />
+        )}
+      />
+      <Controller
         name="privateKey"
         control={control}
         rules={{ required: true }}

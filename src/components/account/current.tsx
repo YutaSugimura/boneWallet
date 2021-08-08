@@ -8,7 +8,6 @@ import { formatEther } from '../../utils/formatEther';
 type Props = {};
 
 export const CurrentAccount: React.VFC<Props> = () => {
-  require('../../hooks/wallet/switching').useSwitchingEffect();
   require('../../hooks/wallet/balance').useBalanceEffect();
   const { address, privateKey } = useRecoilValue(currentAddressState);
   const balance = useRecoilValue(balanceState);

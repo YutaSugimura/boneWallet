@@ -6,6 +6,7 @@ import CreateWalletScreen from '../screens/createWallet';
 import ImportPrivatekeyStack from './importPrivatekey';
 import ImportMnemonicStack from './importMnemonic';
 import NetworkScreen from '../screens/network';
+import AccountListScreen from '../screens/accountList';
 import TransferScreen from '../screens/transfer';
 
 type RootStackParamList = {
@@ -14,6 +15,7 @@ type RootStackParamList = {
   ImportPrivatekey: undefined;
   ImportMnemonic: undefined;
   Network: undefined;
+  AccountList: undefined;
   Transfer: undefined;
 };
 
@@ -32,6 +34,7 @@ const Navigation: React.VFC = () => {
       <RootStack.Screen name="ImportPrivatekey" component={ImportPrivatekeyStack} />
       <RootStack.Screen name="ImportMnemonic" component={ImportMnemonicStack} />
       <RootStack.Screen name="Network" component={NetworkScreen} />
+      <RootStack.Screen name="AccountList" component={AccountListScreen} />
       <RootStack.Screen name="Transfer" component={TransferScreen} />
     </RootStack.Navigator>
   );

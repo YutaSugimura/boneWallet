@@ -1,13 +1,16 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { useRecoilValue } from 'recoil';
+import { privatekeyLabelFormState } from '../../recoil/atoms/input/privatekey';
+import { useSetPrivatekey } from '../../hooks/form/privatekey';
 import { DEVICE_WIDTH } from '../../common';
 import { Button } from '../../components/button';
-import { useSetPrivatekey } from '../../hooks/form/privatekey';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
   const { privatekey, address, errors, setStoragePrivatekey } = useSetPrivatekey();
+  const label = useRecoilValue(privatekeyLabelFormState);
 
   if (!address && !errors) {
     return (
@@ -24,8 +27,13 @@ const Screen: React.VFC<Props> = () => {
       </View>
 
       <View style={styles.stateContainer}>
-        <Text style={styles.label}>ADDRESS</Text>
-        <Text style={styles.value}>{address}</Text>
+        <Text style={styles.label}>LABEL</Text>
+        <Text style={styles.value}>{label}</Text>
+
+        <View style={styles.stateBox}>
+          <Text style={styles.label}>ADDRESS</Text>
+          <Text style={styles.value}>{address}</Text>
+        </View>
 
         <View style={styles.stateBox}>
           <Text style={styles.label}>PRIVATEKEY</Text>

@@ -6,7 +6,7 @@ import { Button } from '../../components/button';
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
-  const { isLoading, mnemonic, generate } = useGenerateMnemonic();
+  const { isLoading, mnemonic, regenerate, saveMnemonic } = useGenerateMnemonic();
 
   return (
     <SafeAreaView>
@@ -22,8 +22,16 @@ const Screen: React.VFC<Props> = () => {
         <View style={styles.buttonContainer}>
           <Button
             label="Regeneration"
-            onPress={generate}
+            onPress={regenerate}
             disabled={isLoading}
+            fontSize={14}
+            fontWeight="bold"
+          />
+
+          <Button
+            label="Save"
+            onPress={saveMnemonic}
+            disabled={!mnemonic}
             fontSize={16}
             fontWeight="bold"
           />

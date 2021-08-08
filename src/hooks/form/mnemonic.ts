@@ -4,6 +4,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { mnemonicFormState } from '../../recoil/atoms/input/mnemonic';
 import type { ImportMnemonicNavigationProp } from '../../navigation/importMnemonic';
 import { mnemonicToAddressState } from '../../recoil/selector/input/mnemonicToAddress';
+import { useMnemonicHooks } from '../account/generateMnemonic';
 
 type MnemonicFormState = {
   mnemonic: string;
@@ -29,15 +30,23 @@ export const useMnemonicFormHooks = () => {
 export const useSetMnemonic = () => {
   const navigation = useNavigation<ImportMnemonicNavigationProp<'ConfirmMnemonic'>>();
   const { mnemonic, address, errors } = useRecoilValue(mnemonicToAddressState);
+  const { saveMnemonic } = useMnemonicHooks();
 
-  const setStorageMnemonic = () => {
+  const setStorageMnemonic = async () => {
     if (errors) {
       return;
     }
 
-    console.log({ mnemonic, address });
-    navigation.popToTop();
-    navigation.goBack();
+    if (!address) {
+      return;
+    }
+
+    const result = await saveMnemonic(mnemonic);
+    if (result) {
+      console.log({ mnemonic, address });
+      navigation.popToTop();
+      navigation.goBack();
+    }
   };
 
   return {

@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import { CurrentAccount } from '../components/account/current';
+import { MainAccount } from '../components/account/main';
 import { Button } from '../components/button';
 import { RootNavigationProp } from '../navigation';
 
@@ -34,6 +35,10 @@ const Screen: React.VFC<Props> = () => {
     navigation.navigate('Network');
   };
 
+  const accountListScreen = () => {
+    navigation.navigate('AccountList');
+  };
+
   const transferScreen = () => {
     navigation.navigate('Transfer');
   };
@@ -42,6 +47,7 @@ const Screen: React.VFC<Props> = () => {
     <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <MainAccount />
         <CurrentAccount />
 
         <View style={styles.container}>
@@ -55,6 +61,11 @@ const Screen: React.VFC<Props> = () => {
           <View style={styles.section}>
             <Text>Network</Text>
             <Button label="Setting Network" onPress={networkScreen} height={48} />
+          </View>
+
+          <View style={styles.section}>
+            <Text>Account</Text>
+            <Button label="Account list" onPress={accountListScreen} height={48} />
           </View>
 
           <View style={styles.section}>
