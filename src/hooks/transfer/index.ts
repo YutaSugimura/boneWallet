@@ -33,8 +33,9 @@ export const useTransfer = () => {
     if (Number(balance) <= Number(amount)) {
       return;
     }
+
     let tx: Ethers.ethers.utils.Deferrable<Ethers.ethers.providers.TransactionRequest> = {
-      to: toAddress,
+      to: ethers.utils.getAddress(toAddress),
       value: parseEther(amount),
     };
 
