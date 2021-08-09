@@ -9,7 +9,8 @@
  */
 
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { Suspense } from 'react';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { RecoilRoot } from 'recoil';
 import NavigationRoot from './navigation';
@@ -17,9 +18,11 @@ import NavigationRoot from './navigation';
 const App: React.VFC = () => {
   return (
     <RecoilRoot>
-      <NavigationContainer>
-        <NavigationRoot />
-      </NavigationContainer>
+      <Suspense fallback={<View />}>
+        <NavigationContainer>
+          <NavigationRoot />
+        </NavigationContainer>
+      </Suspense>
     </RecoilRoot>
   );
 };

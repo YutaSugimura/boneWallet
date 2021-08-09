@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form';
 import { View, StyleSheet, TextInput } from 'react-native';
 import { usePrivatekeyFormHooks } from '../../hooks/form/privatekey';
 import { COLORS, DEVICE_WIDTH } from '../../common';
-import { Button } from '../button';
+import { Button } from '../uiParts/button';
 
 type Props = {};
 
@@ -12,6 +12,23 @@ export const PrivatekeyForm: React.VFC<Props> = () => {
 
   return (
     <View style={styles.container}>
+      <Controller
+        name="label"
+        control={control}
+        rules={{ required: true }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            keyboardType="default"
+            placeholder="main address"
+            value={value}
+            onChangeText={onChange}
+            onBlur={onBlur}
+            clearButtonMode="while-editing"
+            returnKeyType="done"
+            style={styles.input}
+          />
+        )}
+      />
       <Controller
         name="privateKey"
         control={control}

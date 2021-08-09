@@ -8,15 +8,22 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import { CurrentAccount } from '../components/account/current';
-import { Button } from '../components/button';
-import { RootNavigationProp } from '../navigation';
+import { useNavigation } from '@react-navigation/native';
+import type { RootNavigationProp } from '../navigation';
+
+import { useNetworkEffect } from '../hooks/network/list';
+import { useAccountlistEffect } from '../hooks/account/list';
+import { CurrentAddress } from '../components/account/address';
+import { CurrentBalance } from '../components/account/balance';
+import { Button } from '../components/uiParts/button';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const navigation: RootNavigationProp<'Top'> = require('@react-navigation/native').useNavigation();
+  const navigation = useNavigation<RootNavigationProp<'Top'>>();
+  useNetworkEffect();
+  useAccountlistEffect();
 
   const createWallet = () => {
     navigation.navigate('CreateWallet');
@@ -34,15 +41,28 @@ const Screen: React.VFC<Props> = () => {
     navigation.navigate('Network');
   };
 
+  const accountListScreen = () => {
+    navigation.navigate('AccountList');
+  };
+
   const transferScreen = () => {
     navigation.navigate('Transfer');
+  };
+
+  const exportMnemonicScreen = () => {
+    navigation.navigate('ExportMnemonic');
+  };
+
+  const exportPrivatekeyScreen = () => {
+    navigation.navigate('ExportPrivatekey');
   };
 
   return (
     <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <CurrentAccount />
+        <CurrentAddress />
+        <CurrentBalance />
 
         <View style={styles.container}>
           <View style={styles.section}>
@@ -58,8 +78,19 @@ const Screen: React.VFC<Props> = () => {
           </View>
 
           <View style={styles.section}>
+            <Text>Account</Text>
+            <Button label="Account list" onPress={accountListScreen} height={48} />
+          </View>
+
+          <View style={styles.section}>
             <Text>Transaction</Text>
             <Button label="Transfer" onPress={transferScreen} height={48} />
+          </View>
+
+          <View style={styles.section}>
+            <Text>Export</Text>
+            <Button label="Export Mnemonic" onPress={exportMnemonicScreen} height={48} />
+            <Button label="Export Privatekey" onPress={exportPrivatekeyScreen} height={48} />
           </View>
         </View>
       </ScrollView>

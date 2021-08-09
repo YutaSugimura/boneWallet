@@ -1,12 +1,13 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
+import { useRecoilValue } from 'recoil';
+import { networkListState } from '../../recoil/atoms/network';
+import { useNetworkList } from '../../hooks/network/list';
 import type { RootNavigationProp } from '../../navigation';
 import { DEVICE_WIDTH } from '../../common';
-import { useNetworkHooks } from '../../hooks/network';
-import { DEFAULT_NETWORK_LIST } from '../../common/network';
-import { Button } from '../../components/button';
-import { CustomNetworkUrlForm } from '../../components/form/customNetworkUrl';
-import { CurrentNetwork } from '../../components/currentNetwork';
+import { Button } from '../../components/uiParts/button';
+import { CustomNetworkUrlForm } from '../../components/form/networkUrl';
+import { CurrentNetwork } from '../../components/network/currentNetwork';
 
 type Props = {};
 
@@ -14,7 +15,8 @@ const Screen: React.VFC<Props> = () => {
   const navigation: RootNavigationProp<'Network'> =
     require('@react-navigation/native').useNavigation();
 
-  const { changeNetwork } = useNetworkHooks();
+  const { onChangeNetwork } = useNetworkList();
+  const networkList = useRecoilValue(networkListState);
 
   const goBack = () => {
     navigation.goBack();
@@ -26,11 +28,11 @@ const Screen: React.VFC<Props> = () => {
         <CurrentNetwork />
 
         <View>
-          {DEFAULT_NETWORK_LIST.map((item, index) => (
+          {networkList.map((item, index) => (
             <Button
               key={`network-${item}-${index}`}
-              label={item}
-              onPress={changeNetwork(item)}
+              label={item.type === 'basic' ? item.network : item.label}
+              onPress={onChangeNetwork(index)}
               width={DEVICE_WIDTH * 0.6}
               height={48}
             />

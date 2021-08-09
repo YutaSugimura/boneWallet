@@ -1,19 +1,42 @@
 import type Ethers from 'ethers';
 import { useRecoilValue } from 'recoil';
-import { walletState } from '../../recoil/atoms/wallet';
+import { currentNetworkState } from '../../recoil/atoms/network';
+import { currentAccountState } from '../../recoil/selector/currentAccount';
+import { amountFormState, toAddressFormState } from '../../recoil/atoms/input/transfer';
+import { useBalance } from '../wallet/balance';
+import { getStorageSecretkey } from '../../storage/account/secretkey';
 import { parseEther } from '../../utils/parseEther';
+import { createProvider } from '../../utils/provider';
+
+const ethers: typeof Ethers = require('ethers');
 
 export const useTransfer = () => {
-  const wallet = useRecoilValue(walletState);
+  const toAddress = useRecoilValue(toAddressFormState);
+  const amount = useRecoilValue(amountFormState);
+  const currentNetwork = useRecoilValue(currentNetworkState);
+  const currentAccount = useRecoilValue(currentAccountState);
+  const balance = useBalance();
 
   const transfer = async () => {
-    if (wallet === null) {
+    const provider = createProvider(currentNetwork);
+    if (!provider) {
+      return;
+    }
+
+    const privatekey = await getStorageSecretkey(currentAccount.address);
+    if (!privatekey) {
+      return;
+    }
+
+    const wallet = new ethers.Wallet(privatekey.secretkey, provider);
+
+    if (Number(balance) <= Number(amount)) {
       return;
     }
 
     let tx: Ethers.ethers.utils.Deferrable<Ethers.ethers.providers.TransactionRequest> = {
-      to: '0xadde20ebfe13498c9913144143d57c58e2c73d7bb01719cfaaea2a2e5f14fe53',
-      value: parseEther('1'),
+      to: ethers.utils.getAddress(toAddress),
+      value: parseEther(amount),
     };
 
     const txRecipt = await wallet.sendTransaction(tx);
