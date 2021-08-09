@@ -21,23 +21,31 @@ const Screen: React.VFC<Props> = () => {
 
   return (
     <SafeAreaView>
-      <Text>Transfer</Text>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Transfer</Text>
+      </View>
 
-      <Text>From</Text>
-      <Text>Label</Text>
-      <Text>{label}</Text>
+      <View style={styles.section}>
+        <Text style={styles.label}>From</Text>
+        <Text>Account Label : {label}</Text>
+        <Text style={styles.label}>Address</Text>
+        <Text>{address}</Text>
+      </View>
 
-      <Text>Address</Text>
-      <Text>{address}</Text>
+      <View style={styles.section}>
+        <Text style={styles.label}>Balance</Text>
+        <Text>{balance}eth</Text>
+      </View>
 
-      <Text>Balance: {balance}eth</Text>
+      <View style={styles.section}>
+        <Text style={styles.label}>To:</Text>
+        <InputAddress value={toAddress} onChangeText={setToAddress} />
+      </View>
 
-      <Text />
-      <Text>To:</Text>
-      <InputAddress value={toAddress} onChangeText={setToAddress} />
-
-      <Text>Amount: </Text>
-      <InputAmount value={amount} onChangeText={setAmount} />
+      <View style={styles.section}>
+        <Text style={styles.label}>Amount: </Text>
+        <InputAmount value={amount} onChangeText={setAmount} />
+      </View>
 
       <View style={styles.buttonContainer}>
         <Button label="Transfer" onPress={transfer} width={DEVICE_WIDTH * 0.6} height={48} />
@@ -49,8 +57,23 @@ const Screen: React.VFC<Props> = () => {
 export default Screen;
 
 const styles = StyleSheet.create({
+  titleContainer: {
+    alignItems: 'center',
+    paddingTop: 20,
+  },
   buttonContainer: {
     alignItems: 'center',
     paddingTop: 20,
+  },
+  section: {
+    paddingTop: 20,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
