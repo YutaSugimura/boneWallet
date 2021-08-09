@@ -11,8 +11,3 @@ export const currentNetworkState = atom({
   key: 'currentNetworkState',
   default: { type: 'basic', network: 'homestead' } as CurrentNetwork,
 });
-
-export const networkState = atom({
-  key: 'networkState',
-  default: { chainId: -1, name: '', isJsonRpcProvider: false },
-});
