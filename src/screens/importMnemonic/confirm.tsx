@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { useSetMnemonic } from '../../hooks/form/mnemonic';
 import { DEVICE_WIDTH } from '../../common';
-import { Button } from '../../components/button';
+import { Button } from '../../components/uiParts/button';
 
 type Props = {};
 

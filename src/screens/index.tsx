@@ -8,18 +8,20 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { RootNavigationProp } from '../navigation';
+
 import { useNetworkEffect } from '../hooks/network/list';
 import { useAccountlistEffect } from '../hooks/account/list';
 import { CurrentAddress } from '../components/account/address';
 import { CurrentBalance } from '../components/account/balance';
-import { Button } from '../components/button';
-import type { RootNavigationProp } from '../navigation';
+import { Button } from '../components/uiParts/button';
 
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const navigation: RootNavigationProp<'Top'> = require('@react-navigation/native').useNavigation();
+  const navigation = useNavigation<RootNavigationProp<'Top'>>();
   useNetworkEffect();
   useAccountlistEffect();
 

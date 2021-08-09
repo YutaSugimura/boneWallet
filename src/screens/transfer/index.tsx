@@ -6,9 +6,9 @@ import { currentAccountState } from '../../recoil/selector/currentAccount';
 import { useBalance } from '../../hooks/wallet/balance';
 import { useTransfer } from '../../hooks/transfer';
 import { DEVICE_WIDTH } from '../../common';
-import { InputAddress } from '../../components/input/address';
-import { InputAmount } from '../../components/input/amount';
-import { Button } from '../../components/button';
+import { InputAddress } from '../../components/uiParts/input/address';
+import { InputAmount } from '../../components/uiParts/input/amount';
+import { Button } from '../../components/uiParts/button';
 
 type Props = {};
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { Color } from '../../types/style';
-import { COLORS, DEVICE_WIDTH } from '../../common';
+import { Color } from '../../../types/style';
+import { COLORS, DEVICE_WIDTH } from '../../../common';
 
 type Props = {
   label: string;

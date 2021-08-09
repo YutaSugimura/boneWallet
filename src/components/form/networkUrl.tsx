@@ -3,7 +3,7 @@ import { View, StyleSheet, TextInput } from 'react-native';
 import { Controller } from 'react-hook-form';
 import { useNetworkFormHooks } from '../../hooks/form/network';
 import { IS_IOS, DEVICE_WIDTH } from '../../common';
-import { Button } from '../button';
+import { Button } from '../uiParts/button';
 
 type Props = {};
 

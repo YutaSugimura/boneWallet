@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form';
 import { View, StyleSheet, TextInput } from 'react-native';
 import { usePrivatekeyFormHooks } from '../../hooks/form/privatekey';
 import { COLORS, DEVICE_WIDTH } from '../../common';
-import { Button } from '../button';
+import { Button } from '../uiParts/button';
 
 type Props = {};
 

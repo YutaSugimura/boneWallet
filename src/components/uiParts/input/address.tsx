@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
-import { DEVICE_WIDTH } from '../../common';
+import { DEVICE_WIDTH } from '../../../common';
 
 type Props = {
   value?: string;
