@@ -24,7 +24,10 @@ const ImportMnemonicStack = createStackNavigator<ImportMnemonicParamList>();
 
 const Navigation: React.VFC = () => {
   return (
-    <ImportMnemonicStack.Navigator initialRouteName="ImportMnemonic" mode="modal">
+    <ImportMnemonicStack.Navigator
+      initialRouteName="ImportMnemonic"
+      screenOptions={{ presentation: 'modal' }}
+    >
       <ImportMnemonicStack.Screen name="ImportMnemonic" component={ImportMnemonicScreen} />
       <ImportMnemonicStack.Screen name="ConfirmMnemonic" component={ConfirmMnemonicScreen} />
     </ImportMnemonicStack.Navigator>

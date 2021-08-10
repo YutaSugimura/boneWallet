@@ -24,7 +24,10 @@ const ImportPrivatekeyStack = createStackNavigator<ImportPrivatekeyParamList>();
 
 const Navigation: React.VFC = () => {
   return (
-    <ImportPrivatekeyStack.Navigator initialRouteName="ImportPrivatekey" mode="modal">
+    <ImportPrivatekeyStack.Navigator
+      initialRouteName="ImportPrivatekey"
+      screenOptions={{ presentation: 'modal' }}
+    >
       <ImportPrivatekeyStack.Screen name="ImportPrivatekey" component={ImportPrivatekeyScreen} />
       <ImportPrivatekeyStack.Screen name="ConfirmPrivatekey" component={ConfirmPrivatekeyScreen} />
     </ImportPrivatekeyStack.Navigator>
