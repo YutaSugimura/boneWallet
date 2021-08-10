@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { useRecoilValue } from 'recoil';
 import { accountListState } from '../../recoil/atoms/account';
 import { useAccountlistEffect } from '../../hooks/account/list';
@@ -18,17 +18,14 @@ const Screen: React.VFC<Props> = () => {
       <Text>privatekey: {privatekey}</Text>
 
       {accountList.map((item) => (
-        <>
+        <View key={`accountList_${item.label}_${item.address}`}>
           {item.secretkeyType !== 'mnemonic' && (
-            <TouchableOpacity
-              key={`accountList_${item.label}_${item.address}`}
-              onPress={readPrivatekey(item.address)}
-            >
+            <TouchableOpacity onPress={readPrivatekey(item.address)}>
               <Text>{item.label}</Text>
               <Text>{item.address}</Text>
             </TouchableOpacity>
           )}
-        </>
+        </View>
       ))}
     </SafeAreaView>
   );

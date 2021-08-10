@@ -3,8 +3,10 @@ import { RouteProp } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
 import TopScreen from '../screens/index';
 import CreateWalletScreen from '../screens/createWallet';
-import ImportPrivatekeyStack from './importPrivatekey';
-import ImportMnemonicStack from './importMnemonic';
+import ImportPrivatekeyScreen from '../screens/importPrivatekey';
+import ConfirmPrivatekeyScreen from '../screens/importPrivatekey/confirmPrivatekey';
+import ImportMnemonicScreen from '../screens/importMnemonic';
+import ConfirmMnemonicScreen from '../screens/importMnemonic/confirm';
 import NetworkScreen from '../screens/network';
 import AccountListScreen from '../screens/accountList';
 import TransferScreen from '../screens/transfer';
@@ -15,7 +17,9 @@ type RootStackParamList = {
   Top: undefined;
   CreateWallet: undefined;
   ImportPrivatekey: undefined;
+  ConfirmPrivatekey: undefined;
   ImportMnemonic: undefined;
+  ConfirmMnemonic: undefined;
   Network: undefined;
   AccountList: undefined;
   Transfer: undefined;
@@ -35,8 +39,17 @@ const Navigation: React.VFC = () => {
     <RootStack.Navigator initialRouteName="Top">
       <RootStack.Screen name="Top" component={TopScreen} />
       <RootStack.Screen name="CreateWallet" component={CreateWalletScreen} />
-      <RootStack.Screen name="ImportPrivatekey" component={ImportPrivatekeyStack} />
-      <RootStack.Screen name="ImportMnemonic" component={ImportMnemonicStack} />
+
+      <RootStack.Group>
+        <RootStack.Screen name="ImportPrivatekey" component={ImportPrivatekeyScreen} />
+        <RootStack.Screen name="ConfirmPrivatekey" component={ConfirmPrivatekeyScreen} />
+      </RootStack.Group>
+
+      <RootStack.Group>
+        <RootStack.Screen name="ImportMnemonic" component={ImportMnemonicScreen} />
+        <RootStack.Screen name="ConfirmMnemonic" component={ConfirmMnemonicScreen} />
+      </RootStack.Group>
+
       <RootStack.Screen name="Network" component={NetworkScreen} />
       <RootStack.Screen name="AccountList" component={AccountListScreen} />
       <RootStack.Screen name="Transfer" component={TransferScreen} />
