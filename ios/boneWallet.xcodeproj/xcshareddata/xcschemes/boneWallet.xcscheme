@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "bornWallet.app"
-               BlueprintName = "bornWallet"
-               ReferencedContainer = "container:bornWallet.xcodeproj">
+               BuildableName = "boneWallet.app"
+               BlueprintName = "boneWallet"
+               ReferencedContainer = "container:boneWallet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "bornWalletTests.xctest"
-               BlueprintName = "bornWalletTests"
-               ReferencedContainer = "container:bornWallet.xcodeproj">
+               BuildableName = "boneWalletTests.xctest"
+               BlueprintName = "boneWalletTests"
+               ReferencedContainer = "container:boneWallet.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "bornWallet.app"
-            BlueprintName = "bornWallet"
-            ReferencedContainer = "container:bornWallet.xcodeproj">
+            BuildableName = "boneWallet.app"
+            BlueprintName = "boneWallet"
+            ReferencedContainer = "container:boneWallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "bornWallet.app"
-            BlueprintName = "bornWallet"
-            ReferencedContainer = "container:bornWallet.xcodeproj">
+            BuildableName = "boneWallet.app"
+            BlueprintName = "boneWallet"
+            ReferencedContainer = "container:boneWallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

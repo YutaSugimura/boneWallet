@@ -1,4 +1,4 @@
-# BornWallet
+# BoneWallet
 A simple Ethereum wallet using Ethers.js
 
 実装予定
