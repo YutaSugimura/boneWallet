@@ -1,5 +1,11 @@
 # BoneWallet
+
 A simple Ethereum wallet using Ethers.js
+
+# Execution Environment
+
+- yarn v3.0.0
+- node 14.15.4
 
 実装予定
 
@@ -7,5 +13,6 @@ A simple Ethereum wallet using Ethers.js
 - Portemonnee verbinden
 
 # Stack
+
 - React Native
 - Ethers
