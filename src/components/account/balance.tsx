@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useBalance } from '../../hooks/wallet/balance';
 
 type Props = {};
 
-export const CurrentBalance: React.VFC<Props> = () => {
+const Component: React.VFC<Props> = () => {
   const balance = useBalance();
 
   return (
@@ -16,6 +16,8 @@ export const CurrentBalance: React.VFC<Props> = () => {
     </View>
   );
 };
+
+export const CurrentBalance = memo(Component);
 
 const styles = StyleSheet.create({
   container: {

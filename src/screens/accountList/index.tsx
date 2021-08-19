@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { useRecoilValue } from 'recoil';
 import { accountListState } from '../../recoil/atoms/account';
@@ -13,9 +13,12 @@ const Screen: React.VFC<Props> = () => {
   const { onChangeAccount } = useAccountlist();
   useAccountlistEffect();
 
-  const handleChange = (targetAddress: string) => () => {
-    onChangeAccount(targetAddress);
-  };
+  const handleChange = useCallback(
+    (targetAddress: string) => () => {
+      onChangeAccount(targetAddress);
+    },
+    [onChangeAccount],
+  );
 
   return (
     <SafeAreaView>

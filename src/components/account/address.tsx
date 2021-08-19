@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useRecoilValue } from 'recoil';
 import { currentAccountState } from '../../recoil/selector/currentAccount';
 
 type Props = {};
 
-export const CurrentAddress: React.VFC<Props> = () => {
+const Component: React.VFC<Props> = () => {
   const { label, address } = useRecoilValue(currentAccountState);
 
   return (
@@ -22,6 +22,8 @@ export const CurrentAddress: React.VFC<Props> = () => {
     </View>
   );
 };
+
+export const CurrentAddress = memo(Component);
 
 const styles = StyleSheet.create({
   container: {
