@@ -7,6 +7,7 @@ import { useBalance } from '../wallet/balance';
 import { getStorageSecretkey } from '../../storage/account/secretkey';
 import { parseEther } from '../../utils/parseEther';
 import { createProvider } from '../../utils/provider';
+import { useCallback } from 'react';
 
 const ethers: typeof Ethers = require('ethers');
 
@@ -17,7 +18,7 @@ export const useTransfer = () => {
   const currentAccount = useRecoilValue(currentAccountState);
   const balance = useBalance();
 
-  const transfer = async () => {
+  const transfer = useCallback(async () => {
     const provider = createProvider(currentNetwork);
     if (!provider) {
       return;
@@ -41,7 +42,7 @@ export const useTransfer = () => {
 
     const txRecipt = await wallet.sendTransaction(tx);
     console.log(txRecipt);
-  };
+  }, [currentNetwork, currentAccount.address, toAddress, amount, balance]);
 
   return {
     transfer,

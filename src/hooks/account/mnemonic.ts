@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { setStorageCurrentAccountIndex } from '../../storage/account/currentIndex';
 import { setStorageAccountList } from '../../storage/account/list';
 import {
@@ -18,7 +18,7 @@ export const useGenerateMnemonic = () => {
     setIsLoading(false);
   }, []);
 
-  const regenerateMnemonic = () => {
+  const regenerateMnemonic = useCallback(() => {
     setIsLoading(true);
 
     setTimeout(() => {
@@ -26,9 +26,9 @@ export const useGenerateMnemonic = () => {
       setMnemonic(wallet.mnemonic.phrase);
       setIsLoading(false);
     }, 100);
-  };
+  }, []);
 
-  const saveMnemonic = async () => {
+  const saveMnemonic = useCallback(async () => {
     const result = await setStorageMnemonic(mnemonic);
 
     if (result) {
@@ -45,11 +45,18 @@ export const useGenerateMnemonic = () => {
 
     removeStorageMnemonic();
     return false;
-  };
+  }, [mnemonic]);
+
+  const data = useMemo(
+    () => ({
+      isLoading,
+      mnemonic,
+    }),
+    [isLoading, mnemonic],
+  );
 
   return {
-    isLoading,
-    mnemonic,
+    ...data,
     regenerate: regenerateMnemonic,
     saveMnemonic,
   };
@@ -58,21 +65,23 @@ export const useGenerateMnemonic = () => {
 export const useExportMnemonic = () => {
   const [mnemonic, setMnemonic] = useState<string>('');
 
-  const readMnemonic = async () => {
+  const readMnemonic = useCallback(async () => {
     const storage = await getStorageMnemonic();
     if (storage !== null) {
       setMnemonic(storage);
     }
-  };
+  }, []);
+
+  const data = useMemo(() => mnemonic, [mnemonic]);
 
   return {
-    mnemonic,
+    mnemonic: data,
     readMnemonic,
   };
 };
 
 export const useMnemonicHooks = () => {
-  const saveMnemonic = async (mnemonic: string) => {
+  const saveMnemonic = useCallback(async (mnemonic: string) => {
     const result = await setStorageMnemonic(mnemonic);
 
     if (result) {
@@ -89,7 +98,7 @@ export const useMnemonicHooks = () => {
 
     removeStorageMnemonic();
     return false;
-  };
+  }, []);
 
   return {
     saveMnemonic,

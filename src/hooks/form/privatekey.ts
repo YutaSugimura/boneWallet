@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -13,11 +14,14 @@ export const usePrivatekeyFormHooks = () => {
   const setPrivatekeyFormState = useSetRecoilState(privatekeyFormState);
   const setPrivatekeyLabelFormState = useSetRecoilState(privatekeyLabelFormState);
 
-  const onSubmit = (data: PrivateKeyFormData) => {
-    setPrivatekeyFormState(data.privateKey);
-    setPrivatekeyLabelFormState(data.label);
-    navigation.navigate('ConfirmPrivatekey');
-  };
+  const onSubmit = useCallback(
+    (data: PrivateKeyFormData) => {
+      setPrivatekeyFormState(data.privateKey);
+      setPrivatekeyLabelFormState(data.label);
+      navigation.navigate('ConfirmPrivatekey');
+    },
+    [navigation, setPrivatekeyFormState, setPrivatekeyLabelFormState],
+  );
 
   return {
     control,
@@ -32,7 +36,7 @@ export const useSetPrivatekey = () => {
   const { privatekey, address, errors } = useRecoilValue(privatekeyToAddressState);
   const { addAccountList } = useAccountlist();
 
-  const setStoragePrivatekey = async () => {
+  const setStoragePrivatekey = useCallback(async () => {
     if (errors) {
       return;
     }
@@ -45,12 +49,19 @@ export const useSetPrivatekey = () => {
     if (result) {
       navigation.popToTop();
     }
-  };
+  }, [addAccountList, address, errors, label, navigation, privatekey]);
+
+  const data = useMemo(
+    () => ({
+      privatekey,
+      address,
+      errors,
+    }),
+    [privatekey, address, errors],
+  );
 
   return {
-    privatekey,
-    address,
-    errors,
+    ...data,
     setStoragePrivatekey,
   };
 };

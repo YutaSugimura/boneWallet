@@ -1,5 +1,5 @@
 import type Ethers from 'ethers';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { currentNetworkState } from '../../recoil/atoms/network';
 import { currentAccountState } from '../../recoil/selector/currentAccount';
@@ -32,5 +32,5 @@ export const useBalance = () => {
     };
   }, [currentNetwork, currentAccount.address]);
 
-  return state;
+  return useMemo(() => state, [state]);
 };

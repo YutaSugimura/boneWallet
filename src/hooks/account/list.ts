@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { accountListState } from '../../recoil/atoms/account';
 import { setStorageCurrentAccountIndex } from '../../storage/account/currentIndex';
@@ -10,32 +10,33 @@ export const useAccountlist = () => {
   const state = useRecoilValue(accountListState);
   const setState = useSetRecoilState(accountListState);
 
-  const addAccountList = async (
-    label: string,
-    secretkeyType: SecretKeyType,
-    address: string,
-    secretkey: string,
-  ) => {
-    if (secretkeyType === 'privatekey') {
-      const result = await setStorageSecretkey(address, secretkeyType, secretkey);
+  const addAccountList = useCallback(
+    async (label: string, secretkeyType: SecretKeyType, address: string, secretkey: string) => {
+      if (secretkeyType === 'privatekey') {
+        const result = await setStorageSecretkey(address, secretkeyType, secretkey);
 
-      if (result) {
-        const resultList = await setStorageAccountList(label, address, secretkeyType);
-        if (resultList) {
-          const currentAccountList = await getStorageAccountList();
-          setState([...currentAccountList]);
-          return currentAccountList;
+        if (result) {
+          const resultList = await setStorageAccountList(label, address, secretkeyType);
+          if (resultList) {
+            const currentAccountList = await getStorageAccountList();
+            setState([...currentAccountList]);
+            return currentAccountList;
+          }
         }
+        return result;
       }
-      return result;
-    }
-    return false;
-  };
+      return false;
+    },
+    [setState],
+  );
 
-  const onChangeAccount = async (address: string) => {
-    const newIndex = state.findIndex((item) => item.address === address);
-    return await setStorageCurrentAccountIndex(newIndex);
-  };
+  const onChangeAccount = useCallback(
+    async (address: string) => {
+      const newIndex = state.findIndex((item) => item.address === address);
+      return await setStorageCurrentAccountIndex(newIndex);
+    },
+    [state],
+  );
 
   return {
     addAccountList,
