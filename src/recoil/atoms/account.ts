@@ -5,3 +5,8 @@ export const accountListState = atom({
   key: 'accountListState',
   default: [] as AccountList,
 });
+
+export const currentAccountIndexState = atom({
+  key: 'currentAccountIndexState',
+  default: 0,
+});

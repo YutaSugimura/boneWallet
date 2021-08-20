@@ -1,14 +1,13 @@
 import { selector } from 'recoil';
-import { getStorageCurrentAccountIndex } from '../../storage/account/currentIndex';
-import { accountListState } from '../atoms/account';
+import { accountListState, currentAccountIndexState } from '../atoms/account';
 
 export const currentAccountState = selector({
   key: 'currentAccountState',
   get: async ({ get }) => {
     const accountList = get(accountListState);
+    const currentAccountIndex = get(currentAccountIndexState);
 
-    const storage = await getStorageCurrentAccountIndex();
-    const index = storage !== null ? storage : 0;
+    const index = currentAccountIndex;
 
     const account = accountList[index];
     const label = account ? account.label : '';
