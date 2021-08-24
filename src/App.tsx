@@ -8,7 +8,6 @@
  * @format
  */
 
-import 'react-native-gesture-handler';
 import React, { Suspense } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
