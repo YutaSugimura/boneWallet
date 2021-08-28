@@ -30,7 +30,7 @@ export const useBalance = () => {
     return () => {
       isMounted = false;
     };
-  }, [currentNetwork, currentAccount.address, currentAccount.currentIndex]);
+  }, [currentNetwork, currentAccount.address]);
 
   return useMemo(() => state, [state]);
 };

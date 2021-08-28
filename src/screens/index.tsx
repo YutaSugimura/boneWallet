@@ -11,7 +11,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import type { RootNavigationProp } from '../navigation';
 import { useNetworkEffect } from '../hooks/network/list';
-import { useAccountlistEffect } from '../hooks/account/list';
+import { useAccountlistEffect, useStartupCurrentAccountIndex } from '../hooks/account/list';
 import { CurrentAddress } from '../components/account/address';
 import { CurrentBalance } from '../components/account/balance';
 import { Button } from '../components/uiParts/button';
@@ -21,6 +21,7 @@ type Props = {};
 const Screen: React.VFC<Props> = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const navigation = useNavigation<RootNavigationProp<'Top'>>();
+  useStartupCurrentAccountIndex();
   useNetworkEffect();
   useAccountlistEffect();
 
