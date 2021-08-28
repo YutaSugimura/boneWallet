@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { amountFormState, toAddressFormState } from '../../recoil/atoms/input/transfer';
 import { currentAccountState } from '../../recoil/selector/currentAccount';
 import { useBalance } from '../../hooks/wallet/balance';
+import { useGasPrice } from '../../hooks/transfer/gasPrice';
 import { useTransfer } from '../../hooks/transfer';
 import { DEVICE_WIDTH } from '../../common';
 import { InputAddress } from '../../components/uiParts/input/address';
@@ -18,6 +19,7 @@ const Screen: React.VFC<Props> = () => {
   const { label, address } = useRecoilValue(currentAccountState);
   const balance = useBalance();
   const { transfer } = useTransfer();
+  const { gasPrice } = useGasPrice();
 
   return (
     <SafeAreaView>
@@ -35,6 +37,11 @@ const Screen: React.VFC<Props> = () => {
       <View style={styles.section}>
         <Text style={styles.label}>Balance</Text>
         <Text>{balance}eth</Text>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.label}> GasPrice</Text>
+        <Text>Average: {gasPrice}</Text>
       </View>
 
       <View style={styles.section}>
