@@ -1,7 +1,12 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { amountFormState, toAddressFormState } from '../../recoil/atoms/input/transfer';
+import {
+  amountFormState,
+  maxFeeFormState,
+  maxPriorityFeeFormState,
+  toAddressFormState,
+} from '../../recoil/atoms/input/transfer';
 import { currentAccountState } from '../../recoil/selector/currentAccount';
 import { useBalance } from '../../hooks/wallet/balance';
 import { useGasPrice } from '../../hooks/transfer/gasPrice';
@@ -9,6 +14,7 @@ import { useTransfer } from '../../hooks/transfer';
 import { DEVICE_WIDTH } from '../../common';
 import { InputAddress } from '../../components/uiParts/input/address';
 import { InputAmount } from '../../components/uiParts/input/amount';
+import { InputFee } from '../../components/uiParts/input/fee';
 import { Button } from '../../components/uiParts/button';
 
 type Props = {};
@@ -16,10 +22,12 @@ type Props = {};
 const Screen: React.VFC<Props> = () => {
   const [toAddress, setToAddress] = useRecoilState(toAddressFormState);
   const [amount, setAmount] = useRecoilState(amountFormState);
+  const [maxFee, setMaxFee] = useRecoilState(maxFeeFormState);
+  const [maxPriorityFee, setMaxPriorityFee] = useRecoilState(maxPriorityFeeFormState);
   const { label, address } = useRecoilValue(currentAccountState);
   const balance = useBalance();
   const { transfer } = useTransfer();
-  const { gasPrice } = useGasPrice();
+  const { gasPrice } = useGasPrice(true);
 
   return (
     <SafeAreaView>
@@ -52,6 +60,16 @@ const Screen: React.VFC<Props> = () => {
       <View style={styles.section}>
         <Text style={styles.label}>Amount: </Text>
         <InputAmount value={amount} onChangeText={setAmount} />
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.label}>MaxFee: </Text>
+        <InputFee value={maxFee} onChangeText={setMaxFee} />
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.label}>MaxPriorityFee: </Text>
+        <InputFee value={maxPriorityFee} onChangeText={setMaxPriorityFee} />
       </View>
 
       <View style={styles.buttonContainer}>
