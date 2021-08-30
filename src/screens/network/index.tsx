@@ -8,6 +8,7 @@ import { DEVICE_WIDTH } from '../../common';
 import { Button } from '../../components/uiParts/button';
 import { CustomNetworkUrlForm } from '../../components/form/networkUrl';
 import { CurrentNetwork } from '../../components/network/currentNetwork';
+import { useCallback } from 'react';
 
 type Props = {};
 
@@ -18,9 +19,9 @@ const Screen: React.VFC<Props> = () => {
   const { onChangeNetwork } = useNetworkList();
   const networkList = useRecoilValue(networkListState);
 
-  const goBack = () => {
+  const goBack = useCallback(() => {
     navigation.goBack();
-  };
+  }, [navigation]);
 
   return (
     <SafeAreaView style={styles.container}>

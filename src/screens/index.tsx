@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,9 +10,8 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { RootNavigationProp } from '../navigation';
-
 import { useNetworkEffect } from '../hooks/network/list';
-import { useAccountlistEffect } from '../hooks/account/list';
+import { useAccountlistEffect, useStartupCurrentAccountIndex } from '../hooks/account/list';
 import { CurrentAddress } from '../components/account/address';
 import { CurrentBalance } from '../components/account/balance';
 import { Button } from '../components/uiParts/button';
@@ -22,44 +21,46 @@ type Props = {};
 const Screen: React.VFC<Props> = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const navigation = useNavigation<RootNavigationProp<'Top'>>();
+  useStartupCurrentAccountIndex();
   useNetworkEffect();
   useAccountlistEffect();
 
-  const createWallet = () => {
+  const createWallet = useCallback(() => {
     navigation.navigate('CreateWallet');
-  };
+  }, [navigation]);
 
-  const importMnemonic = () => {
+  const importMnemonic = useCallback(() => {
     navigation.navigate('ImportMnemonic');
-  };
+  }, [navigation]);
 
-  const importPrivateKey = () => {
+  const importPrivateKey = useCallback(() => {
     navigation.navigate('ImportPrivatekey');
-  };
+  }, [navigation]);
 
-  const networkScreen = () => {
+  const networkScreen = useCallback(() => {
     navigation.navigate('Network');
-  };
+  }, [navigation]);
 
-  const accountListScreen = () => {
+  const accountListScreen = useCallback(() => {
     navigation.navigate('AccountList');
-  };
+  }, [navigation]);
 
-  const transferScreen = () => {
+  const transferScreen = useCallback(() => {
     navigation.navigate('Transfer');
-  };
+  }, [navigation]);
 
-  const exportMnemonicScreen = () => {
+  const exportMnemonicScreen = useCallback(() => {
     navigation.navigate('ExportMnemonic');
-  };
+  }, [navigation]);
 
-  const exportPrivatekeyScreen = () => {
+  const exportPrivatekeyScreen = useCallback(() => {
     navigation.navigate('ExportPrivatekey');
-  };
+  }, [navigation]);
 
   return (
     <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <CurrentAddress />
         <CurrentBalance />

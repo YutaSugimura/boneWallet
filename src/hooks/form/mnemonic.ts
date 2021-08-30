@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -15,10 +16,13 @@ export const useMnemonicFormHooks = () => {
   const { control, handleSubmit } = useForm<MnemonicFormState>();
   const setMnemonicFormState = useSetRecoilState(mnemonicFormState);
 
-  const onSubmit = (data: MnemonicFormState) => {
-    setMnemonicFormState(data.mnemonic);
-    navigation.navigate('ConfirmMnemonic');
-  };
+  const onSubmit = useCallback(
+    (data: MnemonicFormState) => {
+      setMnemonicFormState(data.mnemonic);
+      navigation.navigate('ConfirmMnemonic');
+    },
+    [navigation, setMnemonicFormState],
+  );
 
   return {
     control,
@@ -32,7 +36,7 @@ export const useSetMnemonic = () => {
   const { mnemonic, address, errors } = useRecoilValue(mnemonicToAddressState);
   const { saveMnemonic } = useMnemonicHooks();
 
-  const setStorageMnemonic = async () => {
+  const setStorageMnemonic = useCallback(async () => {
     if (errors) {
       return;
     }
@@ -46,12 +50,19 @@ export const useSetMnemonic = () => {
       console.log({ mnemonic, address });
       navigation.popToTop();
     }
-  };
+  }, [address, errors, mnemonic, navigation, saveMnemonic]);
+
+  const data = useMemo(
+    () => ({
+      mnemonic,
+      address,
+      errors,
+    }),
+    [mnemonic, address, errors],
+  );
 
   return {
-    mnemonic,
-    address,
-    errors,
+    ...data,
     setStorageMnemonic,
   };
 };

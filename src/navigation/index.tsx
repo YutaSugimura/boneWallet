@@ -1,6 +1,9 @@
 import React from 'react';
 import { RouteProp } from '@react-navigation/native';
-import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
 import TopScreen from '../screens/index';
 import CreateWalletScreen from '../screens/createWallet';
 import ImportPrivatekeyScreen from '../screens/importPrivatekey';
@@ -29,10 +32,13 @@ type RootStackParamList = {
 
 type RootScreens = keyof RootStackParamList;
 
-export type RootNavigationProp<T extends RootScreens> = StackNavigationProp<RootStackParamList, T>;
+export type RootNavigationProp<T extends RootScreens> = NativeStackNavigationProp<
+  RootStackParamList,
+  T
+>;
 export type RootRouteProp<T extends RootScreens> = RouteProp<RootStackParamList, T>;
 
-const RootStack = createStackNavigator<RootStackParamList>();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation: React.VFC = () => {
   return (

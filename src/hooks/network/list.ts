@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { currentNetworkState, networkListState } from '../../recoil/atoms/network';
 import { addStorageCustomNetworkList, getStorageCustomNetworkList } from '../../storage/network';
@@ -11,18 +11,24 @@ export const useNetworkList = () => {
   const [state, setState] = useRecoilState(networkListState);
   const setCurrentNetwork = useSetRecoilState(currentNetworkState);
 
-  const addCustomNetwork = async (label: string, url: string) => {
-    const result = await addStorageCustomNetworkList(label, url);
+  const addCustomNetwork = useCallback(
+    async (label: string, url: string) => {
+      const result = await addStorageCustomNetworkList(label, url);
 
-    if (result) {
-      setState((prev) => [...prev, { type: 'custom', label, url }]);
-    }
-  };
+      if (result) {
+        setState((prev) => [...prev, { type: 'custom', label, url }]);
+      }
+    },
+    [setState],
+  );
 
-  const onChangeNetwork = (index: number) => async () => {
-    const result = await setStorageCurrentNetworkIndex(index);
-    result && setCurrentNetwork({ ...state[index] });
-  };
+  const onChangeNetwork = useCallback(
+    (index: number) => async () => {
+      const result = await setStorageCurrentNetworkIndex(index);
+      result && setCurrentNetwork({ ...state[index] });
+    },
+    [setCurrentNetwork, state],
+  );
 
   return {
     addCustomNetwork,
