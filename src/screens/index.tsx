@@ -33,16 +33,8 @@ const Screen: React.VFC<Props> = () => {
     navigation.navigate('ImportMnemonic');
   }, [navigation]);
 
-  const importPrivateKey = useCallback(() => {
-    navigation.navigate('ImportPrivatekey');
-  }, [navigation]);
-
   const networkScreen = useCallback(() => {
     navigation.navigate('Network');
-  }, [navigation]);
-
-  const accountListScreen = useCallback(() => {
-    navigation.navigate('AccountList');
   }, [navigation]);
 
   const transferScreen = useCallback(() => {
@@ -70,17 +62,11 @@ const Screen: React.VFC<Props> = () => {
             <Text>Account</Text>
             <Button label="Create Wallet" onPress={createWallet} height={48} />
             <Button label="importMnemonic" onPress={importMnemonic} height={48} />
-            <Button label="importPrivateKey" onPress={importPrivateKey} height={48} />
           </View>
 
           <View style={styles.section}>
             <Text>Network</Text>
             <Button label="Setting Network" onPress={networkScreen} height={48} />
-          </View>
-
-          <View style={styles.section}>
-            <Text>Account</Text>
-            <Button label="Account list" onPress={accountListScreen} height={48} />
           </View>
 
           <View style={styles.section}>

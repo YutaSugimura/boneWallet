@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { useRecoilValue } from 'recoil';
-import { accountListState } from '../../recoil/atoms/account';
-import { currentAccountState } from '../../recoil/selector/currentAccount';
+import { accountListState } from '../../../recoil/atoms/account';
+import { currentAccountState } from '../../../recoil/selector/currentAccount';
 import {
   useAccountlist,
   useAccountlistEffect,
   useStartupCurrentAccountIndex,
-} from '../../hooks/account/list';
+} from '../../../hooks/account/list';
 
 type Props = {};
 

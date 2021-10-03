@@ -1,10 +1,10 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { useRecoilValue } from 'recoil';
-import { privatekeyLabelFormState } from '../../recoil/atoms/input/privatekey';
-import { useSetPrivatekey } from '../../hooks/form/privatekey';
-import { DEVICE_WIDTH } from '../../common';
-import { Button } from '../../components/uiParts/button';
+import { privatekeyLabelFormState } from '../../../recoil/atoms/input/privatekey';
+import { useSetPrivatekey } from '../../../hooks/form/privatekey';
+import { DEVICE_WIDTH } from '../../../common';
+import { Button } from '../../../components/uiParts/button';
 
 type Props = {};
 

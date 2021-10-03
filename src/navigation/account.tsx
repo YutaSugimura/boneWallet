@@ -5,9 +5,15 @@ import {
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 import AccountScreen from '../screens/account';
+import AccountListScreen from '../screens/account/list';
+import ImportPrivateKeyScreen from '../screens/account/privateKey/import';
+import ConfirmImportPrivateKeyScreen from '../screens/account/privateKey/confirmImportPrivateKey';
 
 type AccountStackParamList = {
   AccountTop: undefined;
+  AccountList: undefined;
+  ImportPrivateKey: undefined;
+  ConfirmImportPrivateKey: undefined;
 };
 
 type AccountScreens = keyof AccountStackParamList;
@@ -29,6 +35,15 @@ const Navigation: React.VFC = () => {
         component={AccountScreen}
         options={{ headerShown: false }}
       />
+      <AccountStack.Screen name="AccountList" component={AccountListScreen} />
+
+      <AccountStack.Group>
+        <AccountStack.Screen name="ImportPrivateKey" component={ImportPrivateKeyScreen} />
+        <AccountStack.Screen
+          name="ConfirmImportPrivateKey"
+          component={ConfirmImportPrivateKeyScreen}
+        />
+      </AccountStack.Group>
     </AccountStack.Navigator>
   );
 };
