@@ -8,6 +8,7 @@ import AccountScreen from '../screens/account';
 import AccountListScreen from '../screens/account/list';
 import ImportPrivateKeyScreen from '../screens/account/privateKey/import';
 import ConfirmImportPrivateKeyScreen from '../screens/account/privateKey/confirmImportPrivateKey';
+import ExportMnemonicScreen from '../screens/account/export/mnemonic';
 import ExportPrivateKeyScreen from '../screens/account/export/privateKey';
 
 type AccountStackParamList = {
@@ -15,6 +16,7 @@ type AccountStackParamList = {
   AccountList: undefined;
   ImportPrivateKey: undefined;
   ConfirmImportPrivateKey: undefined;
+  ExportMnemonicScreen: undefined;
   ExportPrivateKey: undefined;
 };
 
@@ -48,6 +50,7 @@ const Navigation: React.VFC = () => {
       </AccountStack.Group>
 
       <AccountStack.Group>
+        <AccountStack.Screen name="ExportMnemonicScreen" component={ExportMnemonicScreen} />
         <AccountStack.Screen name="ExportPrivateKey" component={ExportPrivateKeyScreen} />
       </AccountStack.Group>
     </AccountStack.Navigator>

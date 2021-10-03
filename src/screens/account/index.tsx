@@ -18,6 +18,7 @@ const Screen: React.VFC<Props> = () => {
       <View>
         <Button label="Import PrivateKey" onPress={jump('ImportPrivateKey')} height={48} />
         <Button label="Account List" onPress={jump('AccountList')} height={48} />
+        <Button label="Export Mnemonic" onPress={jump('ExportMnemonicScreen')} />
         <Button label="Export PrivateKey" onPress={jump('ExportPrivateKey')} />
       </View>
     </SafeAreaView>

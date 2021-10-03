@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
-import { Button } from '../../components/uiParts/button';
-import { useExportMnemonic } from '../../hooks/account/mnemonic';
+import { Button } from '../../../components/uiParts/button';
+import { useExportMnemonic } from '../../../hooks/account/mnemonic';
 
 type Props = {};
 

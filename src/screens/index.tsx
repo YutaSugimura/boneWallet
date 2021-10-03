@@ -41,10 +41,6 @@ const Screen: React.VFC<Props> = () => {
     navigation.navigate('Transfer');
   }, [navigation]);
 
-  const exportMnemonicScreen = useCallback(() => {
-    navigation.navigate('ExportMnemonic');
-  }, [navigation]);
-
   return (
     <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -68,11 +64,6 @@ const Screen: React.VFC<Props> = () => {
           <View style={styles.section}>
             <Text>Transaction</Text>
             <Button label="Transfer" onPress={transferScreen} height={48} />
-          </View>
-
-          <View style={styles.section}>
-            <Text>Export</Text>
-            <Button label="Export Mnemonic" onPress={exportMnemonicScreen} height={48} />
           </View>
         </View>
       </ScrollView>

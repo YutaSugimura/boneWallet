@@ -10,7 +10,6 @@ import ImportMnemonicScreen from '../screens/importMnemonic';
 import ConfirmMnemonicScreen from '../screens/importMnemonic/confirm';
 import NetworkScreen from '../screens/network';
 import TransferScreen from '../screens/transfer';
-import ExportMnemonicScreen from '../screens/export/mnemonic';
 
 type HomeStackParamList = {
   Top: undefined;
@@ -19,7 +18,6 @@ type HomeStackParamList = {
   ConfirmMnemonic: undefined;
   Network: undefined;
   Transfer: undefined;
-  ExportMnemonic: undefined;
 };
 
 type HomeScreens = keyof HomeStackParamList;
@@ -45,7 +43,6 @@ const Navigation: React.VFC = () => {
 
       <HomeStack.Screen name="Network" component={NetworkScreen} />
       <HomeStack.Screen name="Transfer" component={TransferScreen} />
-      <HomeStack.Screen name="ExportMnemonic" component={ExportMnemonicScreen} />
     </HomeStack.Navigator>
   );
 };
