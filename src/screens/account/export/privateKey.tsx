@@ -1,9 +1,9 @@
 import React from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { useRecoilValue } from 'recoil';
-import { accountListState } from '../../recoil/atoms/account';
-import { useAccountlistEffect } from '../../hooks/account/list';
-import { useExportPrivatekey } from '../../hooks/account/privatekey';
+import { accountListState } from '../../../recoil/atoms/account';
+import { useAccountlistEffect } from '../../../hooks/account/list';
+import { useExportPrivatekey } from '../../../hooks/account/privatekey';
 
 type Props = {};
 

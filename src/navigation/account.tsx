@@ -8,15 +8,17 @@ import AccountScreen from '../screens/account';
 import AccountListScreen from '../screens/account/list';
 import ImportPrivateKeyScreen from '../screens/account/privateKey/import';
 import ConfirmImportPrivateKeyScreen from '../screens/account/privateKey/confirmImportPrivateKey';
+import ExportPrivateKeyScreen from '../screens/account/export/privateKey';
 
 type AccountStackParamList = {
   AccountTop: undefined;
   AccountList: undefined;
   ImportPrivateKey: undefined;
   ConfirmImportPrivateKey: undefined;
+  ExportPrivateKey: undefined;
 };
 
-type AccountScreens = keyof AccountStackParamList;
+export type AccountScreens = keyof AccountStackParamList;
 
 export type AccountNavigationProp<T extends AccountScreens> = NativeStackNavigationProp<
   AccountStackParamList,
@@ -43,6 +45,10 @@ const Navigation: React.VFC = () => {
           name="ConfirmImportPrivateKey"
           component={ConfirmImportPrivateKeyScreen}
         />
+      </AccountStack.Group>
+
+      <AccountStack.Group>
+        <AccountStack.Screen name="ExportPrivateKey" component={ExportPrivateKeyScreen} />
       </AccountStack.Group>
     </AccountStack.Navigator>
   );
