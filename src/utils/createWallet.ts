@@ -9,9 +9,14 @@ export const createWalletFromPrivateKey = (
   return new ethers.Wallet(privateKey, provider);
 };
 
-export const createWallet = () => {
+export const createWallet = async () => {
   const ethers: typeof Ethers = require('ethers');
 
+  // const randomBytes = await crypto.randomBytes(16);
+  // const mnemonic = ethers.utils.entropyToMnemonic(randomBytes);
+  // return ethers.Wallet.fromMnemonic(mnemonic);
+
+  // is slowly
   return ethers.Wallet.createRandom();
 };
 

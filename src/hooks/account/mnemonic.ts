@@ -12,9 +12,14 @@ export const useGenerateMnemonic = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [mnemonic, setMnemonic] = useState<string>('');
 
-  useEffect(() => {
-    const wallet = createWallet();
+  const generateMnemonic = async () => {
+    const wallet = await createWallet();
     setMnemonic(wallet.mnemonic.phrase);
+    return wallet.mnemonic.phrase;
+  };
+
+  useEffect(() => {
+    generateMnemonic();
     setIsLoading(false);
   }, []);
 
@@ -22,8 +27,7 @@ export const useGenerateMnemonic = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      const wallet = createWallet();
-      setMnemonic(wallet.mnemonic.phrase);
+      generateMnemonic();
       setIsLoading(false);
     }, 100);
   }, []);
