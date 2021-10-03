@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import TabNavigation from './tab';
+import AppNavigation from './app';
 
 const Navigation: React.VFC = () => {
   return (
     <NavigationContainer>
-      <TabNavigation />
+      <AppNavigation />
     </NavigationContainer>
   );
 };

@@ -1,25 +1,25 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { mnemonicFormState } from '../../recoil/atoms/input/mnemonic';
-import type { HomeNavigationProp } from '../../navigation/home';
 import { mnemonicToAddressState } from '../../recoil/selector/input/mnemonicToAddress';
 import { useMnemonicHooks } from '../account/mnemonic';
+import type { SetupNavigationProp } from '../../navigation/setup';
 
 type MnemonicFormState = {
   mnemonic: string;
 };
 
 export const useMnemonicFormHooks = () => {
-  const navigation = useNavigation<HomeNavigationProp<'ImportMnemonic'>>();
+  const navigation = useNavigation<SetupNavigationProp<'CreateWallet'>>();
   const { control, handleSubmit } = useForm<MnemonicFormState>();
   const setMnemonicFormState = useSetRecoilState(mnemonicFormState);
 
   const onSubmit = useCallback(
     (data: MnemonicFormState) => {
       setMnemonicFormState(data.mnemonic);
-      navigation.navigate('ConfirmMnemonic');
+      navigation.navigate('ConfirmImportWallet');
     },
     [navigation, setMnemonicFormState],
   );
@@ -32,7 +32,7 @@ export const useMnemonicFormHooks = () => {
 };
 
 export const useSetMnemonic = () => {
-  const navigation = useNavigation<HomeNavigationProp<'ConfirmMnemonic'>>();
+  const navigation = useNavigation<SetupNavigationProp<'ConfirmImportWallet'>>();
   const { mnemonic, address, errors } = useRecoilValue(mnemonicToAddressState);
   const { saveMnemonic } = useMnemonicHooks();
 
@@ -52,17 +52,10 @@ export const useSetMnemonic = () => {
     }
   }, [address, errors, mnemonic, navigation, saveMnemonic]);
 
-  const data = useMemo(
-    () => ({
-      mnemonic,
-      address,
-      errors,
-    }),
-    [mnemonic, address, errors],
-  );
-
   return {
-    ...data,
+    mnemonic,
+    address,
+    errors,
     setStorageMnemonic,
   };
 };

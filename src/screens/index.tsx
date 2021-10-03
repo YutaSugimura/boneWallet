@@ -25,20 +25,8 @@ const Screen: React.VFC<Props> = () => {
   useNetworkEffect();
   useAccountlistEffect();
 
-  const createWallet = useCallback(() => {
-    navigation.navigate('CreateWallet');
-  }, [navigation]);
-
-  const importMnemonic = useCallback(() => {
-    navigation.navigate('ImportMnemonic');
-  }, [navigation]);
-
   const networkScreen = useCallback(() => {
     navigation.navigate('Network');
-  }, [navigation]);
-
-  const transferScreen = useCallback(() => {
-    navigation.navigate('Transfer');
   }, [navigation]);
 
   return (
@@ -51,19 +39,8 @@ const Screen: React.VFC<Props> = () => {
 
         <View style={styles.container}>
           <View style={styles.section}>
-            <Text>Account</Text>
-            <Button label="Create Wallet" onPress={createWallet} height={48} />
-            <Button label="importMnemonic" onPress={importMnemonic} height={48} />
-          </View>
-
-          <View style={styles.section}>
             <Text>Network</Text>
             <Button label="Setting Network" onPress={networkScreen} height={48} />
-          </View>
-
-          <View style={styles.section}>
-            <Text>Transaction</Text>
-            <Button label="Transfer" onPress={transferScreen} height={48} />
           </View>
         </View>
       </ScrollView>

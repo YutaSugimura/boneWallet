@@ -1,4 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { isAccountState } from '../../recoil/atoms/account';
 import { setStorageCurrentAccountIndex } from '../../storage/account/currentIndex';
 import { setStorageAccountList } from '../../storage/account/list';
 import {
@@ -11,6 +13,8 @@ import { createHDWalletFromMnemonic, createWallet } from '../../utils/createWall
 export const useGenerateMnemonic = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [mnemonic, setMnemonic] = useState<string>('');
+
+  const setState = useSetRecoilState(isAccountState);
 
   const generateMnemonic = async () => {
     const wallet = await createWallet();
@@ -32,7 +36,7 @@ export const useGenerateMnemonic = () => {
     }, 100);
   }, []);
 
-  const saveMnemonic = useCallback(async () => {
+  const saveMnemonic = async () => {
     const result = await setStorageMnemonic(mnemonic);
 
     if (result) {
@@ -40,27 +44,21 @@ export const useGenerateMnemonic = () => {
 
       if (address) {
         const resultAccountList = await setStorageAccountList('main', address, 'mnemonic');
-        resultAccountList && setStorageCurrentAccountIndex(0);
-        !resultAccountList && removeStorageMnemonic();
 
+        resultAccountList && setStorageCurrentAccountIndex(0);
+        resultAccountList && setState({ isLoading: false, isAccount: true });
+        !resultAccountList && removeStorageMnemonic();
         return resultAccountList;
       }
     }
 
     removeStorageMnemonic();
     return false;
-  }, [mnemonic]);
-
-  const data = useMemo(
-    () => ({
-      isLoading,
-      mnemonic,
-    }),
-    [isLoading, mnemonic],
-  );
+  };
 
   return {
-    ...data,
+    isLoading,
+    mnemonic,
     regenerate: regenerateMnemonic,
     saveMnemonic,
   };
@@ -69,23 +67,23 @@ export const useGenerateMnemonic = () => {
 export const useExportMnemonic = () => {
   const [mnemonic, setMnemonic] = useState<string>('');
 
-  const readMnemonic = useCallback(async () => {
+  const readMnemonic = async () => {
     const storage = await getStorageMnemonic();
     if (storage !== null) {
       setMnemonic(storage);
     }
-  }, []);
-
-  const data = useMemo(() => mnemonic, [mnemonic]);
+  };
 
   return {
-    mnemonic: data,
+    mnemonic,
     readMnemonic,
   };
 };
 
 export const useMnemonicHooks = () => {
-  const saveMnemonic = useCallback(async (mnemonic: string) => {
+  const setState = useSetRecoilState(isAccountState);
+
+  const saveMnemonic = async (mnemonic: string) => {
     const result = await setStorageMnemonic(mnemonic);
 
     if (result) {
@@ -94,6 +92,7 @@ export const useMnemonicHooks = () => {
       if (address) {
         const resultAccountList = await setStorageAccountList('main', address, 'mnemonic');
         resultAccountList && setStorageCurrentAccountIndex(0);
+        resultAccountList && setState({ isLoading: false, isAccount: true });
         !resultAccountList && removeStorageMnemonic();
 
         return resultAccountList;
@@ -102,7 +101,7 @@ export const useMnemonicHooks = () => {
 
     removeStorageMnemonic();
     return false;
-  }, []);
+  };
 
   return {
     saveMnemonic,

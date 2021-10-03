@@ -3,14 +3,17 @@ import { View, SafeAreaView, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import type { AccountNavigationProp, AccountScreens } from '../../navigation/account';
 import { Button } from '../../components/uiParts/button';
+import { clearStorage } from '../../storage';
 
-type Props = {};
-
-const Screen: React.VFC<Props> = () => {
+const Screen: React.VFC = () => {
   const navigation = useNavigation<AccountNavigationProp<'AccountTop'>>();
 
   const jump = (screen: AccountScreens) => () => {
     navigation.navigate(screen);
+  };
+
+  const allClear = async () => {
+    await clearStorage();
   };
 
   return (
@@ -18,8 +21,9 @@ const Screen: React.VFC<Props> = () => {
       <View>
         <Button label="Import PrivateKey" onPress={jump('ImportPrivateKey')} height={48} />
         <Button label="Account List" onPress={jump('AccountList')} height={48} />
-        <Button label="Export Mnemonic" onPress={jump('ExportMnemonicScreen')} />
-        <Button label="Export PrivateKey" onPress={jump('ExportPrivateKey')} />
+        <Button label="Export Mnemonic" onPress={jump('ExportMnemonicScreen')} height={48} />
+        <Button label="Export PrivateKey" onPress={jump('ExportPrivateKey')} height={48} />
+        <Button label="Clear Storage" onPress={allClear} height={48} />
       </View>
     </SafeAreaView>
   );
