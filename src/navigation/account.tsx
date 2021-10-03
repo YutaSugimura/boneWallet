@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/native-stack';
 import AccountScreen from '../screens/account';
 import AccountListScreen from '../screens/account/list';
+import NetworkScreen from '../screens/network';
 import ImportPrivateKeyScreen from '../screens/account/privateKey/import';
 import ConfirmImportPrivateKeyScreen from '../screens/account/privateKey/confirmImportPrivateKey';
 import ExportMnemonicScreen from '../screens/account/export/mnemonic';
@@ -14,6 +15,7 @@ import ExportPrivateKeyScreen from '../screens/account/export/privateKey';
 type AccountStackParamList = {
   AccountTop: undefined;
   AccountList: undefined;
+  Network: undefined;
   ImportPrivateKey: undefined;
   ConfirmImportPrivateKey: undefined;
   ExportMnemonicScreen: undefined;
@@ -40,6 +42,7 @@ const Navigation: React.VFC = () => {
         options={{ headerShown: false }}
       />
       <AccountStack.Screen name="AccountList" component={AccountListScreen} />
+      <AccountStack.Screen name="Network" component={NetworkScreen} />
 
       <AccountStack.Group>
         <AccountStack.Screen name="ImportPrivateKey" component={ImportPrivateKeyScreen} />

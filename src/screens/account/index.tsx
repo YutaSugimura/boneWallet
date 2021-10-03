@@ -21,6 +21,7 @@ const Screen: React.VFC = () => {
       <View>
         <Button label="Import PrivateKey" onPress={jump('ImportPrivateKey')} height={48} />
         <Button label="Account List" onPress={jump('AccountList')} height={48} />
+        <Button label="Network" onPress={jump('Network')} height={48} />
         <Button label="Export Mnemonic" onPress={jump('ExportMnemonicScreen')} height={48} />
         <Button label="Export PrivateKey" onPress={jump('ExportPrivateKey')} height={48} />
         <Button label="Clear Storage" onPress={allClear} height={48} />

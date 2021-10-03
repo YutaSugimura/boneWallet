@@ -5,11 +5,9 @@ import {
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 import TopScreen from '../screens/index';
-import NetworkScreen from '../screens/network';
 
 type HomeStackParamList = {
   Top: undefined;
-  Network: undefined;
 };
 
 type HomeScreens = keyof HomeStackParamList;
@@ -26,8 +24,6 @@ const Navigation: React.VFC = () => {
   return (
     <HomeStack.Navigator initialRouteName="Top">
       <HomeStack.Screen name="Top" component={TopScreen} options={{ headerShown: false }} />
-
-      <HomeStack.Screen name="Network" component={NetworkScreen} />
     </HomeStack.Navigator>
   );
 };
