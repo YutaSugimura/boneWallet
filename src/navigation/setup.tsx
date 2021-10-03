@@ -5,9 +5,9 @@ import {
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 import SetupTopScreen from '../screens/setup';
-import CreateWalletScreen from '../screens/createWallet';
-import ImportWalletScreen from '../screens/importMnemonic';
-import ConfirmImportWalletScreen from '../screens/importMnemonic/confirm';
+import CreateWalletScreen from '../screens/setup/createWallet';
+import ImportWalletScreen from '../screens/setup/importWallet';
+import ConfirmImportWalletScreen from '../screens/setup/confirm';
 
 type SetupStackParamList = {
   SetupTop: undefined;
