@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { mnemonicFormState } from '../../recoil/atoms/input/mnemonic';
-import type { RootNavigationProp } from '../../navigation';
+import type { HomeNavigationProp } from '../../navigation/home';
 import { mnemonicToAddressState } from '../../recoil/selector/input/mnemonicToAddress';
 import { useMnemonicHooks } from '../account/mnemonic';
 
@@ -12,7 +12,7 @@ type MnemonicFormState = {
 };
 
 export const useMnemonicFormHooks = () => {
-  const navigation = useNavigation<RootNavigationProp<'ImportMnemonic'>>();
+  const navigation = useNavigation<HomeNavigationProp<'ImportMnemonic'>>();
   const { control, handleSubmit } = useForm<MnemonicFormState>();
   const setMnemonicFormState = useSetRecoilState(mnemonicFormState);
 
@@ -32,7 +32,7 @@ export const useMnemonicFormHooks = () => {
 };
 
 export const useSetMnemonic = () => {
-  const navigation = useNavigation<RootNavigationProp<'ConfirmMnemonic'>>();
+  const navigation = useNavigation<HomeNavigationProp<'ConfirmMnemonic'>>();
   const { mnemonic, address, errors } = useRecoilValue(mnemonicToAddressState);
   const { saveMnemonic } = useMnemonicHooks();
 

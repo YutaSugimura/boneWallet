@@ -10,17 +10,14 @@
 
 import React, { Suspense } from 'react';
 import { View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { RecoilRoot } from 'recoil';
-import NavigationRoot from './navigation';
+import Navigation from './navigation';
 
 const App: React.VFC = () => {
   return (
     <RecoilRoot>
       <Suspense fallback={<View />}>
-        <NavigationContainer>
-          <NavigationRoot />
-        </NavigationContainer>
+        <Navigation />
       </Suspense>
     </RecoilRoot>
   );

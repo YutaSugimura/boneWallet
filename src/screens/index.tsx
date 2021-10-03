@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import type { RootNavigationProp } from '../navigation';
+import type { HomeNavigationProp } from '../navigation/home';
 import { useNetworkEffect } from '../hooks/network/list';
 import { useAccountlistEffect, useStartupCurrentAccountIndex } from '../hooks/account/list';
 import { CurrentAddress } from '../components/account/address';
@@ -20,7 +20,7 @@ type Props = {};
 
 const Screen: React.VFC<Props> = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const navigation = useNavigation<RootNavigationProp<'Top'>>();
+  const navigation = useNavigation<HomeNavigationProp<'Top'>>();
   useStartupCurrentAccountIndex();
   useNetworkEffect();
   useAccountlistEffect();

@@ -3,7 +3,7 @@ import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import { useRecoilValue } from 'recoil';
 import { networkListState } from '../../recoil/atoms/network';
 import { useNetworkList } from '../../hooks/network/list';
-import type { RootNavigationProp } from '../../navigation';
+import type { HomeNavigationProp } from '../../navigation/home';
 import { DEVICE_WIDTH } from '../../common';
 import { Button } from '../../components/uiParts/button';
 import { CustomNetworkUrlForm } from '../../components/form/networkUrl';
@@ -13,7 +13,7 @@ import { useCallback } from 'react';
 type Props = {};
 
 const Screen: React.VFC<Props> = () => {
-  const navigation: RootNavigationProp<'Network'> =
+  const navigation: HomeNavigationProp<'Network'> =
     require('@react-navigation/native').useNavigation();
 
   const { onChangeNetwork } = useNetworkList();

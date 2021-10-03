@@ -5,11 +5,11 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { privatekeyFormState, privatekeyLabelFormState } from '../../recoil/atoms/input/privatekey';
 import { privatekeyToAddressState } from '../../recoil/selector/input/privatekey';
 import { useAccountlist } from '../account/list';
-import type { RootNavigationProp } from '../../navigation';
+import type { HomeNavigationProp } from '../../navigation/home';
 import type { PrivateKeyFormData } from '../../types/form';
 
 export const usePrivatekeyFormHooks = () => {
-  const navigation = useNavigation<RootNavigationProp<'ImportPrivatekey'>>();
+  const navigation = useNavigation<HomeNavigationProp<'ImportPrivatekey'>>();
   const { control, handleSubmit } = useForm<PrivateKeyFormData>();
   const setPrivatekeyFormState = useSetRecoilState(privatekeyFormState);
   const setPrivatekeyLabelFormState = useSetRecoilState(privatekeyLabelFormState);
@@ -31,7 +31,7 @@ export const usePrivatekeyFormHooks = () => {
 };
 
 export const useSetPrivatekey = () => {
-  const navigation = useNavigation<RootNavigationProp<'ConfirmPrivatekey'>>();
+  const navigation = useNavigation<HomeNavigationProp<'ConfirmPrivatekey'>>();
   const label = useRecoilValue(privatekeyLabelFormState);
   const { privatekey, address, errors } = useRecoilValue(privatekeyToAddressState);
   const { addAccountList } = useAccountlist();
