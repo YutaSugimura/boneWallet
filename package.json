@@ -75,6 +75,9 @@
       "jsx",
       "json",
       "node"
+    ],
+    "setupFiles": [
+      "./jest/jest.setup.js"
     ]
   },
   "packageManager": "yarn@3.0.0"
