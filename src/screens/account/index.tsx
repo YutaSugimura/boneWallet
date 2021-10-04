@@ -1,19 +1,29 @@
 import React from 'react';
-import { View, SafeAreaView, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
+import { useReset } from '../../hooks/reset';
 import type { AccountNavigationProp, AccountScreens } from '../../navigation/account';
 import { Button } from '../../components/uiParts/button';
-import { clearStorage } from '../../storage';
 
 const Screen: React.VFC = () => {
   const navigation = useNavigation<AccountNavigationProp<'AccountTop'>>();
+  const { allClear } = useReset();
 
   const jump = (screen: AccountScreens) => () => {
     navigation.navigate(screen);
   };
 
-  const allClear = async () => {
-    await clearStorage();
+  const onChange = async () => {
+    Alert.alert('Delete Data', 'Are you sure you want to delete all local data?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+        onPress: allClear,
+      },
+    ]);
   };
 
   return (
@@ -24,7 +34,7 @@ const Screen: React.VFC = () => {
         <Button label="Network" onPress={jump('Network')} height={48} />
         <Button label="Export Mnemonic" onPress={jump('ExportMnemonicScreen')} height={48} />
         <Button label="Export PrivateKey" onPress={jump('ExportPrivateKey')} height={48} />
-        <Button label="Clear Storage" onPress={allClear} height={48} />
+        <Button label="Clear Storage" onPress={onChange} height={48} />
       </View>
     </SafeAreaView>
   );
