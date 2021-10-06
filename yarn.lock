@@ -2909,14 +2909,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-async-storage/async-storage@npm:^1.15.8":
-  version: 1.15.8
-  resolution: "@react-native-async-storage/async-storage@npm:1.15.8"
+"@react-native-async-storage/async-storage@npm:^1.15.9":
+  version: 1.15.9
+  resolution: "@react-native-async-storage/async-storage@npm:1.15.9"
   dependencies:
     merge-options: ^3.0.4
   peerDependencies:
-    react-native: ^0.0.0-0 || ^0.60.6 || ^0.61.5 || ^0.62.2 || ^0.63.2 || ^0.64.0 || ^0.65.0 || 1000.0.0
-  checksum: 4e59545b71b9b5b764137c57b285317e6f0e793260f44af3d462f1bef2799610e84d1deecb73132b9042f29c946444ab5e1f4b67f4772ed2d9a62a530a39bb73
+    react-native: ^0.0.0-0 || ^0.60.6 || ^0.61.5 || ^0.62.2 || ^0.63.2 || ^0.64.0 || ^0.65.0 || ^0.66.0 || 1000.0.0
+  checksum: 6cf274a66d88d0e75f70edda31d98990dfb28e92dd7a81e79ae3f6d15e6410f4290efa7a17566d7fcf979430cc95fd0cbc291a18ec572036a5a5ff5e9bbca84c
   languageName: node
   linkType: hard
 
@@ -4719,12 +4719,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.65.4":
-  version: 0.65.4
-  resolution: "@types/react-native@npm:0.65.4"
+"@types/react-native@npm:^0.65.5":
+  version: 0.65.5
+  resolution: "@types/react-native@npm:0.65.5"
   dependencies:
     "@types/react": "*"
-  checksum: d48cbd542a67723554ebbd062eefb82cc715078e184318c5244be87bf58053a6da94c1e8819f6587ba82f13132034f5a5d8978648f49ce7eac9bc22c3fb1bfc3
+  checksum: 18459ea74c2083833c01697e48425d699ef3ce8938cf347e29a0e092b6f1807c6e060643b87e4f12eb2e4b2cb0c069e0273645deee56c9640b5faa43182015aa
   languageName: node
   linkType: hard
 
@@ -6290,7 +6290,7 @@ __metadata:
     "@babel/core": ^7.12.9
     "@babel/runtime": ^7.12.5
     "@ethersproject/shims": ^5.4.0
-    "@react-native-async-storage/async-storage": ^1.15.8
+    "@react-native-async-storage/async-storage": ^1.15.9
     "@react-native-community/eslint-config": ^3.0.1
     "@react-navigation/bottom-tabs": ^6.0.7
     "@react-navigation/native": ^6.0.4
@@ -6301,7 +6301,7 @@ __metadata:
     "@storybook/react": ^6.3.9
     "@testing-library/react-hooks": ^7.0.2
     "@types/jest": ^27.0.2
-    "@types/react-native": ^0.65.4
+    "@types/react-native": ^0.65.5
     "@types/react-test-renderer": ^17.0.1
     "@welldone-software/why-did-you-render": ^6.2.1
     babel-jest: ^27.2.4
@@ -6314,7 +6314,7 @@ __metadata:
     prettier: ^2.3.2
     react: 17.0.2
     react-dom: 17.0.2
-    react-hook-form: ^7.16.1
+    react-hook-form: ^7.17.1
     react-native: 0.66.0
     react-native-bundle-visualizer: ^3.0.0
     react-native-encrypted-storage: ^4.0.2
@@ -14875,12 +14875,12 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.16.1":
-  version: 7.16.1
-  resolution: "react-hook-form@npm:7.16.1"
+"react-hook-form@npm:^7.17.1":
+  version: 7.17.1
+  resolution: "react-hook-form@npm:7.17.1"
   peerDependencies:
     react: ^16.8.0 || ^17
-  checksum: 45ed6a87a7ff5e512bd66ec723a69b2c47134835ccd9a16931257873532ac78297a91b76f61a12814465799878e192b5f67cb70e532334c65405727a026841e1
+  checksum: 9ef4a10a39e50c0c737c3531e744791ca1005ce1b225b45c38b2b6191557757de9f646db8675a00d47046790f0a3171aff7c99996e16e1a2f80f9a2c9dc18e4e
   languageName: node
   linkType: hard
 
