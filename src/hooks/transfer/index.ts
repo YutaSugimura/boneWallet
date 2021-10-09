@@ -1,4 +1,6 @@
 import type Ethers from 'ethers';
+import { useCallback } from 'react';
+import { useNavigation } from '@react-navigation/core';
 import { useRecoilValue } from 'recoil';
 import { currentNetworkState } from '../../recoil/atoms/network';
 import { currentAccountState } from '../../recoil/selector/currentAccount';
@@ -9,14 +11,16 @@ import {
   toAddressFormState,
 } from '../../recoil/atoms/input/transfer';
 import { useBalance } from '../wallet/balance';
+import type { TransferNavigationProp } from '../../navigation/transfer';
 import { getStorageSecretkey } from '../../storage/account/secretkey';
 import { parseEther } from '../../utils/parseEther';
 import { createProvider } from '../../utils/provider';
-import { useCallback } from 'react';
 
 const ethers: typeof Ethers = require('ethers');
 
 export const useTransfer = () => {
+  const navigation = useNavigation<TransferNavigationProp<'TransferTop'>>();
+
   const toAddress = useRecoilValue(toAddressFormState);
   const amount = useRecoilValue(amountFormState);
   const currentNetwork = useRecoilValue(currentNetworkState);
@@ -53,8 +57,17 @@ export const useTransfer = () => {
     };
 
     const txRecipt = await wallet.sendTransaction(tx);
-    console.log(txRecipt);
-  }, [currentNetwork, currentAccount.address, balance, amount, toAddress, maxFee, maxPriorityFee]);
+    navigation.navigate('Complete', { hash: txRecipt.hash, chainId: txRecipt.chainId });
+  }, [
+    navigation,
+    currentNetwork,
+    currentAccount.address,
+    balance,
+    amount,
+    toAddress,
+    maxFee,
+    maxPriorityFee,
+  ]);
 
   return {
     transfer,
