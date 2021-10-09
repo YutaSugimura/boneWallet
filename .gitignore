@@ -63,3 +63,6 @@ buck-out/
 
 # Memo
 memo.txt
+
+# Enviroment
+.env

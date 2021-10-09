@@ -16,6 +16,12 @@ A simple Ethereum wallet using Ethers.js
   npx pod-install ios
 ```
 
+2. Add env file
+
+```zsh
+  cp .env.template .env
+```
+
 実装予定
 
 - multi netwerk

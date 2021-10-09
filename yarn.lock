@@ -6317,6 +6317,7 @@ __metadata:
     react-hook-form: ^7.17.1
     react-native: 0.66.0
     react-native-bundle-visualizer: ^3.0.0
+    react-native-config: ^1.4.4
     react-native-encrypted-storage: ^4.0.2
     react-native-get-random-values: ^1.7.0
     react-native-safe-area-context: ^3.3.2
@@ -14942,6 +14943,18 @@ fsevents@^1.2.7:
     jscodeshift: ^0.11.0
     nullthrows: ^1.1.1
   checksum: d550d6e985a0d564f0ac470b19c9a2e4e78ffc0f5769ba46992a4d10130928093e9c2ada7eda0ec8bd976db4ba4c21ef410280e979226f11844aa0215335cde5
+  languageName: node
+  linkType: hard
+
+"react-native-config@npm:^1.4.4":
+  version: 1.4.4
+  resolution: "react-native-config@npm:1.4.4"
+  peerDependencies:
+    react-native-windows: ">=0.61"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: aa00a3fea8a74307176e2ddef9d822bbae49ea38f3a1c736607ff732606d95be2fef440d922f5c1fcb9ff2f0b17bcbb7143d9b256e8a981454038e4bfbfcbe81
   languageName: node
   linkType: hard
 
