@@ -3133,18 +3133,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/core@npm:^6.0.2":
-  version: 6.0.2
-  resolution: "@react-navigation/core@npm:6.0.2"
+"@react-navigation/core@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "@react-navigation/core@npm:6.0.3"
   dependencies:
-    "@react-navigation/routers": ^6.0.1
+    "@react-navigation/routers": ^6.0.2
     escape-string-regexp: ^4.0.0
     nanoid: ^3.1.23
     query-string: ^7.0.0
     react-is: ^16.13.0
   peerDependencies:
     react: "*"
-  checksum: 89c2858da9fccbdc60407b8eb3ab3d23322166752e8fbe090d4e87cfc013fb9e4d0a56ea2e9ccc354a327f65db61667884eb265419179514a41ed963fd5416a9
+  checksum: e16c5d1af4dcfe504c516d7527cd4e575f22d624827fdd949ead77c18b03b8c61e80869ad9f35c0b293ac6825f5b71cbc317becaa72bb35c792705e2300f5a93
   languageName: node
   linkType: hard
 
@@ -3160,11 +3160,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/native-stack@npm:^6.2.2":
-  version: 6.2.2
-  resolution: "@react-navigation/native-stack@npm:6.2.2"
+"@react-navigation/elements@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@react-navigation/elements@npm:1.2.0"
+  peerDependencies:
+    "@react-navigation/native": ^6.0.0
+    react: "*"
+    react-native: "*"
+    react-native-safe-area-context: ">= 3.0.0"
+  checksum: 6f72094f6919c3816c9dfc5be45610a5c7199224e21abe2ab1a725ae6c59191e01917a0c092e28f9083a28913dba214372bc934260bf0c2106970a694d976c9c
+  languageName: node
+  linkType: hard
+
+"@react-navigation/native-stack@npm:^6.2.3":
+  version: 6.2.3
+  resolution: "@react-navigation/native-stack@npm:6.2.3"
   dependencies:
-    "@react-navigation/elements": ^1.1.2
+    "@react-navigation/elements": ^1.2.0
     warn-once: ^0.1.0
   peerDependencies:
     "@react-navigation/native": ^6.0.0
@@ -3172,30 +3184,30 @@ __metadata:
     react-native: "*"
     react-native-safe-area-context: ">= 3.0.0"
     react-native-screens: ">= 3.0.0"
-  checksum: 7527f01411cef9883ea207fd310b10ff9658b41de70ea796eca196d096eb37b90716e53055ac6b1118ea90fb90bdb337e227750d65ac5db35b1989f1576283fe
+  checksum: 730c79b5910d191398f869d62cf3c9a6502945e074f0b5ab78fe7d1fac2ee7f75e470111b8d04958a7375e1502abd3571044643561cf6fc86b4cade9d6ca5e44
   languageName: node
   linkType: hard
 
-"@react-navigation/native@npm:^6.0.4":
-  version: 6.0.4
-  resolution: "@react-navigation/native@npm:6.0.4"
+"@react-navigation/native@npm:^6.0.5":
+  version: 6.0.5
+  resolution: "@react-navigation/native@npm:6.0.5"
   dependencies:
-    "@react-navigation/core": ^6.0.2
+    "@react-navigation/core": ^6.0.3
     escape-string-regexp: ^4.0.0
     nanoid: ^3.1.23
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 38df9c4e719b5eabcce85d962d1760ffe63a8ba56f560e6243a7f8adf3a970be18464ad2bb66251e4cdb2461f71b3acec27c763712d810735f8793ddf9bcc598
+  checksum: 5eee5789cc5720b3588670054914e6da6cca5132e31118c96d791ad6a13403978b82cf1cf3a8bbaa876f8a1cfdd9addf2ceea23462fc789489f28246b598b9d7
   languageName: node
   linkType: hard
 
-"@react-navigation/routers@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "@react-navigation/routers@npm:6.0.1"
+"@react-navigation/routers@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "@react-navigation/routers@npm:6.0.2"
   dependencies:
     nanoid: ^3.1.23
-  checksum: 68af62a0081deb5c3b38df6d2c1341636b3de1ea1b81cb03842b1f2192200e17235dac00ec5fda40d66460d3c75ea57e94039b57aee5dff6f98b2947ca1d1b2d
+  checksum: 3fe32ae5f81b40dc6bff6c6318a1acb1cd54ff50f0da9ff37ea974d92a3ff6b0b027c389860eb7b868570b140e21111d7bba388e76d0151c8cd2e2ea50e2376b
   languageName: node
   linkType: hard
 
@@ -6293,8 +6305,8 @@ __metadata:
     "@react-native-async-storage/async-storage": ^1.15.9
     "@react-native-community/eslint-config": ^3.0.1
     "@react-navigation/bottom-tabs": ^6.0.7
-    "@react-navigation/native": ^6.0.4
-    "@react-navigation/native-stack": ^6.2.2
+    "@react-navigation/native": ^6.0.5
+    "@react-navigation/native-stack": ^6.2.3
     "@storybook/addon-actions": ^6.3.9
     "@storybook/addon-essentials": ^6.3.9
     "@storybook/addon-viewport": ^6.3.9
