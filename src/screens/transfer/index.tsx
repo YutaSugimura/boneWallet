@@ -9,7 +9,7 @@ import {
 } from '../../recoil/atoms/input/transfer';
 import { currentAccountState } from '../../recoil/selector/currentAccount';
 import { useBalance } from '../../hooks/wallet/balance';
-import { useGasPrice } from '../../hooks/transfer/gasPrice';
+import { useMaxFee } from '../../hooks/gasPrice/maxFee';
 import { useTransfer } from '../../hooks/transfer';
 import { DEVICE_WIDTH } from '../../common';
 import { InputAddress } from '../../components/uiParts/input/address';
@@ -26,8 +26,8 @@ const Screen: React.VFC<Props> = () => {
   const [maxPriorityFee, setMaxPriorityFee] = useRecoilState(maxPriorityFeeFormState);
   const { label, address } = useRecoilValue(currentAccountState);
   const balance = useBalance();
+  const { gasPrice } = useMaxFee();
   const { transfer } = useTransfer();
-  const { gasPrice } = useGasPrice(true);
 
   return (
     <SafeAreaView>
