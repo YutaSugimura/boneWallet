@@ -17,5 +17,5 @@ export const maxFeeFormState = atom({
 
 export const maxPriorityFeeFormState = atom({
   key: 'maxPriorityFeeFormState',
-  default: '',
+  default: '1',
 });

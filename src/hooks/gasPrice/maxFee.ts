@@ -36,6 +36,5 @@ export const useMaxFee = () => {
 
   return {
     gasPrice: maxFee,
-    mutate: getMaxFee,
   };
 };

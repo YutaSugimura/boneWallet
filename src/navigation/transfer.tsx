@@ -9,7 +9,7 @@ import CompleteScreen from '../screens/transfer/complete';
 
 type TransferStackParamList = {
   TransferTop: undefined;
-  Complete: { chainId: number; hash: string };
+  Complete: { chainId: number; txHash: string };
 };
 
 type AccountScreens = keyof TransferStackParamList;
