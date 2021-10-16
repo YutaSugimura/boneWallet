@@ -6315,7 +6315,7 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     react-hook-form: ^7.17.1
-    react-native: 0.66.0
+    react-native: 0.66.1
     react-native-bundle-visualizer: ^3.0.0
     react-native-config: ^1.4.4
     react-native-encrypted-storage: ^4.0.2
@@ -15019,9 +15019,9 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-native@npm:0.66.0":
-  version: 0.66.0
-  resolution: "react-native@npm:0.66.0"
+"react-native@npm:0.66.1":
+  version: 0.66.1
+  resolution: "react-native@npm:0.66.1"
   dependencies:
     "@jest/create-cache-key-function": ^27.0.1
     "@react-native-community/cli": ^6.0.0
@@ -15058,7 +15058,7 @@ fsevents@^1.2.7:
     react: 17.0.2
   bin:
     react-native: cli.js
-  checksum: f563535a66e42c8c86967f3a5885666b8cf2e530ce8eef5237f03fa1c3718ffb96cd0aa7cde3c69e9ae93c49689cf20610bde05e11e1cfd35d199edc6200bbb8
+  checksum: fe1701bb398d8f533c51aaf05dabb1c5d11caf80cb39c79fd38f4dbf13a27e8497080216ffdb19aa72f222d5bc75b32b8673bef504fab711f65a8d84dbdb5ddf
   languageName: node
   linkType: hard
 
