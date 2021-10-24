@@ -11,3 +11,9 @@ export const currentNetworkState = atom({
   key: 'currentNetworkState',
   default: { type: 'basic', network: 'homestead' } as CurrentNetwork,
 });
+
+// New
+export const simpleNetworkListState = atom({
+  key: 'simpleNetworkListState',
+  default: NETWORK_LIST,
+});

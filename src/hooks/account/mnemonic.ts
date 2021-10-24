@@ -79,31 +79,3 @@ export const useExportMnemonic = () => {
     readMnemonic,
   };
 };
-
-export const useMnemonicHooks = () => {
-  const setState = useSetRecoilState(isAccountState);
-
-  const saveMnemonic = async (mnemonic: string) => {
-    const result = await setStorageMnemonic(mnemonic);
-
-    if (result) {
-      const { address } = createHDWalletFromMnemonic(mnemonic);
-
-      if (address) {
-        const resultAccountList = await setStorageAccountList('main', address, 'mnemonic');
-        resultAccountList && setStorageCurrentAccountIndex(0);
-        resultAccountList && setState({ isLoading: false, isAccount: true });
-        !resultAccountList && removeStorageMnemonic();
-
-        return resultAccountList;
-      }
-    }
-
-    removeStorageMnemonic();
-    return false;
-  };
-
-  return {
-    saveMnemonic,
-  };
-};

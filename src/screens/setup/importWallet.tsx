@@ -1,11 +1,15 @@
 import React from 'react';
-import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
-import { COLORS } from '../../common';
-import { MnemonicForm } from '../../components/form/mnemonic';
+import { SafeAreaView, View, Text, TextInput, StyleSheet } from 'react-native';
+import { Controller } from 'react-hook-form';
+import { useImportMnemonic } from '../../hooks/wallet/mnemonic/import';
+import { COLORS, DEVICE_WIDTH } from '../../common';
+import { Button } from '../../components/uiParts/button';
+import { ConfirmModal } from '../../components/setup/confirmModal';
 
-type Props = {};
+const Screen: React.VFC = () => {
+  const { control, handleSubmit, onSubmit, reset, address, mnemonic, message, saveMnemonic } =
+    useImportMnemonic();
 
-const Screen: React.VFC<Props> = () => {
   return (
     <SafeAreaView>
       <View style={styles.titleContainer}>
@@ -13,7 +17,42 @@ const Screen: React.VFC<Props> = () => {
         <Text>Import Mnemonic into this app and restore your account</Text>
       </View>
 
-      <MnemonicForm />
+      <View style={styles.inputContainer}>
+        <Controller
+          name="mnemonic"
+          control={control}
+          rules={{ required: true }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              keyboardType="default"
+              placeholder="rock stone ..."
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              clearButtonMode="while-editing"
+              returnKeyType="done"
+              style={styles.input}
+            />
+          )}
+        />
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <Button
+          label="Import Mnemonic"
+          onPress={handleSubmit(onSubmit)}
+          height={42}
+          width={DEVICE_WIDTH * 0.6}
+        />
+      </View>
+
+      {message && (
+        <View style={styles.buttonContainer}>
+          <Text style={styles.alert}>{message}</Text>
+        </View>
+      )}
+
+      <ConfirmModal address={address} mnemonic={mnemonic} onPress={saveMnemonic} onReset={reset} />
     </SafeAreaView>
   );
 };
@@ -25,9 +64,35 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 60,
   },
+  inputContainer: {
+    alignItems: 'center',
+    paddingTop: 60,
+  },
+  buttonContainer: {
+    alignItems: 'center',
+    paddingTop: 20,
+  },
   title: {
     color: COLORS.black,
     fontSize: 21,
+    fontWeight: 'bold',
+  },
+  input: {
+    height: 36,
+    width: DEVICE_WIDTH * 0.9,
+    backgroundColor: COLORS.white,
+    paddingLeft: 6,
+    paddingRight: 6,
+    borderColor: COLORS.gray,
+    borderWidth: 1,
+    borderRadius: 3,
+    marginTop: 2,
+    color: COLORS.black,
+    fontSize: 16,
+  },
+  alert: {
+    color: COLORS.red,
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });

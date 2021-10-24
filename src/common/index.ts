@@ -12,4 +12,6 @@ export const COLORS = {
   white: '#FFF',
   black: 'rgba(0, 0, 0, 0.87)',
   gray: '#CCC',
+  red: '#f43b47',
+  blue: '#4facfe',
 } as const;

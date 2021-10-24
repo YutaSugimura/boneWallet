@@ -5,11 +5,11 @@ import {
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 import { useRecoilValue } from 'recoil';
-import { isAccountState } from '../recoil/atoms/account';
+import { isWalletState } from '../recoil/atoms/wallet';
+import { useIsWalletEffect } from '../hooks/wallet/isWalletEffect';
 import LoadingScreen from '../screens/loading';
 import SetupStack from './setup';
 import TabStack from './tab';
-import { useSetup } from '../hooks/account/setup';
 
 type AppStackParamList = {
   Setup: undefined;
@@ -28,8 +28,8 @@ export type AppRouteProp<T extends AppScreens> = RouteProp<AppStackParamList, T>
 const AppStack = createNativeStackNavigator<AppStackParamList>();
 
 const Navigation: React.VFC = () => {
-  const { isLoading, isAccount } = useRecoilValue(isAccountState);
-  useSetup();
+  const { isLoading, isWallet } = useRecoilValue(isWalletState);
+  useIsWalletEffect();
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -37,7 +37,7 @@ const Navigation: React.VFC = () => {
 
   return (
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
-      {isAccount ? (
+      {isWallet ? (
         <AppStack.Screen name="App" component={TabStack} />
       ) : (
         <AppStack.Screen name="Setup" component={SetupStack} />

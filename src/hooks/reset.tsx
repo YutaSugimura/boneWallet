@@ -1,4 +1,5 @@
 import { useResetRecoilState } from 'recoil';
+import { isWalletState } from '../recoil/atoms/wallet';
 import {
   accountListState,
   currentAccountIndexState,
@@ -14,9 +15,12 @@ export const useReset = () => {
   const resetNetworkList = useResetRecoilState(networkListState);
   const resetCurrentNetwork = useResetRecoilState(currentNetworkState);
 
+  const resetIsWallet = useResetRecoilState(isWalletState);
+
   const allClear = async () => {
     await clearStorage();
 
+    resetIsWallet();
     resetIsAccount();
     resetAccountList();
     resetCurrentAccountIndex();
