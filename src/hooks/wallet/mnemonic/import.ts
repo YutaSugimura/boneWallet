@@ -17,9 +17,9 @@ export const useImportMnemonic = () => {
   const setIsModal = useSetRecoilState(importMnemonicModalState);
   const setIsWallet = useSetRecoilState(isWalletState);
 
-  const [address, setAddress] = useState<string | undefined>();
-  const [mnemonic, setMnemonic] = useState<string | undefined>();
-  const [message, setMessage] = useState<string | undefined>();
+  const [address, setAddress] = useState<string>();
+  const [mnemonic, setMnemonic] = useState<string>();
+  const [message, setMessage] = useState<string>();
 
   const onSubmit = async (data: MnemonicFormData) => {
     const wallet = createHDWalletFromMnemonic(data.mnemonic);
