@@ -3,19 +3,9 @@ import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import { useExportMnemonic } from '../../../hooks/wallet/mnemonic/export';
 import { Button } from '../../../components/uiParts/button';
 import { TextButton } from '../../../components/uiParts/button/text';
-import { useClipboard } from '@react-native-community/hooks';
 
 const Screen: React.VFC = () => {
-  const { mnemonic, get } = useExportMnemonic();
-  const [, setString] = useClipboard();
-
-  const onPress = () => {
-    if (!mnemonic) {
-      return;
-    }
-
-    setString(mnemonic);
-  };
+  const { mnemonic, get, clipboard } = useExportMnemonic();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -33,7 +23,7 @@ const Screen: React.VFC = () => {
             </View>
 
             <View style={styles.valueContainer}>
-              <TextButton label="copy" onPress={onPress} />
+              <TextButton label="copy" onPress={clipboard} />
             </View>
           </>
         )}
