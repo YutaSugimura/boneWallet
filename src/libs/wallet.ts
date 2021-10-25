@@ -19,6 +19,15 @@ export const createHDWalletFromMnemonic = (mnemonic: string): Result => {
   }
 };
 
+export const privatekeyToAddress = (privatekey: string): Result => {
+  try {
+    const wallet = new ethers.Wallet(privatekey);
+    return { address: wallet.address };
+  } catch {
+    return { errors: 'Failed to generate' };
+  }
+};
+
 type Result = ResultOk | ResultError;
 
 interface ResultOk {
