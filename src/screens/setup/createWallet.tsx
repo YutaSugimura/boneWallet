@@ -1,22 +1,12 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Text, View, SafeAreaView, StyleSheet } from 'react-native';
-import { useClipboard } from '@react-native-community/hooks';
 import { useGenerateMnemonic } from '../../hooks/wallet/mnemonic/create';
 import { Button } from '../../components/uiParts/button';
-import { LoadingContent } from '../../components/setup/loading';
+import { LoadingContent } from '../../components/wallet/loading';
 import { TextButton } from '../../components/uiParts/button/text';
 
 const Screen: React.VFC = () => {
-  const { isLoading, mnemonic, saveMnemonic, refetch } = useGenerateMnemonic();
-  const [, setString] = useClipboard();
-
-  const handleChange = useCallback(() => {
-    if (!mnemonic) {
-      return;
-    }
-
-    setString(mnemonic);
-  }, [mnemonic, setString]);
+  const { isLoading, mnemonic, saveMnemonic, refetch, clipboard } = useGenerateMnemonic();
 
   if (isLoading) {
     return <LoadingContent />;
@@ -31,7 +21,7 @@ const Screen: React.VFC = () => {
         <View style={styles.copyContainer}>
           <TextButton
             label="Copy"
-            onPress={handleChange}
+            onPress={clipboard}
             fontColor="#4facfe"
             fontSize={18}
             fontWeight="bold"

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useClipboard } from '@react-native-community/hooks';
 import { useSetRecoilState } from 'recoil';
 import { isWalletState } from '../../../recoil/atoms/wallet';
 import { createWallet } from '../../../libs/wallet';
@@ -10,6 +11,8 @@ export const useGenerateMnemonic = () => {
   const [mnemonic, setMnemonic] = useState<string | undefined>(undefined);
   const [address, setAddress] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>();
+
+  const [, setString] = useClipboard();
 
   const setIsWallet = useSetRecoilState(isWalletState);
 
@@ -59,11 +62,20 @@ export const useGenerateMnemonic = () => {
     }, 100);
   };
 
+  const clipboard = () => {
+    if (!mnemonic) {
+      return;
+    }
+
+    setString(mnemonic);
+  };
+
   return {
     isLoading,
     mnemonic,
     message,
     saveMnemonic,
     refetch,
+    clipboard,
   };
 };

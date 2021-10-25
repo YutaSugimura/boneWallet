@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import { useRecoilValue } from 'recoil';
-import { COLORS, DEVICE_HEIGHT, DEVICE_WIDTH } from '../../common';
 import { importMnemonicModalState } from '../../recoil/atoms/ui';
+import { COLORS, DEVICE_HEIGHT, DEVICE_WIDTH } from '../../common';
 import { Button } from '../uiParts/button';
 import { TextButton } from '../uiParts/button/text';
 
@@ -14,7 +14,7 @@ type Props = {
   onReset?: () => void;
 };
 
-export const ConfirmModal: React.VFC<Props> = ({ address, mnemonic, onPress, onReset }) => {
+export const ConfirmMnemonicModal: React.VFC<Props> = ({ address, mnemonic, onPress, onReset }) => {
   const isVisible = useRecoilValue(importMnemonicModalState);
 
   return (

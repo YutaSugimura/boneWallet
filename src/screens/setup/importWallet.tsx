@@ -3,8 +3,8 @@ import { SafeAreaView, View, Text, TextInput, StyleSheet } from 'react-native';
 import { Controller } from 'react-hook-form';
 import { useImportMnemonic } from '../../hooks/wallet/mnemonic/import';
 import { COLORS, DEVICE_WIDTH } from '../../common';
+import { ConfirmMnemonicModal } from '../../components/wallet/confirmMnemonicModal';
 import { Button } from '../../components/uiParts/button';
-import { ConfirmModal } from '../../components/setup/confirmModal';
 
 const Screen: React.VFC = () => {
   const { control, handleSubmit, onSubmit, reset, address, mnemonic, message, saveMnemonic } =
@@ -52,7 +52,12 @@ const Screen: React.VFC = () => {
         </View>
       )}
 
-      <ConfirmModal address={address} mnemonic={mnemonic} onPress={saveMnemonic} onReset={reset} />
+      <ConfirmMnemonicModal
+        address={address}
+        mnemonic={mnemonic}
+        onPress={saveMnemonic}
+        onReset={reset}
+      />
     </SafeAreaView>
   );
 };
