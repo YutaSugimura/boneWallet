@@ -2,14 +2,14 @@ import React from 'react';
 import { View, SafeAreaView, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { useReset } from '../../hooks/reset';
-import type { AccountNavigationProp, AccountScreens } from '../../navigation/account';
+import type { WalletNavigationProp, WalletScreens } from '../../navigation/wallet';
 import { Button } from '../../components/uiParts/button';
 
 const Screen: React.VFC = () => {
-  const navigation = useNavigation<AccountNavigationProp<'AccountTop'>>();
+  const navigation = useNavigation<WalletNavigationProp<'AccountTop'>>();
   const { allClear } = useReset();
 
-  const jump = (screen: AccountScreens) => () => {
+  const jump = (screen: WalletScreens) => () => {
     navigation.navigate(screen);
   };
 

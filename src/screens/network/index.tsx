@@ -3,14 +3,14 @@ import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import { useRecoilValue } from 'recoil';
 import { networkListState } from '../../recoil/atoms/network';
 import { useNetworkList } from '../../hooks/network/list';
-import type { AccountNavigationProp } from '../../navigation/account';
+import type { WalletNavigationProp } from '../../navigation/wallet';
 import { DEVICE_WIDTH } from '../../common';
 import { Button } from '../../components/uiParts/button';
 import { CustomNetworkUrlForm } from '../../components/form/networkUrl';
 import { CurrentNetwork } from '../../components/network/currentNetwork';
 
 const Screen: React.VFC = () => {
-  const navigation: AccountNavigationProp<'Network'> =
+  const navigation: WalletNavigationProp<'Network'> =
     require('@react-navigation/native').useNavigation();
 
   const { onChangeNetwork } = useNetworkList();

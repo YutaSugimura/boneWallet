@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/core';
 import { useForm } from 'react-hook-form';
 import { useSetRecoilState } from 'recoil';
 import { importPrivateKeyModalState } from '../../../recoil/atoms/ui';
-import type { AccountNavigationProp } from '../../../navigation/account';
+import type { WalletNavigationProp } from '../../../navigation/wallet';
 import type { PrivateKeyFormData } from '../../../types/form';
 import { privatekeyToAddress } from '../../../libs/wallet';
 import { setStorageAddressListItem } from '../../../storage/wallet/list';
@@ -14,7 +14,7 @@ import {
 } from '../../../storage/wallet/privatekey';
 
 export const useImportPrivateKey = () => {
-  const navigation = useNavigation<AccountNavigationProp<'ImportPrivateKey'>>();
+  const navigation = useNavigation<WalletNavigationProp<'ImportPrivateKey'>>();
   const { control, handleSubmit, reset } = useForm<PrivateKeyFormData>();
 
   const setIsModal = useSetRecoilState(importPrivateKeyModalState);
