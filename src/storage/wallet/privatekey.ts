@@ -1,5 +1,5 @@
 import EncryptedStorage from 'react-native-encrypted-storage';
-import type { Secretkey, SecretKeyType } from '../../types/account';
+import type { Secretkey, KeyType } from '../../types/wallet';
 
 const basekey = 'privatekey';
 
@@ -17,7 +17,7 @@ export const getStoragePrivateKey = async (key: string): Promise<Secretkey | nul
 
 export const setStoragePrivateKey = async (
   key: string,
-  secretkeyType: SecretKeyType,
+  secretkeyType: KeyType,
   secretkey: string,
 ) => {
   try {

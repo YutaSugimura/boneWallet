@@ -1,5 +1,5 @@
 import EncryptedStorage from 'react-native-encrypted-storage';
-import type { AddressList, AddressListItem } from '../../types/account';
+import type { AddressList, AddressListItem } from '../../types/wallet';
 
 const KEY = 'ADDRESS_LIST';
 
