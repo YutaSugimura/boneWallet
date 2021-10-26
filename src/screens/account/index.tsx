@@ -33,7 +33,6 @@ const Screen: React.VFC = () => {
         <Button label="Account List" onPress={jump('AccountList')} height={48} />
         <Button label="Network" onPress={jump('Network')} height={48} />
         <Button label="Export Mnemonic" onPress={jump('ExportMnemonicScreen')} height={48} />
-        <Button label="Export PrivateKey" onPress={jump('ExportPrivateKey')} height={48} />
         <Button label="Clear Storage" onPress={onChange} height={48} />
       </View>
     </SafeAreaView>

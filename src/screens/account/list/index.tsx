@@ -1,56 +1,26 @@
-import React, { useCallback } from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
-import { useRecoilValue } from 'recoil';
-import { accountListState } from '../../../recoil/atoms/account';
-import { currentAccountState } from '../../../recoil/selector/currentAccount';
-import {
-  useAccountlist,
-  useAccountlistEffect,
-  useStartupCurrentAccountIndex,
-} from '../../../hooks/account/list';
+import React from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import { COLORS } from '../../../common';
+import { Loading } from '../../../components/loading';
+import { AddressList } from '../../../components/wallet/list';
+import { ExportPrivateKeyModal } from '../../../components/wallet/list/privateKeyModal';
 
-type Props = {};
-
-const Screen: React.VFC<Props> = () => {
-  const accountList = useRecoilValue(accountListState);
-  const { currentIndex, address, label, secretkeyType } = useRecoilValue(currentAccountState);
-  const { onChangeAccount } = useAccountlist();
-  useStartupCurrentAccountIndex();
-  useAccountlistEffect();
-
-  const handleChange = useCallback(
-    (targetAddress: string) => () => {
-      onChangeAccount(targetAddress);
-    },
-    [onChangeAccount],
-  );
-
+const Screen: React.VFC = () => {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>account list</Text>
-      </View>
-
-      <View>
-        <Text>{currentIndex}</Text>
-        <Text>{label}</Text>
-        <Text>{address}</Text>
-        <Text>{secretkeyType}</Text>
-      </View>
-
-      <View>
-        {accountList.map((item) => (
-          <TouchableOpacity
-            key={`accountList_${item.label}_${item.address}`}
-            onPress={handleChange(item.address)}
-          >
-            <Text>{item.label}</Text>
-            <Text>{item.address}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+    <SafeAreaView style={styles.container}>
+      <AddressList />
+      <ExportPrivateKeyModal />
+      <Loading />
     </SafeAreaView>
   );
 };
 
 export default Screen;
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'relative',
+    flex: 1,
+    backgroundColor: COLORS.white,
+  },
+});

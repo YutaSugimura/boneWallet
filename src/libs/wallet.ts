@@ -13,7 +13,7 @@ export const createHDWalletFromMnemonic = (mnemonic: string): Result => {
     const hdnode = ethers.utils.HDNode.fromMnemonic(mnemonic);
     const account1 = hdnode.derivePath("m/44'/60'/0'/0");
 
-    return { address: account1.address };
+    return { address: account1.address, privatekey: account1.privateKey };
   } catch {
     return { errors: 'Mnemonic format is different' };
   }
@@ -22,7 +22,7 @@ export const createHDWalletFromMnemonic = (mnemonic: string): Result => {
 export const privatekeyToAddress = (privatekey: string): Result => {
   try {
     const wallet = new ethers.Wallet(privatekey);
-    return { address: wallet.address };
+    return { address: wallet.address, privatekey };
   } catch {
     return { errors: 'Failed to generate' };
   }
@@ -32,6 +32,7 @@ type Result = ResultOk | ResultError;
 
 interface ResultOk {
   address: string;
+  privatekey: string;
 }
 
 interface ResultError {
