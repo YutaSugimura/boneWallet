@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { useCallback } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
 import { useSetRecoilState } from 'recoil';
-import type { WalletNavigationProp } from '../../navigation/wallet';
 import { customNetworkFormModalState } from '../../recoil/atoms/ui';
+import type { WalletNavigationProp } from '../../navigation/wallet';
 
 export const useNetworkPageEffect = () => {
   const navigate = useNavigation<WalletNavigationProp<'Network'>>();
@@ -19,10 +18,17 @@ export const useNetworkPageEffect = () => {
       navigate.setOptions({
         headerRight: () => (
           <TouchableOpacity onPress={onPress}>
-            <Text>+</Text>
+            <Text style={styles.text}>+</Text>
           </TouchableOpacity>
         ),
       });
     }, [navigate, onPress]),
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+});
