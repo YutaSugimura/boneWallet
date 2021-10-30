@@ -13,9 +13,9 @@ export type CustomNetwork = {
   type: CustomNetworkType;
   networkName: NetworkName;
   rpcUrl: string;
-  chainId: string;
-  symbol: string;
-  explorerURL: string;
+  chainId?: string;
+  symbol?: string;
+  explorerURL?: string;
 };
 
 export type BasicNetworkList = BasicNetwork[];
@@ -27,17 +27,9 @@ export type CurrentNetworkState =
     }
   | {
       isLoading: false;
-      network: {
-        type: BasicNetworkType;
-        networkName: string;
-        network: string;
-      };
+      network: BasicNetwork;
     }
   | {
       isLoading: false;
-      network: {
-        type: CustomNetworkType;
-        networkName: string;
-        rpcUrl: string;
-      };
+      network: CustomNetwork;
     };

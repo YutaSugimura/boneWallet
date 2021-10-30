@@ -7,7 +7,7 @@ export const getStorageCurrentNetwork = async () => {
   try {
     const value = await AsyncStorage.getItem(KEY);
     return value != null
-      ? (JSON.parse(value) as { type: 'basic' | 'custom'; networkName: string })
+      ? (JSON.parse(value) as { type: NetworkType; networkName: NetworkName })
       : null;
   } catch {
     return null;

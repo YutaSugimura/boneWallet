@@ -20,6 +20,11 @@ export const exportPrivateKeyModalState = atom({
   },
 });
 
+export const customNetworkFormModalState = atom({
+  key: 'customNetworkFormModalState',
+  default: false,
+});
+
 export const loadingState = atom({
   key: 'loadingState',
   default: false,

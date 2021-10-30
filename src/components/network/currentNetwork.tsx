@@ -32,6 +32,7 @@ export const CurrentNetwork: React.VFC = () => {
       <Text>type: {network.type}</Text>
       <Text>networkName: {network.networkName}</Text>
       <Text>rpcUrl: {network.rpcUrl}</Text>
+      <Text>chainId: {network.chainId}</Text>
     </View>
   );
 };
