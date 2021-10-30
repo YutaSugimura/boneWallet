@@ -1,32 +1,31 @@
-import EncryptedStorage from 'react-native-encrypted-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { NetworkName, NetworkType } from '../../types/network';
 
-const key = 'currentNetworkIndex';
+const KEY = 'currentNetwork';
 
-export const getStorageCurrentNetworkIndex = async () => {
+export const getStorageCurrentNetwork = async () => {
   try {
-    const session = await EncryptedStorage.getItem(key);
-    if (session && session !== null) {
-      return Number(session);
-    }
-
-    return 0;
+    const value = await AsyncStorage.getItem(KEY);
+    return value != null
+      ? (JSON.parse(value) as { type: 'basic' | 'custom'; networkName: string })
+      : null;
   } catch {
-    return 0;
+    return null;
   }
 };
 
-export const setStorageCurrentNetworkIndex = async (index: number) => {
+export const setStorageCurrentNetwork = async (type: NetworkType, networkName: NetworkName) => {
   try {
-    await EncryptedStorage.setItem(key, String(index));
+    await AsyncStorage.setItem(KEY, JSON.stringify({ type, networkName }));
     return true;
   } catch {
     return false;
   }
 };
 
-export const removeStorageCurrentNetworkIndex = async () => {
+export const removeStorageCurrentNetwork = async () => {
   try {
-    await EncryptedStorage.removeItem(key);
+    await AsyncStorage.removeItem(KEY);
     return true;
   } catch {
     return false;

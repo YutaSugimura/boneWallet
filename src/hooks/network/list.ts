@@ -1,55 +1,23 @@
-import { useCallback, useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { currentNetworkState, networkListState } from '../../recoil/atoms/network';
-import { addStorageCustomNetworkList, getStorageCustomNetworkList } from '../../storage/network';
-import {
-  getStorageCurrentNetworkIndex,
-  setStorageCurrentNetworkIndex,
-} from '../../storage/network/current';
+import { useCallback } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { currentNetworkState } from '../../recoil/atoms/network';
+import type { BasicNetwork } from '../../types/network';
+import { setStorageCurrentNetwork } from '../../storage/network/current';
 
 export const useNetworkList = () => {
-  const [state, setState] = useRecoilState(networkListState);
   const setCurrentNetwork = useSetRecoilState(currentNetworkState);
 
-  const addCustomNetwork = useCallback(
-    async (label: string, url: string) => {
-      const result = await addStorageCustomNetworkList(label, url);
-
-      if (result) {
-        setState((prev) => [...prev, { type: 'custom', label, url }]);
+  const changeConnetNetwork = useCallback(
+    (network: BasicNetwork) => async () => {
+      if (network.type === 'basic') {
+        setCurrentNetwork({ isLoading: false, network });
+        await setStorageCurrentNetwork(network.type, network.networkName);
       }
     },
-    [setState],
-  );
-
-  const onChangeNetwork = useCallback(
-    (index: number) => async () => {
-      const result = await setStorageCurrentNetworkIndex(index);
-      result && setCurrentNetwork({ ...state[index] });
-    },
-    [setCurrentNetwork, state],
+    [setCurrentNetwork],
   );
 
   return {
-    addCustomNetwork,
-    onChangeNetwork,
+    changeConnetNetwork,
   };
-};
-
-export const useNetworkEffect = () => {
-  const [state, setState] = useRecoilState(networkListState);
-  const setCurrentNetwork = useSetRecoilState(currentNetworkState);
-
-  useEffect(() => {
-    (async () => {
-      const customNetworkList = await getStorageCustomNetworkList();
-      const newList = [...state, ...customNetworkList];
-      setState(newList);
-
-      const currentNetworkIndex = await getStorageCurrentNetworkIndex();
-      const currentNetwork = newList[currentNetworkIndex];
-      setCurrentNetwork({ ...currentNetwork });
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 };

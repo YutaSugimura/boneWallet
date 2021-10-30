@@ -5,14 +5,14 @@ import {
   currentAccountIndexState,
   isAccountState,
 } from '../recoil/atoms/account';
-import { currentNetworkState, networkListState } from '../recoil/atoms/network';
+import { currentNetworkState, customNetworkListState } from '../recoil/atoms/network';
 import { clearStorage } from '../storage';
 
 export const useReset = () => {
   const resetIsAccount = useResetRecoilState(isAccountState);
   const resetAccountList = useResetRecoilState(accountListState);
   const resetCurrentAccountIndex = useResetRecoilState(currentAccountIndexState);
-  const resetNetworkList = useResetRecoilState(networkListState);
+  const resetCustomNetworkList = useResetRecoilState(customNetworkListState);
   const resetCurrentNetwork = useResetRecoilState(currentNetworkState);
 
   const resetIsWallet = useResetRecoilState(isWalletState);
@@ -24,7 +24,7 @@ export const useReset = () => {
     resetIsAccount();
     resetAccountList();
     resetCurrentAccountIndex();
-    resetNetworkList();
+    resetCustomNetworkList();
     resetCurrentNetwork();
   };
 

@@ -8,6 +8,7 @@ import { useRecoilValue } from 'recoil';
 import { isWalletState } from '../recoil/atoms/wallet';
 import { useIsWalletEffect } from '../hooks/wallet/isWalletEffect';
 import { useAddressListEffect } from '../hooks/wallet/list/setupEffect';
+import { useSetupNetworkEffect } from '../hooks/network/setupNetworkEffect';
 import LoadingScreen from '../screens/loading';
 import SetupStack from './setup';
 import TabStack from './tab';
@@ -32,6 +33,7 @@ const Navigation: React.VFC = () => {
   const { isLoading, isWallet } = useRecoilValue(isWalletState);
   useIsWalletEffect();
   useAddressListEffect();
+  useSetupNetworkEffect();
 
   if (isLoading) {
     return <LoadingScreen />;
