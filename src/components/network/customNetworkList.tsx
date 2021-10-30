@@ -35,11 +35,15 @@ export const CustomNetworkList: React.VFC = memo(() => {
       extraData={customNetworkListValue}
       keyExtractor={(item) => item.networkName}
       renderItem={renderItem}
+      style={styles.container}
     />
   );
 });
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 200,
+  },
   buttonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
