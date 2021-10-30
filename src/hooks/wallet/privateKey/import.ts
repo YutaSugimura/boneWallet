@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { useForm } from 'react-hook-form';
 import { useSetRecoilState } from 'recoil';
+import { addressListState } from '../../../recoil/atoms/wallet';
 import { importPrivateKeyModalState } from '../../../recoil/atoms/ui';
 import type { WalletNavigationProp } from '../../../navigation/wallet';
 import type { PrivateKeyFormData } from '../../../types/form';
@@ -17,6 +18,7 @@ export const useImportPrivateKey = () => {
   const navigation = useNavigation<WalletNavigationProp<'ImportPrivateKey'>>();
   const { control, handleSubmit, reset } = useForm<PrivateKeyFormData>();
 
+  const setAddressList = useSetRecoilState(addressListState);
   const setIsModal = useSetRecoilState(importPrivateKeyModalState);
 
   const [label, setLabel] = useState<string>();
@@ -59,6 +61,7 @@ export const useImportPrivateKey = () => {
       });
 
       if (message === 'ok') {
+        setAddressList((prev) => [...prev, { label, address, keyType: 'privatekey' }]);
         setIsModal(false);
         navigation.popToTop();
         return;
