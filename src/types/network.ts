@@ -1,17 +1,21 @@
+import { NETWORK_LIST } from '../common/network';
+
 export type BasicNetworkType = 'basic';
 export type CustomNetworkType = 'custom';
 export type NetworkType = BasicNetworkType | CustomNetworkType;
-export type NetworkName = string;
+export type BasicNetworkName = typeof NETWORK_LIST[number]['network'];
+export type CustomNetworkName = string;
+export type NetworkName = BasicNetworkName | CustomNetworkName;
 
 export type BasicNetwork = {
   type: BasicNetworkType;
-  networkName: NetworkName;
+  networkName: BasicNetworkName;
   network: string;
 };
 
 export type CustomNetwork = {
   type: CustomNetworkType;
-  networkName: NetworkName;
+  networkName: CustomNetworkName;
   rpcUrl: string;
   chainId?: string;
   symbol?: string;

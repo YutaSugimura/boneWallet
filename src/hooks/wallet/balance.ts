@@ -1,36 +1,32 @@
-import type Ethers from 'ethers';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { ethers } from 'ethers';
 import { useRecoilValue } from 'recoil';
-import { currentNetworkState } from '../../recoil/atoms/network';
-import { currentAccountState } from '../../recoil/selector/currentAccount';
-
-const ethers: typeof Ethers = require('ethers');
+import { selectedAddressState } from '../../recoil/selector/selectedAddress';
+import { useProvider } from './provider';
 
 export const useBalance = () => {
-  const currentNetwork = useRecoilValue(currentNetworkState);
-  const currentAccount = useRecoilValue(currentAccountState);
+  const { getProvider } = useProvider();
+  const selectedAddressValue = useRecoilValue(selectedAddressState);
   const [state, setState] = useState<string>('');
 
-  useEffect(() => {
-    let isMounted = true;
-    (async () => {
-      if (currentAccount.address !== '') {
-        if (currentNetwork.type === 'basic') {
-          const provider = ethers.getDefaultProvider(currentNetwork.network);
-          const balance = await provider.getBalance(currentAccount.address);
-          isMounted && setState(ethers.utils.formatEther(balance));
-        } else if (currentNetwork.type === 'custom') {
-          const provider = new ethers.providers.JsonRpcProvider(currentNetwork.url);
-          const balance = await provider.getBalance(currentAccount.address);
+  useFocusEffect(
+    useCallback(() => {
+      let isMounted = true;
+
+      (async () => {
+        const provider = getProvider();
+        if (provider !== null && selectedAddressValue !== null) {
+          const balance = await provider.getBalance(selectedAddressValue.address);
           isMounted && setState(ethers.utils.formatEther(balance));
         }
-      }
-    })();
+      })();
 
-    return () => {
-      isMounted = false;
-    };
-  }, [currentNetwork, currentAccount.address]);
+      return () => {
+        isMounted = false;
+      };
+    }, [getProvider, selectedAddressValue]),
+  );
 
   return useMemo(() => state, [state]);
 };
