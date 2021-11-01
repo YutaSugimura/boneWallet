@@ -11,7 +11,7 @@ const Component: React.VFC<Props> = () => {
     <View style={styles.container}>
       <View style={styles.section}>
         <Text style={styles.title}>Balance</Text>
-        <Text style={styles.value}>{balance}eth</Text>
+        <Text style={styles.value}>{balance} ETH</Text>
       </View>
     </View>
   );

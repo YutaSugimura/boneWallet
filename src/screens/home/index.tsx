@@ -1,14 +1,8 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
-import { useBalance } from '../../hooks/wallet/balance';
+import { CurrentBalance } from '../../components/wallet/balance';
 
 const Screen: React.VFC = () => {
-  // useStartupCurrentAccountIndex();
-  // useNetworkEffect();
-  // useAccountlistEffect();
-
-  const balance = useBalance();
-
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -16,9 +10,9 @@ const Screen: React.VFC = () => {
       </View>
 
       <View>
-        {/* <CurrentAddress />
-        <CurrentBalance /> */}
-        <Text>balance: {balance}</Text>
+        {/* <CurrentAddress /> */}
+
+        <CurrentBalance />
       </View>
     </SafeAreaView>
   );
