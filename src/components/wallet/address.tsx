@@ -1,12 +1,22 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useRecoilValue } from 'recoil';
-import { currentAccountState } from '../../recoil/selector/currentAccount';
+import { selectedAddressState } from '../../recoil/selector/selectedAddress';
 
 type Props = {};
 
 const Component: React.VFC<Props> = () => {
-  const { label, address } = useRecoilValue(currentAccountState);
+  const selectedAddress = useRecoilValue(selectedAddressState);
+
+  if (selectedAddress === null) {
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  const { label, address } = selectedAddress;
 
   return (
     <View style={styles.container}>
@@ -23,7 +33,7 @@ const Component: React.VFC<Props> = () => {
   );
 };
 
-export const CurrentAddress = memo(Component);
+export const SelectedAddress = memo(Component);
 
 const styles = StyleSheet.create({
   container: {
