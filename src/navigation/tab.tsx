@@ -1,13 +1,14 @@
 import React from 'react';
+import { NavigatorScreenParams } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeStack from './home';
-import TransferStack from './transfer';
-import AccountStack from './wallet';
+import HomeStack, { HomeStackParamList } from './home';
+import TransferStack, { TransferStackParamList } from './transfer';
+import AccountStack, { WalletStackParamList } from './wallet';
 
-type TabStackParamList = {
-  Home: undefined;
-  Transfer: undefined;
-  Wallet: undefined;
+export type TabStackParamList = {
+  Home: NavigatorScreenParams<HomeStackParamList>;
+  Transfer: NavigatorScreenParams<TransferStackParamList>;
+  Wallet: NavigatorScreenParams<WalletStackParamList>;
 };
 
 const Tab = createBottomTabNavigator<TabStackParamList>();

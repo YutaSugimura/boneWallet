@@ -8,7 +8,7 @@ import SetupTopScreen from '../screens/setup';
 import CreateWalletScreen from '../screens/setup/createWallet';
 import ImportWalletScreen from '../screens/setup/importWallet';
 
-type SetupStackParamList = {
+export type SetupStackParamList = {
   SetupTop: undefined;
   CreateWallet: undefined;
   ImportWallet: undefined;

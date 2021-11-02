@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, NavigatorScreenParams } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
@@ -10,12 +10,12 @@ import { useIsWalletEffect } from '../hooks/wallet/isWalletEffect';
 import { useAddressListEffect } from '../hooks/wallet/list/setupEffect';
 import { useSetupNetworkEffect } from '../hooks/network/setupNetworkEffect';
 import LoadingScreen from '../screens/loading';
-import SetupStack from './setup';
-import TabStack from './tab';
+import SetupStack, { SetupStackParamList } from './setup';
+import TabStack, { TabStackParamList } from './tab';
 
 type AppStackParamList = {
-  Setup: undefined;
-  App: undefined;
+  Setup: NavigatorScreenParams<SetupStackParamList>;
+  App: NavigatorScreenParams<TabStackParamList>;
 };
 
 export type AppScreens = keyof AppStackParamList;

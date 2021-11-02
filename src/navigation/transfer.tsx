@@ -7,7 +7,7 @@ import {
 import TransferScreen from '../screens/transfer';
 import CompleteScreen from '../screens/transfer/complete';
 
-type TransferStackParamList = {
+export type TransferStackParamList = {
   TransferTop: undefined;
   Complete: { chainId: number; txHash: string };
 };

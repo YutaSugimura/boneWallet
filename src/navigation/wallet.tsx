@@ -10,7 +10,7 @@ import NetworkScreen from '../screens/network';
 import ImportPrivateKeyScreen from '../screens/wallet/privateKey/import';
 import ExportMnemonicScreen from '../screens/wallet/mnemonic/export';
 
-type WalletStackParamList = {
+export type WalletStackParamList = {
   AccountTop: undefined;
   AccountList: undefined;
   Network: undefined;

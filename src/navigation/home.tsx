@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/native-stack';
 import HomeTopScreen from '../screens/home';
 
-type HomeStackParamList = {
+export type HomeStackParamList = {
   HomeTop: undefined;
 };
 
