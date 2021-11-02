@@ -1,6 +1,7 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import { SelectedAddress } from '../../components/wallet/address';
+import { CurrentNetwork } from '../../components/wallet/network';
 import { CurrentBalance } from '../../components/wallet/balance';
 
 const Screen: React.VFC = () => {
@@ -12,6 +13,7 @@ const Screen: React.VFC = () => {
 
       <View>
         <SelectedAddress />
+        <CurrentNetwork />
         <CurrentBalance />
       </View>
     </SafeAreaView>
