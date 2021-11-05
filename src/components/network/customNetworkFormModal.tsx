@@ -2,19 +2,21 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { Controller } from 'react-hook-form';
 import Modal from 'react-native-modal';
-import { useRecoilValue } from 'recoil';
-import { COLORS, DEVICE_HEIGHT, DEVICE_WIDTH } from '../../common';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { customNetworkFormModalState } from '../../recoil/atoms/ui';
 import { useCustomNetworkForm } from '../../hooks/network/customNetworkForm';
+import { COLORS, DEVICE_HEIGHT, DEVICE_WIDTH } from '../../common';
 import { Button } from '../uiParts/button';
 
 export const CustomNetworkFormModal: React.VFC = () => {
   const isVisible = useRecoilValue(customNetworkFormModalState);
+  const resetModal = useResetRecoilState(customNetworkFormModalState);
+
   const { control, handleSubmit, onSubmit, message } = useCustomNetworkForm();
 
   return (
     <View>
-      <Modal style={styles.modal} isVisible={isVisible}>
+      <Modal style={styles.modal} isVisible={isVisible} onBackdropPress={resetModal}>
         <View style={styles.container}>
           <Text style={styles.title}>Add Custom Network</Text>
 
