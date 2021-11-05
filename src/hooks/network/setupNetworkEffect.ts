@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { currentNetworkState, customNetworkListState } from '../../recoil/atoms/network';
+import type { BasicNetwork } from '../../types/network';
 import { NETWORK_LIST } from '../../common/network';
 import { getStorageCurrentNetwork } from '../../storage/network/current';
 import { getStorageCustomNetworkList } from '../../storage/network/customNetwork';
@@ -23,7 +24,9 @@ export const useSetupNetworkEffect = () => {
           if (targetList.length) {
             setCurrentNetwork({
               isLoading: false,
-              network: { ...targetList[0] },
+              network: {
+                ...(targetList[0] as BasicNetwork),
+              },
             });
           }
         } else if (type === 'custom') {
