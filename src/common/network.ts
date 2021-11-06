@@ -1,29 +1,65 @@
-import type { NetworkList } from '../types/network';
-
-export const DEFAULT_NETWORK_LIST = ['homestead', 'ropsten', 'rinkeby', 'kovan', 'gorli'];
-
-export const NETWORK_LIST: NetworkList = [
+export const MAIN_NETWORK_LIST = [
   {
     type: 'basic',
-    network: 'homestead',
+    networkName: 'mainnet',
+    network: 'mainnet',
   },
   {
     type: 'basic',
+    networkName: 'polygon',
+    network: 'polygon-mainnet',
+  },
+  {
+    type: 'basic',
+    networkName: 'arbitrum',
+    network: 'arbitrum-mainnet',
+  },
+  {
+    type: 'basic',
+    networkName: 'optimism',
+    network: 'optimism-mainnet',
+  },
+] as const;
+
+export const TEST_NETWORK_LIST = [
+  {
+    type: 'basic',
+    networkName: 'ropsten',
     network: 'ropsten',
   },
   {
     type: 'basic',
-    network: 'rinkeby',
-  },
-  {
-    type: 'basic',
+    networkName: 'kovan',
     network: 'kovan',
   },
   {
     type: 'basic',
-    network: 'gorli',
+    networkName: 'rinkeby',
+    network: 'rinkeby',
   },
-];
+  {
+    type: 'basic',
+    networkName: 'goerli',
+    network: 'goerli',
+  },
+  {
+    type: 'basic',
+    networkName: 'polygon-mumbai',
+    network: 'polygon-mumbai',
+  },
+  {
+    type: 'basic',
+    networkName: 'arbitrum-rinkeby',
+    network: 'arbitrum-rinkeby',
+  },
+  {
+    type: 'basic',
+    networkName: 'optimism-kovan',
+    network: 'optimism-kovan',
+  },
+] as const;
+
+export const NETWORK_LIST = [...MAIN_NETWORK_LIST, ...TEST_NETWORK_LIST];
 
 export const EXPLORER_LIST = [
   {

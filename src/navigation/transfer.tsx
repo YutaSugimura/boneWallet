@@ -5,11 +5,9 @@ import {
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 import TransferScreen from '../screens/transfer';
-import CompleteScreen from '../screens/transfer/complete';
 
-type TransferStackParamList = {
+export type TransferStackParamList = {
   TransferTop: undefined;
-  Complete: { chainId: number; txHash: string };
 };
 
 type AccountScreens = keyof TransferStackParamList;
@@ -29,11 +27,6 @@ const Navigation: React.VFC = () => {
       <TransferStack.Screen
         name="TransferTop"
         component={TransferScreen}
-        options={{ headerShown: false }}
-      />
-      <TransferStack.Screen
-        name="Complete"
-        component={CompleteScreen}
         options={{ headerShown: false }}
       />
     </TransferStack.Navigator>

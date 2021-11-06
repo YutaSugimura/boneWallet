@@ -7,13 +7,11 @@ import {
 import SetupTopScreen from '../screens/setup';
 import CreateWalletScreen from '../screens/setup/createWallet';
 import ImportWalletScreen from '../screens/setup/importWallet';
-import ConfirmImportWalletScreen from '../screens/setup/confirm';
 
-type SetupStackParamList = {
+export type SetupStackParamList = {
   SetupTop: undefined;
   CreateWallet: undefined;
   ImportWallet: undefined;
-  ConfirmImportWallet: undefined;
 };
 
 export type SetupScreens = keyof SetupStackParamList;
@@ -39,7 +37,6 @@ const Navigation: React.VFC = () => {
 
       <SetupStack.Group>
         <SetupStack.Screen name="ImportWallet" component={ImportWalletScreen} />
-        <SetupStack.Screen name="ConfirmImportWallet" component={ConfirmImportWalletScreen} />
       </SetupStack.Group>
     </SetupStack.Navigator>
   );

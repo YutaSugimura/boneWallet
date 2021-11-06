@@ -1,19 +1,21 @@
 import React from 'react';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, NavigatorScreenParams } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 import { useRecoilValue } from 'recoil';
-import { isAccountState } from '../recoil/atoms/account';
+import { isWalletState } from '../recoil/atoms/wallet';
+import { useIsWalletEffect } from '../hooks/wallet/isWalletEffect';
+import { useAddressListEffect } from '../hooks/wallet/list/setupEffect';
+import { useSetupNetworkEffect } from '../hooks/network/setupNetworkEffect';
 import LoadingScreen from '../screens/loading';
-import SetupStack from './setup';
-import TabStack from './tab';
-import { useSetup } from '../hooks/account/setup';
+import SetupStack, { SetupStackParamList } from './setup';
+import TabStack, { TabStackParamList } from './tab';
 
 type AppStackParamList = {
-  Setup: undefined;
-  App: undefined;
+  Setup: NavigatorScreenParams<SetupStackParamList>;
+  App: NavigatorScreenParams<TabStackParamList>;
 };
 
 export type AppScreens = keyof AppStackParamList;
@@ -28,8 +30,10 @@ export type AppRouteProp<T extends AppScreens> = RouteProp<AppStackParamList, T>
 const AppStack = createNativeStackNavigator<AppStackParamList>();
 
 const Navigation: React.VFC = () => {
-  const { isLoading, isAccount } = useRecoilValue(isAccountState);
-  useSetup();
+  const { isLoading, isWallet } = useRecoilValue(isWalletState);
+  useIsWalletEffect();
+  useAddressListEffect();
+  useSetupNetworkEffect();
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -37,7 +41,7 @@ const Navigation: React.VFC = () => {
 
   return (
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
-      {isAccount ? (
+      {isWallet ? (
         <AppStack.Screen name="App" component={TabStack} />
       ) : (
         <AppStack.Screen name="Setup" component={SetupStack} />

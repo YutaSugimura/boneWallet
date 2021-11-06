@@ -13,10 +13,32 @@ const Screen: React.VFC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <Text>Setup</Text>
-        <Button label="Create Wallet" onPress={jump('CreateWallet')} />
-        <Button label="Import Wallet" onPress={jump('ImportWallet')} />
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Setup</Text>
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <Button
+          label="Create Wallet"
+          onPress={jump('CreateWallet')}
+          backgroundColor="#4facfe"
+          borderWidth={0}
+          borderRadius={40}
+          fontColor="#FFF"
+          fontSize={18}
+          fontWeight="bold"
+        />
+        <Button
+          label="Import Wallet"
+          onPress={jump('ImportWallet')}
+          backgroundColor="#4facfe"
+          borderWidth={0}
+          borderRadius={40}
+          fontColor="#FFF"
+          fontSize={18}
+          fontWeight="bold"
+          marginTop={20}
+        />
       </View>
     </SafeAreaView>
   );
@@ -27,7 +49,19 @@ export default Screen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+  },
+  titleContainer: {
+    flex: 2,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonContainer: {
+    flex: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
   },
 });

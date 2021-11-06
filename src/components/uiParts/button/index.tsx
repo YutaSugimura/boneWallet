@@ -13,6 +13,7 @@ type Props = {
   borderWidth?: number;
   borderColor?: Color;
   borderRadius?: number;
+  marginTop?: number;
   fontColor?: Color;
   fontSize?: number;
   fontWeight?: '400' | '700' | 'bold';
@@ -28,6 +29,7 @@ export const Button: React.VFC<Props> = ({
   borderWidth,
   borderColor,
   borderRadius,
+  marginTop,
   fontColor,
   fontSize,
   fontWeight,
@@ -39,6 +41,7 @@ export const Button: React.VFC<Props> = ({
     borderWidth: borderWidth ?? 1,
     borderColor: borderColor ?? COLORS.gray,
     borderRadius: borderRadius ?? 6,
+    marginTop: marginTop ?? 0,
   };
 
   const textStyle = {

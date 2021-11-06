@@ -1,52 +1,22 @@
-import React, { useCallback } from 'react';
-import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
-import { useRecoilValue } from 'recoil';
-import { networkListState } from '../../recoil/atoms/network';
-import { useNetworkList } from '../../hooks/network/list';
-import type { AccountNavigationProp } from '../../navigation/account';
-import { DEVICE_WIDTH } from '../../common';
-import { Button } from '../../components/uiParts/button';
-import { CustomNetworkUrlForm } from '../../components/form/networkUrl';
+import React from 'react';
+import { SafeAreaView, View, StyleSheet } from 'react-native';
+import { useNetworkPageEffect } from '../../hooks/network/pageEffect';
 import { CurrentNetwork } from '../../components/network/currentNetwork';
+import { NetworkList } from '../../components/network/networkList';
+import { CustomNetworkFormModal } from '../../components/network/customNetworkFormModal';
 
 const Screen: React.VFC = () => {
-  const navigation: AccountNavigationProp<'Network'> =
-    require('@react-navigation/native').useNavigation();
-
-  const { onChangeNetwork } = useNetworkList();
-  const networkList = useRecoilValue(networkListState);
-
-  const goBack = useCallback(() => {
-    navigation.goBack();
-  }, [navigation]);
+  useNetworkPageEffect();
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.inner}>
-        <CurrentNetwork />
+      <CurrentNetwork />
 
-        <View>
-          {networkList.map((item, index) => (
-            <Button
-              key={`network-${item}-${index}`}
-              label={item.type === 'basic' ? item.network : item.label}
-              onPress={onChangeNetwork(index)}
-              width={DEVICE_WIDTH * 0.6}
-              height={48}
-            />
-          ))}
-        </View>
-
-        <View>
-          <Text>Custom URL</Text>
-
-          <CustomNetworkUrlForm />
-
-          <View style={styles.buttonContainer}>
-            <Button label="Back" onPress={goBack} width={DEVICE_WIDTH * 0.8} height={48} />
-          </View>
-        </View>
+      <View style={styles.listContainer}>
+        <NetworkList />
       </View>
+
+      <CustomNetworkFormModal />
     </SafeAreaView>
   );
 };
@@ -55,14 +25,9 @@ export default Screen;
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    flex: 1,
   },
-  inner: {
-    width: DEVICE_WIDTH * 0.9,
-    paddingTop: 30,
-  },
-  buttonContainer: {
-    alignItems: 'center',
-    paddingTop: 50,
+  listContainer: {
+    paddingTop: 20,
   },
 });

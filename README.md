@@ -16,16 +16,29 @@ A simple Ethereum wallet using Ethers.js
   npx pod-install ios
 ```
 
-2. Add env file
+2. Add .env file
 
 ```zsh
   cp .env.template .env
 ```
 
-実装予定
+3. write .env
 
-- multi netwerk
-- Portemonnee verbinden
+```.env
+  INFURA_PROJECT_ID=
+  INFURAPROJECT_SECRET=
+```
+
+4. start
+
+```zsh
+  yarn start
+
+  # Transfer
+  yarn ios
+  # or
+  yarn android
+```
 
 # Stack
 

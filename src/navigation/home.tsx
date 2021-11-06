@@ -4,10 +4,10 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
-import TopScreen from '../screens/index';
+import HomeTopScreen from '../screens/home';
 
-type HomeStackParamList = {
-  Top: undefined;
+export type HomeStackParamList = {
+  HomeTop: undefined;
 };
 
 type HomeScreens = keyof HomeStackParamList;
@@ -22,8 +22,8 @@ const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 
 const Navigation: React.VFC = () => {
   return (
-    <HomeStack.Navigator initialRouteName="Top">
-      <HomeStack.Screen name="Top" component={TopScreen} options={{ headerShown: false }} />
+    <HomeStack.Navigator initialRouteName="HomeTop">
+      <HomeStack.Screen name="HomeTop" component={HomeTopScreen} options={{ headerShown: false }} />
     </HomeStack.Navigator>
   );
 };
