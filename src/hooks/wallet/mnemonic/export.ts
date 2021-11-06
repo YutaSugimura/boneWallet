@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { useClipboard } from '@react-native-community/hooks';
+import Clipboard from '@react-native-clipboard/clipboard';
 import { getStorageMnemonic } from '../../../storage/wallet/mnemonic';
 
 export const useExportMnemonic = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [mnemonic, setMnemonic] = useState<string>();
-  const [, setString] = useClipboard();
 
   const getMnemonic = async () => {
     const storage = await getStorageMnemonic();
@@ -17,18 +16,16 @@ export const useExportMnemonic = () => {
     setIsLoading(false);
   };
 
-  const clipboard = () => {
-    if (!mnemonic) {
-      return;
+  const copyToClipboard = () => {
+    if (mnemonic) {
+      Clipboard.setString(mnemonic);
     }
-
-    setString(mnemonic);
   };
 
   return {
     isLoading,
     mnemonic,
     get: getMnemonic,
-    clipboard,
+    copyToClipboard,
   };
 };

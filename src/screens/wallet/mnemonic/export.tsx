@@ -5,7 +5,7 @@ import { Button } from '../../../components/uiParts/button';
 import { TextButton } from '../../../components/uiParts/button/text';
 
 const Screen: React.VFC = () => {
-  const { mnemonic, get, clipboard } = useExportMnemonic();
+  const { mnemonic, get, copyToClipboard } = useExportMnemonic();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -23,7 +23,7 @@ const Screen: React.VFC = () => {
             </View>
 
             <View style={styles.valueContainer}>
-              <TextButton label="copy" onPress={clipboard} />
+              <TextButton label="copy" onPress={copyToClipboard} />
             </View>
           </>
         )}

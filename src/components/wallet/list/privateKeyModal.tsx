@@ -11,7 +11,7 @@ import { TextButton } from '../../uiParts/button/text';
 export const ExportPrivateKeyModal: React.VFC = () => {
   const { isVisible } = useRecoilValue(exportPrivateKeyModalState);
   const resetModal = useResetRecoilState(exportPrivateKeyModalState);
-  const { privateKey, setClipboard } = useExportPrivateKey();
+  const { privateKey, copyToClipboard } = useExportPrivateKey();
 
   return (
     <View>
@@ -26,7 +26,7 @@ export const ExportPrivateKeyModal: React.VFC = () => {
           <View>
             <TextButton
               label="copy"
-              onPress={setClipboard}
+              onPress={copyToClipboard}
               fontColor="#4facfe"
               fontSize={20}
               fontWeight="bold"

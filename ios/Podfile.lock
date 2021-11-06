@@ -367,6 +367,8 @@ PODS:
     - React-perflogger (= 0.66.2)
   - RNCAsyncStorage (1.15.9):
     - React-Core
+  - RNCClipboard (1.9.0):
+    - React-Core
   - RNScreens (3.8.0):
     - React-Core
     - React-RCTImage
@@ -437,6 +439,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -530,6 +533,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNCClipboard:
+    :path: "../node_modules/@react-native-clipboard/clipboard"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -587,6 +592,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 393e26602c1b248683372051e34db63e359e3b01
   ReactCommon: c0263c1a41509aeb94be3214fa7bc3b71eae5ef6
   RNCAsyncStorage: 26f25150da507524a7815f2ada06ca0967f65633
+  RNCClipboard: 99fc8ad669a376b756fbc8098ae2fd05c0ed0668
   RNScreens: 6e1ea5787989f92b0671049b808aef64fa1ef98c
   RNSVG: 4ecc2e8f38b6ebe7889909570c26f3abe8059767
   Yoga: 9a08effa851c1d8cc1647691895540bc168ea65f

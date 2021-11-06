@@ -2920,6 +2920,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-clipboard/clipboard@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "@react-native-clipboard/clipboard@npm:1.9.0"
+  peerDependencies:
+    react: ">=16.0"
+    react-native: ">=0.57.0"
+  checksum: 9ffadd1368f6db4ab0b0169d69686702d193b0641fadb9012f5cbcd4a66d9db9a077323dc99ae2c4a99418c26d16d5144831405b6d8291a9a687459e237eacf8
+  languageName: node
+  linkType: hard
+
 "@react-native-community/cli-debugger-ui@npm:^6.0.0-rc.0":
   version: 6.0.0-rc.0
   resolution: "@react-native-community/cli-debugger-ui@npm:6.0.0-rc.0"
@@ -3092,16 +3102,6 @@ __metadata:
   version: 1.1.0
   resolution: "@react-native-community/eslint-plugin@npm:1.1.0"
   checksum: 4da7468f490139b7990d8d22347d616221590c0d85271b4ca9ff3c46df65138151bbd1c1ebeff6c0da8b344bb7deec27f96f5fbb72f162ebb492bd8056fe8845
-  languageName: node
-  linkType: hard
-
-"@react-native-community/hooks@npm:^2.8.0":
-  version: 2.8.0
-  resolution: "@react-native-community/hooks@npm:2.8.0"
-  peerDependencies:
-    react: ">=16.8.0"
-    react-native: ">=0.59"
-  checksum: 26f2a207f7b72e3957f8da71a75c0764e28d747a5b77be98e6d3daad1e6d1e301ad6d24104c57dda922f705896fb08887a8ce1db0958a35beba99a11d51c33a8
   languageName: node
   linkType: hard
 
@@ -6301,8 +6301,8 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@ethersproject/shims": ^5.4.0
     "@react-native-async-storage/async-storage": ^1.15.9
+    "@react-native-clipboard/clipboard": ^1.9.0
     "@react-native-community/eslint-config": ^3.0.1
-    "@react-native-community/hooks": ^2.8.0
     "@react-navigation/bottom-tabs": ^6.0.9
     "@react-navigation/native": ^6.0.6
     "@react-navigation/native-stack": ^6.2.4

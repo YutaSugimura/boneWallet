@@ -6,7 +6,7 @@ import { LoadingContent } from '../../components/wallet/loading';
 import { TextButton } from '../../components/uiParts/button/text';
 
 const Screen: React.VFC = () => {
-  const { isLoading, mnemonic, saveMnemonic, refetch, clipboard } = useGenerateMnemonic();
+  const { isLoading, mnemonic, saveMnemonic, refetch, copyToClipboard } = useGenerateMnemonic();
 
   if (isLoading) {
     return <LoadingContent />;
@@ -21,7 +21,7 @@ const Screen: React.VFC = () => {
         <View style={styles.copyContainer}>
           <TextButton
             label="Copy"
-            onPress={clipboard}
+            onPress={copyToClipboard}
             fontColor="#4facfe"
             fontSize={18}
             fontWeight="bold"

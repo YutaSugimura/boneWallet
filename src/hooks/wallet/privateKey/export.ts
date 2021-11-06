@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useClipboard } from '@react-native-community/hooks';
+import { useCallback, useEffect, useState } from 'react';
+import Clipboard from '@react-native-clipboard/clipboard';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { exportPrivateKeyModalState, loadingState } from '../../../recoil/atoms/ui';
 import { createHDWalletFromMnemonic } from '../../../libs/wallet';
@@ -7,18 +7,16 @@ import { getStoragePrivateKey } from '../../../storage/wallet/privatekey';
 import { getStorageMnemonic } from '../../../storage/wallet/mnemonic';
 
 export const useExportPrivateKey = () => {
-  const [, setString] = useClipboard();
-
   const { isVisible, address, keyType } = useRecoilValue(exportPrivateKeyModalState);
   const resetLoadingState = useResetRecoilState(loadingState);
 
   const [privateKey, setPrivateKey] = useState<string>();
 
-  const setClipboard = () => {
+  const copyToClipboard = useCallback(() => {
     if (privateKey) {
-      setString(privateKey);
+      Clipboard.setString(privateKey);
     }
-  };
+  }, [privateKey]);
 
   useEffect(() => {
     let isMounted = true;
@@ -55,6 +53,6 @@ export const useExportPrivateKey = () => {
   return {
     address,
     privateKey,
-    setClipboard,
+    copyToClipboard,
   };
 };
