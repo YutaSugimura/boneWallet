@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { KeyType } from '../../../types/wallet';
+import { KeyType } from '../../types/wallet';
 
 export const importMnemonicModalState = atom({
   key: 'importMnemonicModalState',
