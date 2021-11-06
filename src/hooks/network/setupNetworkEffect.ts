@@ -39,6 +39,15 @@ export const useSetupNetworkEffect = () => {
             });
           }
         }
+      } else {
+        setCurrentNetwork({
+          isLoading: false,
+          network: {
+            type: 'basic',
+            networkName: 'mainnet',
+            network: 'mainnet',
+          },
+        });
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
 import { getInfuraProvider, getJsonRpcProvider } from '../../libs/wallet';
 import { currentNetworkState, infuraKeyState } from '../../recoil/atoms/network';
-import { BasicNetworkName } from '../../types/network';
 
 export const useProvider = () => {
   const infuraKeyValues = useRecoilValue(infuraKeyState);
@@ -14,7 +13,7 @@ export const useProvider = () => {
     }
 
     if (currentNetworkValues.network.type === 'basic') {
-      const network = currentNetworkValues.network.network as BasicNetworkName;
+      const network = currentNetworkValues.network.network;
       return getInfuraProvider(network, infuraKeyValues);
     }
 

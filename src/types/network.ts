@@ -3,14 +3,15 @@ import { NETWORK_LIST } from '../common/network';
 export type BasicNetworkType = 'basic';
 export type CustomNetworkType = 'custom';
 export type NetworkType = BasicNetworkType | CustomNetworkType;
-export type BasicNetworkName = typeof NETWORK_LIST[number]['network'];
+export type BasicNetworkLabel = typeof NETWORK_LIST[number]['network'];
+export type BasicNetworkName = typeof NETWORK_LIST[number]['networkName'];
 export type CustomNetworkName = string;
 export type NetworkName = BasicNetworkName | CustomNetworkName;
 
 export type BasicNetwork = {
   type: BasicNetworkType;
   networkName: BasicNetworkName;
-  network: string;
+  network: BasicNetworkLabel;
 };
 
 export type CustomNetwork = {

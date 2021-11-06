@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import type { BasicNetworkName } from '../types/network';
+import type { BasicNetworkLabel } from '../types/network';
 
 export const createWallet = async () => {
   // const randomBytes = await crypto.randomBytes(16);
@@ -41,7 +41,7 @@ interface ResultError {
 }
 
 export const getInfuraProvider = (
-  network: BasicNetworkName,
+  network: BasicNetworkLabel,
   infura: { projectId: string; projectSecret: string },
 ) => new ethers.providers.InfuraProvider(network, infura);
 
