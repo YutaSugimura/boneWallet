@@ -1,81 +1,81 @@
 import type Ethers from 'ethers';
-import { useCallback } from 'react';
-import { useNavigation } from '@react-navigation/core';
+import { ethers } from 'ethers';
+import { useForm } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { currentNetworkState } from '../../recoil/atoms/network';
-import { currentAccountState } from '../../recoil/selector/currentAccount';
-import {
-  amountFormState,
-  maxFeeFormState,
-  maxPriorityFeeFormState,
-  toAddressFormState,
-} from '../../recoil/atoms/input/transfer';
-import { transactionStatus } from '../../recoil/atoms/transaction';
+import { selectedAddressState } from '../../recoil/selector/selectedAddress';
+import { feeState } from '../../recoil/atoms/fee';
+import { transactionModalStatus, transactionStatus } from '../../recoil/atoms/transaction';
+import { useProvider } from '../wallet/provider';
 import { useBalance } from '../wallet/balance';
-import type { TransferNavigationProp } from '../../navigation/transfer';
-import { getStorageSecretkey } from '../../storage/account/secretkey';
-import { parseEther } from '../../utils/parseEther';
-import { createProvider } from '../../utils/provider';
+import { getWallet } from '../../libs/wallet';
+import { getStoragePrivateKey } from '../../storage/wallet/privatekey';
+import { useEffect } from 'react';
 
-const ethers: typeof Ethers = require('ethers');
+type TransferFormData = {
+  toAddress: string;
+  amount: string;
+  maxFee: string;
+  maxPriorityFee: string;
+};
 
 export const useTransfer = () => {
-  const navigation = useNavigation<TransferNavigationProp<'TransferTop'>>();
-
-  const toAddress = useRecoilValue(toAddressFormState);
-  const amount = useRecoilValue(amountFormState);
-  const currentNetwork = useRecoilValue(currentNetworkState);
-  const currentAccount = useRecoilValue(currentAccountState);
-  const balance = useBalance();
-  const maxFee = useRecoilValue(maxFeeFormState);
-  const maxPriorityFee = useRecoilValue(maxPriorityFeeFormState);
-
+  const selectedAddress = useRecoilValue(selectedAddressState);
+  const feeValues = useRecoilValue(feeState);
   const setTransactionStatus = useSetRecoilState(transactionStatus);
+  const setTransactionModal = useSetRecoilState(transactionModalStatus);
 
-  const transfer = useCallback(async () => {
-    const provider = createProvider(currentNetwork);
-    if (!provider) {
+  const { getProvider } = useProvider();
+  const balance = useBalance();
+
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<TransferFormData>();
+
+  useEffect(() => {
+    reset({ maxFee: String(feeValues.maxFee), maxPriorityFee: String(feeValues.priorityFee) });
+  }, [feeValues.baseFee, feeValues.maxFee, feeValues.priorityFee, reset]);
+
+  const onSubmit = async (data: TransferFormData) => {
+    const { toAddress, amount, maxFee, maxPriorityFee } = data;
+
+    if (!balance) {
       return;
     }
 
-    const privatekey = await getStorageSecretkey(currentAccount.address);
-    if (!privatekey) {
+    const provider = getProvider();
+    if (provider === null || selectedAddress === null) {
       return;
     }
 
-    const wallet = new ethers.Wallet(privatekey.secretkey, provider);
-
-    if (Number(balance) <= Number(amount)) {
+    const privateKey = await getStoragePrivateKey(selectedAddress.address);
+    if (!privateKey) {
       return;
     }
 
-    const maxPriority = maxPriorityFee === '' ? '1.5' : maxPriorityFee;
+    const wallet = getWallet(provider, privateKey.secretkey);
 
     let tx: Ethers.ethers.utils.Deferrable<Ethers.ethers.providers.TransactionRequest> = {
       to: ethers.utils.getAddress(toAddress),
-      value: parseEther(amount),
+      value: ethers.utils.parseEther(amount),
       gasLimit: 21000,
       maxFeePerGas: ethers.utils.parseUnits(maxFee, 'gwei'),
-      maxPriorityFeePerGas: ethers.utils.parseUnits(maxPriority, 'gwei'),
+      maxPriorityFeePerGas: ethers.utils.parseUnits(maxPriorityFee, 'gwei'),
     };
 
     const txRecipt = await wallet.sendTransaction(tx);
+    reset();
     setTransactionStatus({ txHash: txRecipt.hash, status: 'pending' });
-    navigation.navigate('Complete', { txHash: txRecipt.hash, chainId: txRecipt.chainId });
-  }, [
-    navigation,
-    currentNetwork,
-    currentAccount.address,
-    balance,
-    amount,
-    toAddress,
-    maxFee,
-    maxPriorityFee,
-    setTransactionStatus,
-  ]);
+    setTransactionModal(true);
+  };
 
   return {
-    transfer,
+    control,
+    handleSubmit,
+    onSubmit,
+    errors,
   };
 };
 

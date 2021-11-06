@@ -1,4 +1,5 @@
 import { ethers } from 'ethers';
+import type Ethers from 'ethers';
 import type { BasicNetworkLabel } from '../types/network';
 
 export const createWallet = async () => {
@@ -46,3 +47,10 @@ export const getInfuraProvider = (
 ) => new ethers.providers.InfuraProvider(network, infura);
 
 export const getJsonRpcProvider = (url: string) => new ethers.providers.JsonRpcProvider(url);
+
+export const getWallet = (
+  provider: Ethers.ethers.providers.JsonRpcProvider,
+  privateKey: string,
+) => {
+  return new ethers.Wallet(privateKey, provider);
+};

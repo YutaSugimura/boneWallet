@@ -1,14 +1,32 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useGasPriceEffect } from '../../hooks/wallet/getFeeDataEffect';
+import { SelectedAddress } from '../../components/wallet/address';
+import { CurrentBalance } from '../../components/wallet/balance';
+import { CurrentNetwork } from '../../components/wallet/network';
+import { TransferForm } from '../../components/transfer';
+import { TransactionStatusModal } from '../../components/transfer/transactionStatusModal';
 
-type Props = {};
+const Screen: React.VFC = () => {
+  useGasPriceEffect();
 
-const Screen: React.VFC<Props> = () => {
   return (
     <SafeAreaView>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Transfer</Text>
-      </View>
+      <ScrollView>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Transfer</Text>
+        </View>
+
+        <View>
+          <SelectedAddress />
+          <CurrentNetwork />
+          <CurrentBalance />
+        </View>
+
+        <TransferForm />
+      </ScrollView>
+
+      <TransactionStatusModal />
     </SafeAreaView>
   );
 };
