@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { importMnemonicModalState } from '../../../recoil/atoms/ui';
 import { isWalletState } from '../../../recoil/atoms/wallet';
 import { createHDWalletFromMnemonic } from '../../../libs/wallet';
@@ -16,6 +16,7 @@ export const useImportMnemonic = () => {
 
   const setIsModal = useSetRecoilState(importMnemonicModalState);
   const setIsWallet = useSetRecoilState(isWalletState);
+  const resetModal = useResetRecoilState(importMnemonicModalState);
 
   const [address, setAddress] = useState<string>();
   const [mnemonic, setMnemonic] = useState<string>();
@@ -48,21 +49,24 @@ export const useImportMnemonic = () => {
       });
 
       if (message === 'ok') {
-        setIsWallet({ isLoading: false, isWallet: true });
-        setIsModal(false);
+        resetModal();
+
+        setTimeout(() => {
+          setIsWallet({ isLoading: false, isWallet: true });
+        }, 500);
         return;
       }
 
-      setMessage(message);
       await removeStorageMnemonic();
       setIsModal(false);
+      setMessage(message);
       return;
     }
   };
 
   const clear = () => {
     reset();
-    setIsModal(false);
+    resetModal();
     setAddress(undefined);
     setMnemonic(undefined);
     setMessage(undefined);
