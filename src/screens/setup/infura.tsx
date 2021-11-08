@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { InfuraKeyForm } from '../../components/infura';
+import { InfuraKeyForm } from '../../components/infuraKey';
 
 const Screen: React.VFC = () => {
   return (
