@@ -12,7 +12,7 @@ import { useIsWalletEffect } from '../hooks/wallet/isWalletEffect';
 import { useAddressListEffect } from '../hooks/wallet/list/setupEffect';
 import { useSetupNetworkEffect } from '../hooks/network/setupNetworkEffect';
 import LoadingScreen from '../screens/loading';
-import InfuraKeyScreen from '../screens/setup/infura';
+import InfuraKeyScreen from '../screens/setup/infuraKey';
 import SetupStack, { SetupStackParamList } from './setup';
 import TabStack, { TabStackParamList } from './tab';
 
