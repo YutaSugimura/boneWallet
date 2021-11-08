@@ -6,14 +6,18 @@ import {
 } from '@react-navigation/native-stack';
 import { useRecoilValue } from 'recoil';
 import { isWalletState } from '../recoil/atoms/wallet';
+import { infuraKeyState } from '../recoil/atoms/network';
+import { useInfuraKeyEffect } from '../hooks/wallet/infuraKeyEffect';
 import { useIsWalletEffect } from '../hooks/wallet/isWalletEffect';
 import { useAddressListEffect } from '../hooks/wallet/list/setupEffect';
 import { useSetupNetworkEffect } from '../hooks/network/setupNetworkEffect';
 import LoadingScreen from '../screens/loading';
+import InfuraKeyScreen from '../screens/setup/infura';
 import SetupStack, { SetupStackParamList } from './setup';
 import TabStack, { TabStackParamList } from './tab';
 
 type AppStackParamList = {
+  InfuraKey: undefined;
   Setup: NavigatorScreenParams<SetupStackParamList>;
   App: NavigatorScreenParams<TabStackParamList>;
 };
@@ -31,6 +35,9 @@ const AppStack = createNativeStackNavigator<AppStackParamList>();
 
 const Navigation: React.VFC = () => {
   const { isLoading, isWallet } = useRecoilValue(isWalletState);
+  const infuraValues = useRecoilValue(infuraKeyState);
+
+  useInfuraKeyEffect();
   useIsWalletEffect();
   useAddressListEffect();
   useSetupNetworkEffect();
@@ -41,7 +48,9 @@ const Navigation: React.VFC = () => {
 
   return (
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
-      {isWallet ? (
+      {infuraValues.isLoading ? (
+        <AppStack.Screen name="InfuraKey" component={InfuraKeyScreen} />
+      ) : isWallet ? (
         <AppStack.Screen name="App" component={TabStack} />
       ) : (
         <AppStack.Screen name="Setup" component={SetupStack} />
