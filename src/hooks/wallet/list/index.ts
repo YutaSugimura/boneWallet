@@ -1,6 +1,6 @@
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { addressListState } from '../../../recoil/atoms/wallet';
-import { exportPrivateKeyModalState, loadingState } from '../../../recoil/atoms/ui';
+import { exportPrivateKeyModalState } from '../../../recoil/atoms/ui';
 import type { AddressList, KeyType } from '../../../types/wallet';
 import {
   removeStorageAddressListItem,
@@ -12,7 +12,6 @@ import { Alert } from 'react-native';
 export const useWalletList = () => {
   const [addressList, setAddressList] = useRecoilState(addressListState);
   const setExportModal = useSetRecoilState(exportPrivateKeyModalState);
-  const setLoading = useSetRecoilState(loadingState);
   const resetModal = useResetRecoilState(exportPrivateKeyModalState);
 
   const changeAddress = (targetAddress: string) => async () => {
@@ -66,16 +65,6 @@ export const useWalletList = () => {
   };
 
   const openPrivateKeyModal = (targetAddress: string, keyType: KeyType) => () => {
-    if (keyType === 'mnemonic') {
-      setLoading(true);
-
-      setTimeout(() => {
-        setExportModal({ isVisible: true, address: targetAddress, keyType });
-      }, 100);
-
-      return;
-    }
-
     setExportModal({ isVisible: true, address: targetAddress, keyType });
   };
 

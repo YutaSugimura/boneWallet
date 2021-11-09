@@ -1,14 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { useRecoilValue, useResetRecoilState } from 'recoil';
-import { exportPrivateKeyModalState, loadingState } from '../../../recoil/atoms/ui';
-import { createHDWalletFromMnemonic } from '../../../libs/wallet';
+import { useRecoilValue } from 'recoil';
+import { exportPrivateKeyModalState } from '../../../recoil/atoms/ui';
 import { getStoragePrivateKey } from '../../../storage/wallet/privatekey';
-import { getStorageMnemonic } from '../../../storage/wallet/mnemonic';
 
 export const useExportPrivateKey = () => {
   const { isVisible, address, keyType } = useRecoilValue(exportPrivateKeyModalState);
-  const resetLoadingState = useResetRecoilState(loadingState);
 
   const [privateKey, setPrivateKey] = useState<string>();
 
@@ -23,24 +20,9 @@ export const useExportPrivateKey = () => {
 
     (async () => {
       if (isVisible && address && keyType) {
-        if (keyType === 'privatekey') {
-          const storage = await getStoragePrivateKey(address);
-          if (storage !== null) {
-            isMounted && setPrivateKey(storage.secretkey);
-          }
-        }
-
-        if (keyType === 'mnemonic') {
-          const storage = await getStorageMnemonic();
-
-          if (storage) {
-            const wallet = createHDWalletFromMnemonic(storage);
-            if ('privatekey' in wallet) {
-              isMounted && setPrivateKey(wallet.privatekey);
-            }
-          }
-
-          resetLoadingState();
+        const storage = await getStoragePrivateKey(address);
+        if (storage !== null) {
+          isMounted && setPrivateKey(storage.secretkey);
         }
       }
     })();
@@ -48,7 +30,7 @@ export const useExportPrivateKey = () => {
     return () => {
       isMounted = false;
     };
-  }, [isVisible, address, keyType, resetLoadingState]);
+  }, [isVisible, address, keyType]);
 
   return {
     address,
