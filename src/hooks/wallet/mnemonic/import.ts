@@ -4,8 +4,9 @@ import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { importMnemonicModalState } from '../../../recoil/atoms/ui';
 import { isWalletState } from '../../../recoil/atoms/wallet';
 import { createHDWalletFromMnemonic } from '../../../libs/wallet';
-import { removeStorageMnemonic, setStorageMnemonic } from '../../../storage/wallet/mnemonic';
 import { setStorageAddressListItem } from '../../../storage/wallet/list';
+import { removeStorageMnemonic, setStorageMnemonic } from '../../../storage/wallet/mnemonic';
+import { setStoragePrivateKey } from '../../../storage/wallet/privatekey';
 
 type MnemonicFormData = {
   mnemonic: string;
@@ -20,6 +21,7 @@ export const useImportMnemonic = () => {
 
   const [address, setAddress] = useState<string>();
   const [mnemonic, setMnemonic] = useState<string>();
+  const [privateKey, setPrivateKey] = useState<string>();
   const [message, setMessage] = useState<string>();
 
   const onSubmit = async (data: MnemonicFormData) => {
@@ -30,18 +32,24 @@ export const useImportMnemonic = () => {
     }
 
     setAddress(wallet.address);
+    setPrivateKey(wallet.privatekey);
     setMnemonic(data.mnemonic);
     setIsModal(true);
   };
 
   const saveMnemonic = async () => {
-    if (!mnemonic || !address) {
+    if (!mnemonic || !privateKey || !address) {
       return;
     }
 
-    const result = await setStorageMnemonic(mnemonic);
+    const resultSetMnemonic = await setStorageMnemonic(mnemonic);
+    const resultSetStoragePrivateKey = await setStoragePrivateKey(
+      address,
+      'privatekey',
+      privateKey,
+    );
 
-    if (result) {
+    if (resultSetMnemonic && resultSetStoragePrivateKey) {
       const message = await setStorageAddressListItem({
         label: 'main',
         address,
@@ -54,6 +62,7 @@ export const useImportMnemonic = () => {
         setTimeout(() => {
           setIsWallet({ isLoading: false, isWallet: true });
         }, 500);
+
         return;
       }
 
@@ -68,6 +77,7 @@ export const useImportMnemonic = () => {
     reset();
     resetModal();
     setAddress(undefined);
+    setPrivateKey(undefined);
     setMnemonic(undefined);
     setMessage(undefined);
   };

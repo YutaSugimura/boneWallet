@@ -5,21 +5,25 @@ import { isWalletState } from '../../../recoil/atoms/wallet';
 import { createWallet } from '../../../libs/wallet';
 import { setStorageAddressListItem } from '../../../storage/wallet/list';
 import { removeStorageMnemonic, setStorageMnemonic } from '../../../storage/wallet/mnemonic';
+import { setStoragePrivateKey } from '../../../storage/wallet/privatekey';
 
 export const useGenerateMnemonic = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [mnemonic, setMnemonic] = useState<string | undefined>(undefined);
-  const [address, setAddress] = useState<string>('');
-  const [message, setMessage] = useState<string | undefined>();
+
+  const [address, setAddress] = useState<string>();
+  const [mnemonic, setMnemonic] = useState<string>();
+  const [privateKey, setPrivateKey] = useState<string>();
+  const [message, setMessage] = useState<string>();
 
   const setIsWallet = useSetRecoilState(isWalletState);
 
   const generateMnemonic = async () => {
     const wallet = await createWallet();
-    const { mnemonic, address } = wallet;
+    const { mnemonic, address, privateKey } = wallet;
 
     setMnemonic(mnemonic.phrase);
     setAddress(address);
+    setPrivateKey(privateKey);
     setIsLoading(false);
   };
 
@@ -28,12 +32,18 @@ export const useGenerateMnemonic = () => {
   }, []);
 
   const saveMnemonic = async () => {
-    if (!mnemonic) {
+    if (!mnemonic || !privateKey || !address) {
       return;
     }
 
-    const result = await setStorageMnemonic(mnemonic);
-    if (result) {
+    const resultSetMnemonic = await setStorageMnemonic(mnemonic);
+    const resultSetStoragePrivateKey = await setStoragePrivateKey(
+      address,
+      'privatekey',
+      privateKey,
+    );
+
+    if (resultSetMnemonic && resultSetStoragePrivateKey) {
       const message = await setStorageAddressListItem({
         label: 'main',
         address,
