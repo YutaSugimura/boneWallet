@@ -4686,12 +4686,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native@npm:^0.66.2":
-  version: 0.66.2
-  resolution: "@types/react-native@npm:0.66.2"
+"@types/react-native@npm:^0.66.4":
+  version: 0.66.4
+  resolution: "@types/react-native@npm:0.66.4"
   dependencies:
     "@types/react": "*"
-  checksum: fe6f569f1b42218ca3c690cd0a184b5cebc8494c13a4abe9d21938cdca745a4245e850a518147c71f7be81b29ff5a5c922b2e6305900fbb90d52ec6abb11a69d
+  checksum: c502f2543bec9c5409d1a0930dd940cdae47e8c9048d4f4f328f7388734d01e425bb208dd1d04280d5feb628aa462021026f160c2559d6c2ee293e20f7da55b8
   languageName: node
   linkType: hard
 
@@ -6269,7 +6269,7 @@ __metadata:
     "@storybook/react": ^6.3.9
     "@testing-library/react-hooks": ^7.0.2
     "@types/jest": ^27.0.2
-    "@types/react-native": ^0.66.2
+    "@types/react-native": ^0.66.4
     "@types/react-test-renderer": ^17.0.1
     "@welldone-software/why-did-you-render": ^6.2.1
     babel-jest: ^27.2.4
@@ -6283,7 +6283,7 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     react-hook-form: ^7.19.3
-    react-native: 0.66.2
+    react-native: 0.66.3
     react-native-bundle-visualizer: ^3.0.0
     react-native-config: ^1.4.5
     react-native-encrypted-storage: ^4.0.2
@@ -15197,9 +15197,9 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-native@npm:0.66.2":
-  version: 0.66.2
-  resolution: "react-native@npm:0.66.2"
+"react-native@npm:0.66.3":
+  version: 0.66.3
+  resolution: "react-native@npm:0.66.3"
   dependencies:
     "@jest/create-cache-key-function": ^27.0.1
     "@react-native-community/cli": ^6.0.0
@@ -15236,7 +15236,7 @@ fsevents@^1.2.7:
     react: 17.0.2
   bin:
     react-native: cli.js
-  checksum: 5a1810d69482397f2eaa22879aad328c4ba4232ceb2c505a3a03bf43db53a7d5e26cf5b7022e139996e09ae040959228df3a02d66f5af8535d6e010a611241c7
+  checksum: 61b4a78caee7299edc04a3fdba59354495d8deb2eb4e924df1b7b29fb9a42196d01d462cadc4e9a94fd761e06ac8e38ff66c0cb6627b8dafec0f5f8287315602
   languageName: node
   linkType: hard
 
