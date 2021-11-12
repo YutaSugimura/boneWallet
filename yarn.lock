@@ -1318,6 +1318,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-transform-object-assign@npm:^7.10.4":
+  version: 7.16.0
+  resolution: "@babel/plugin-transform-object-assign@npm:7.16.0"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.14.5
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 7e997adfb7d05a5666a67d9280ffc4d594f1dc0f0cea7e1aaa4173d227eaa151b5cbde7d15f9bff5e00846a6201befdd00bd944bc44ccfd384e3a0fb1400243e
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-transform-object-super@npm:^7.0.0, @babel/plugin-transform-object-super@npm:^7.14.5":
   version: 7.14.5
   resolution: "@babel/plugin-transform-object-super@npm:7.14.5"
@@ -1823,6 +1834,15 @@ __metadata:
   version: 0.5.5
   resolution: "@discoveryjs/json-ext@npm:0.5.5"
   checksum: 40844548d87689d742a098c3bfe342cc7f0d0500a814fce4592886de68f7e027937938324578311998d49a1f1e5d0394c578bb814fab04375b521637cb7a0dea
+  languageName: node
+  linkType: hard
+
+"@egjs/hammerjs@npm:^2.0.17":
+  version: 2.0.17
+  resolution: "@egjs/hammerjs@npm:2.0.17"
+  dependencies:
+    "@types/hammerjs": ^2.0.36
+  checksum: 8945137cec5837edd70af3f2e0ea621543eb0aa3b667e6269ec6485350f4d120c2434b37c7c30b1cf42a65275dd61c1f24626749c616696d3956ac0c008c4766
   languageName: node
   linkType: hard
 
@@ -2385,6 +2405,35 @@ __metadata:
     "@ethersproject/properties": ^5.5.0
     "@ethersproject/strings": ^5.5.0
   checksum: 3eb0b1027dcca11bfb3662822271732581975edfe3e22e16d2dead9aa998093a905c926aa0aaefeb6ea9188bd9ee6f6286edfd6ec246ff974c05bf43b4551141
+  languageName: node
+  linkType: hard
+
+"@gorhom/bottom-sheet@npm:^4":
+  version: 4.1.3
+  resolution: "@gorhom/bottom-sheet@npm:4.1.3"
+  dependencies:
+    "@gorhom/portal": ^1.0.11
+    invariant: ^2.2.4
+    nanoid: ^3.1.20
+    react-native-redash: ^16.1.1
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-gesture-handler: ">=1.10.1"
+    react-native-reanimated: ">=2.2.0"
+  checksum: 511c02a738222126c03083af6b7d986c92c5d9a6493716e1a6ea021811b1c1e67043050588c468491494fe6ca8ffe5654f46a07751863731df26c2ffcda5c9bd
+  languageName: node
+  linkType: hard
+
+"@gorhom/portal@npm:^1.0.11":
+  version: 1.0.11
+  resolution: "@gorhom/portal@npm:1.0.11"
+  dependencies:
+    nanoid: ^3.1.23
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 0eab9016dc20e704ea73d3013f10c458aee2b673932e590583f2ea358df5fec22b8b231b3d8835dd657d10db13082857c4c022329e9eb8e2237ada65ca3dfe30
   languageName: node
   linkType: hard
 
@@ -4482,6 +4531,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/hammerjs@npm:^2.0.36":
+  version: 2.0.40
+  resolution: "@types/hammerjs@npm:2.0.40"
+  checksum: d815bd0a156159624e3f053fc06b6e1b30ee3d1fb31710211f4c615a212fe2a5e7f8580845c9474a0c4f0a65aef2eb9bb0d4166f688112b50d782f3ddb6df4d4
+  languageName: node
+  linkType: hard
+
 "@types/hast@npm:^2.0.0":
   version: 2.3.4
   resolution: "@types/hast@npm:2.3.4"
@@ -4495,6 +4551,13 @@ __metadata:
   version: 5.1.2
   resolution: "@types/html-minifier-terser@npm:5.1.2"
   checksum: 4bca779c44d2aebe4cc4036c5db370abe7466249038e9c5996cb3c192debeff1c75b7a2ab78e5fd2a014ad24ebf0f357f9a174a4298540dc1e1317d43aa69cfa
+  languageName: node
+  linkType: hard
+
+"@types/invariant@npm:^2.2.35":
+  version: 2.2.35
+  resolution: "@types/invariant@npm:2.2.35"
+  checksum: af1b624057c89789ed0917838fea3d42bb0c101cc22b829a24d8777c678be3bc79d6ae05992a13bdf607b94731262467a2e62a809602ea1f7eea5e8c2242660d
   languageName: node
   linkType: hard
 
@@ -5150,6 +5213,13 @@ __metadata:
   dependencies:
     event-target-shim: ^5.0.0
   checksum: 170bdba9b47b7e65906a28c8ce4f38a7a369d78e2271706f020849c1bfe0ee2067d4261df8bbb66eb84f79208fd5b710df759d64191db58cfba7ce8ef9c54b75
+  languageName: node
+  linkType: hard
+
+"abs-svg-path@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "abs-svg-path@npm:0.1.1"
+  checksum: af1a167c09e8bdb76c80adca7333f3d828e5b50e37b9702aa03675e271919e7b1eeaa35cce939970ecba14769953b7465ea34c2129ab683ddff9d973a07f164f
   languageName: node
   linkType: hard
 
@@ -6257,6 +6327,7 @@ __metadata:
     "@babel/core": ^7.12.9
     "@babel/runtime": ^7.12.5
     "@ethersproject/shims": ^5.5.0
+    "@gorhom/bottom-sheet": ^4
     "@react-native-async-storage/async-storage": ^1.15.11
     "@react-native-clipboard/clipboard": ^1.9.0
     "@react-native-community/eslint-config": ^3.0.1
@@ -6287,9 +6358,11 @@ __metadata:
     react-native-bundle-visualizer: ^3.0.0
     react-native-config: ^1.4.5
     react-native-encrypted-storage: ^4.0.2
+    react-native-gesture-handler: ^1.10.3
     react-native-get-random-values: ^1.7.0
     react-native-modal: ^13.0.0
     react-native-qrcode-svg: ^6.1.1
+    react-native-reanimated: next
     react-native-safe-area-context: ^3.3.2
     react-native-screens: ^3.9.0
     react-native-svg: ^12.1.1
@@ -12318,6 +12391,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: da27515dc5230eb1140ba65ff8de3613649620e8656b19a6270afe4866b7bd461d9ba2ac8a48dcc57f7adac4ee80e1de9f965d89d4d81a0ad52bb3eec2609644
+  languageName: node
+  linkType: hard
+
 "lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
@@ -13247,6 +13327,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"mockdate@npm:^3.0.2":
+  version: 3.0.5
+  resolution: "mockdate@npm:3.0.5"
+  checksum: 72b66786d9e072379693f80bf9fb82eb5153c9741030a4294184e3ccaf952d0713fae8966f77780580cf902f8ec7ccc95577b0ad47980d255e2ffb71fc7ca49c
+  languageName: node
+  linkType: hard
+
 "move-concurrently@npm:^1.0.1":
   version: 1.0.1
   resolution: "move-concurrently@npm:1.0.1"
@@ -13295,6 +13382,15 @@ fsevents@^1.2.7:
   dependencies:
     node-gyp: latest
   checksum: 33e1bb4dfca447fe37d4bb5889be55de154828632c8d38646db67293a21afd61ed9909cdf1b886214a64707d935926c4e60e2b09de9edfc2ad58de31d6ce8f39
+  languageName: node
+  linkType: hard
+
+"nanoid@npm:^3.1.20":
+  version: 3.1.30
+  resolution: "nanoid@npm:3.1.30"
+  bin:
+    nanoid: bin/nanoid.cjs
+  checksum: 276d0d4b0c41c46aeefec5f09f093e4085a2352d06881c845db22b84f8ef72cc8defae6d76bfb1d8a2a128eb2dec42ab148d16582be4e7754c97905806ef57b6
   languageName: node
   linkType: hard
 
@@ -13532,6 +13628,15 @@ fsevents@^1.2.7:
   version: 0.1.2
   resolution: "normalize-range@npm:0.1.2"
   checksum: 9b2f14f093593f367a7a0834267c24f3cb3e887a2d9809c77d8a7e5fd08738bcd15af46f0ab01cc3a3d660386f015816b5c922cea8bf2ee79777f40874063184
+  languageName: node
+  linkType: hard
+
+"normalize-svg-path@npm:^1.0.1":
+  version: 1.1.0
+  resolution: "normalize-svg-path@npm:1.1.0"
+  dependencies:
+    svg-arc-to-cubic-bezier: ^3.0.0
+  checksum: 106e108b2f99e9e222a1c6edfc859523c6c3c2b0a6ba64743ed08af120b23b9bc2c16682bc2ae043a24c011c34c8252376c68525cf11735c6f110b571740eb2e
   languageName: node
   linkType: hard
 
@@ -14078,6 +14183,13 @@ fsevents@^1.2.7:
     json-parse-even-better-errors: ^2.3.0
     lines-and-columns: ^1.1.6
   checksum: 62085b17d64da57f40f6afc2ac1f4d95def18c4323577e1eced571db75d9ab59b297d1d10582920f84b15985cbfc6b6d450ccbf317644cfa176f3ed982ad87e2
+  languageName: node
+  linkType: hard
+
+"parse-svg-path@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "parse-svg-path@npm:0.1.2"
+  checksum: bba7d4b4207fcc9eaf553b0d34db96ea8a1173635bc94528b5b66e1581902d4792d8d6229103764f01af4d839274234e97a4fa1c6f0fe7dcce195383848cec56
   languageName: node
   linkType: hard
 
@@ -15105,6 +15217,19 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"react-native-gesture-handler@npm:^1.10.3":
+  version: 1.10.3
+  resolution: "react-native-gesture-handler@npm:1.10.3"
+  dependencies:
+    "@egjs/hammerjs": ^2.0.17
+    fbjs: ^3.0.0
+    hoist-non-react-statics: ^3.3.0
+    invariant: ^2.2.4
+    prop-types: ^15.7.2
+  checksum: fd06147df96fe0b38752c653a2d4bf49570396922719939a31b494197fd30e6775e4c5e73f889af808204dcfbc087eb00f31a0b676c838d5a35e2b017ae9a419
+  languageName: node
+  linkType: hard
+
 "react-native-get-random-values@npm:^1.7.0":
   version: 1.7.0
   resolution: "react-native-get-random-values@npm:1.7.0"
@@ -15143,6 +15268,41 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"react-native-reanimated@npm:next":
+  version: 2.3.0-beta.3
+  resolution: "react-native-reanimated@npm:2.3.0-beta.3"
+  dependencies:
+    "@babel/plugin-transform-object-assign": ^7.10.4
+    "@types/invariant": ^2.2.35
+    invariant: ^2.2.4
+    lodash.isequal: ^4.5.0
+    mockdate: ^3.0.2
+    react-native-screens: ^3.4.0
+    string-hash-64: ^1.0.3
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-gesture-handler: "*"
+  checksum: 4b28bd71d3c3f642432b24d4dd92252b17dcdd2f710e8a96af7b3221980593630f62336d36d29bcf9bc2991da128a060cc9300d716777eb1d73805defc84f880
+  languageName: node
+  linkType: hard
+
+"react-native-redash@npm:^16.1.1":
+  version: 16.2.2
+  resolution: "react-native-redash@npm:16.2.2"
+  dependencies:
+    abs-svg-path: ^0.1.1
+    normalize-svg-path: ^1.0.1
+    parse-svg-path: ^0.1.2
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-gesture-handler: "*"
+    react-native-reanimated: ">=2.0.0-rc.0"
+  checksum: 1f368d10dde13a1d8227d5db17d05f6f3517867fa99fe1eccf69d3f066c6d0b2c1cda4714230af27c8cf106646005ebfd3fcf51353aec59c8eb9809a0c86d609
+  languageName: node
+  linkType: hard
+
 "react-native-safe-area-context@npm:^3.3.2":
   version: 3.3.2
   resolution: "react-native-safe-area-context@npm:3.3.2"
@@ -15153,7 +15313,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-native-screens@npm:^3.9.0":
+"react-native-screens@npm:^3.4.0, react-native-screens@npm:^3.9.0":
   version: 3.9.0
   resolution: "react-native-screens@npm:3.9.0"
   dependencies:
@@ -16687,6 +16847,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"string-hash-64@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "string-hash-64@npm:1.0.3"
+  checksum: 79de8431b4fa3e85a2429cd52a34f7948221ff167b7a094e05d6bcfd0173474b232e0c9845c96f74b0d7b6b0c8bbe2c3532a4cacb21635293ef0cf3cc8e77f06
+  languageName: node
+  linkType: hard
+
 "string-length@npm:^4.0.1":
   version: 4.0.2
   resolution: "string-length@npm:4.0.2"
@@ -16960,6 +17127,13 @@ resolve@^2.0.0-next.3:
     has-flag: ^4.0.0
     supports-color: ^7.0.0
   checksum: aef04fb41f4a67f1bc128f7c3e88a81b6cf2794c800fccf137006efe5bafde281da3e42e72bf9206c2fcf42e6438f37e3a820a389214d0a88613ca1f2d36076a
+  languageName: node
+  linkType: hard
+
+"svg-arc-to-cubic-bezier@npm:^3.0.0":
+  version: 3.2.0
+  resolution: "svg-arc-to-cubic-bezier@npm:3.2.0"
+  checksum: 55bf17756d558b9c0daddf636a6c9f2fe01fd5ac412229dfa2d4b29740226a82c980bcd3b5eb09ce311cbea282106c7549d97f8c8dba3a5a7b75f786bcb5e155
   languageName: node
   linkType: hard
 
