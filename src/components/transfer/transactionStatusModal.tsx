@@ -5,11 +5,16 @@ import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { transactionModalStatus, transactionStatus } from '../../recoil/atoms/transaction';
 import { useWaitForTransactionEffect } from '../../hooks/transfer/waitForTransaction';
 import { COLORS, DEVICE_WIDTH } from '../../common';
+import { useOpenEtherscan } from '../../hooks/transfer/openEtherscan';
+import { TextButton } from '../uiParts/button/text';
 
 export const TransactionStatusModal: React.VFC = () => {
   const transactionValues = useRecoilValue(transactionStatus);
   const isVisible = useRecoilValue(transactionModalStatus);
   const resetModal = useResetRecoilState(transactionModalStatus);
+  const { handlePress } = useOpenEtherscan(
+    transactionValues !== null ? transactionValues.txHash : undefined,
+  );
 
   useWaitForTransactionEffect();
 
@@ -29,6 +34,10 @@ export const TransactionStatusModal: React.VFC = () => {
           <View style={styles.valueContainer}>
             <Text style={styles.label}>TxHash</Text>
             <Text style={styles.value}>{transactionValues?.txHash}</Text>
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <TextButton label="etherscan" onPress={handlePress} fontColor={COLORS.blue} />
           </View>
         </View>
       </Modal>
@@ -55,6 +64,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   valueContainer: {
+    paddingTop: 10,
+  },
+  buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingTop: 20,
   },
   title: {
