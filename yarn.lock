@@ -4554,13 +4554,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/invariant@npm:^2.2.35":
-  version: 2.2.35
-  resolution: "@types/invariant@npm:2.2.35"
-  checksum: af1b624057c89789ed0917838fea3d42bb0c101cc22b829a24d8777c678be3bc79d6ae05992a13bdf607b94731262467a2e62a809602ea1f7eea5e8c2242660d
-  languageName: node
-  linkType: hard
-
 "@types/is-function@npm:^1.0.0":
   version: 1.0.0
   resolution: "@types/is-function@npm:1.0.0"
@@ -6362,7 +6355,7 @@ __metadata:
     react-native-get-random-values: ^1.7.0
     react-native-modal: ^13.0.0
     react-native-qrcode-svg: ^6.1.1
-    react-native-reanimated: next
+    react-native-reanimated: 2.2.4
     react-native-safe-area-context: ^3.3.2
     react-native-screens: ^3.9.0
     react-native-svg: ^12.1.1
@@ -12391,13 +12384,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"lodash.isequal@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "lodash.isequal@npm:4.5.0"
-  checksum: da27515dc5230eb1140ba65ff8de3613649620e8656b19a6270afe4866b7bd461d9ba2ac8a48dcc57f7adac4ee80e1de9f965d89d4d81a0ad52bb3eec2609644
-  languageName: node
-  linkType: hard
-
 "lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
@@ -15268,22 +15254,19 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-native-reanimated@npm:next":
-  version: 2.3.0-beta.3
-  resolution: "react-native-reanimated@npm:2.3.0-beta.3"
+"react-native-reanimated@npm:2.2.4":
+  version: 2.2.4
+  resolution: "react-native-reanimated@npm:2.2.4"
   dependencies:
     "@babel/plugin-transform-object-assign": ^7.10.4
-    "@types/invariant": ^2.2.35
-    invariant: ^2.2.4
-    lodash.isequal: ^4.5.0
+    fbjs: ^3.0.0
     mockdate: ^3.0.2
-    react-native-screens: ^3.4.0
     string-hash-64: ^1.0.3
   peerDependencies:
     react: "*"
     react-native: "*"
     react-native-gesture-handler: "*"
-  checksum: 4b28bd71d3c3f642432b24d4dd92252b17dcdd2f710e8a96af7b3221980593630f62336d36d29bcf9bc2991da128a060cc9300d716777eb1d73805defc84f880
+  checksum: 9f970782087942527bbd7c1b0f904d66abf065f0ec6ef0e6449e44c8c95a301ca523b519d332f2c03ab1fc05a6e5c4d9d1b04563af01e6c943e1b5bf9643489d
   languageName: node
   linkType: hard
 
@@ -15313,7 +15296,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-native-screens@npm:^3.4.0, react-native-screens@npm:^3.9.0":
+"react-native-screens@npm:^3.9.0":
   version: 3.9.0
   resolution: "react-native-screens@npm:3.9.0"
   dependencies:

@@ -15,7 +15,13 @@ export const ExportPrivateKeyModal: React.VFC = () => {
 
   return (
     <View>
-      <Modal style={styles.modal} isVisible={isVisible} onBackdropPress={resetModal}>
+      <Modal
+        style={styles.modal}
+        isVisible={isVisible}
+        onBackdropPress={resetModal}
+        useNativeDriver
+        useNativeDriverForBackdrop
+      >
         <View style={styles.container}>
           <Text style={styles.title}>Export PrivateKey</Text>
 

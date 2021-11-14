@@ -11,7 +11,6 @@
 import React, { Suspense } from 'react';
 import { View } from 'react-native';
 import { RecoilRoot } from 'recoil';
-import 'react-native-gesture-handler';
 import Navigation from './navigation';
 
 const App: React.VFC = () => {
