@@ -6346,13 +6346,13 @@ __metadata:
     prettier: ^2.3.2
     react: 17.0.2
     react-dom: 17.0.2
-    react-hook-form: ^7.19.3
+    react-hook-form: ^7.19.5
     react-native: 0.66.3
     react-native-bundle-visualizer: ^3.0.0
     react-native-config: ^1.4.5
     react-native-encrypted-storage: ^4.0.2
     react-native-gesture-handler: ^1.10.3
-    react-native-get-random-values: ^1.7.0
+    react-native-get-random-values: ^1.7.1
     react-native-modal: ^13.0.0
     react-native-qrcode-svg: ^6.1.1
     react-native-reanimated: 2.2.4
@@ -6362,7 +6362,7 @@ __metadata:
     react-native-web: ^0.17.5
     react-test-renderer: 17.0.2
     recoil: ^0.5.2
-    typescript: 4.2.4
+    typescript: 4.4.4
   languageName: unknown
   linkType: soft
 
@@ -15102,12 +15102,12 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.19.3":
-  version: 7.19.3
-  resolution: "react-hook-form@npm:7.19.3"
+"react-hook-form@npm:^7.19.5":
+  version: 7.19.5
+  resolution: "react-hook-form@npm:7.19.5"
   peerDependencies:
     react: ^16.8.0 || ^17
-  checksum: c893e4d52b7a03a42c3999e3e6a93fe93e8accb7a65088f7c0b2724add1dec4b3a5299afa80a83d2c6ab604a17c90b34ac961a2148a58565a41d9dadde3664cc
+  checksum: 129bcb530187e76a013d8a44dc4557261f6833e5627153229db598a93b333f6735879842134b24e61ec95f5f41d81b067454a86193a5caeb41bb3961c3aa4fc5
   languageName: node
   linkType: hard
 
@@ -15216,14 +15216,14 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-native-get-random-values@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "react-native-get-random-values@npm:1.7.0"
+"react-native-get-random-values@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "react-native-get-random-values@npm:1.7.1"
   dependencies:
     fast-base64-decode: ^1.0.0
   peerDependencies:
     react-native: ">=0.56"
-  checksum: 345601408480c1aa178b3d0c6b1e3253112a0998d2c60f6d8aa88c18e8e11ba29363c877b3339632199993a32d3bb9cf9bd045802d0a5cd227545124d1316317
+  checksum: cc1ca41151e62b06b51fc953ac71e1c7dde3d58cca5a1d621c0f8d5aea0c2744afa5a2e1a6f5662b17d5ebe55b39ad33c065b6fbcf20393112bf0ef01bbb81c6
   languageName: node
   linkType: hard
 
@@ -17616,23 +17616,23 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-typescript@4.2.4:
-  version: 4.2.4
-  resolution: "typescript@npm:4.2.4"
+typescript@4.4.4:
+  version: 4.4.4
+  resolution: "typescript@npm:4.4.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 89c397df192f239359ad798b96d8e8d552e12c0c189ac5676cec4c20c410d6eec636b8e59a88f2aef0a56d961a9678d99c400099be9b7cae2f7b062eb4b7b171
+  checksum: 89ecb8436bb48ef5594d49289f5f89103071716b6e4844278f4fb3362856e31203e187a9c76d205c3f0b674d221a058fd28310dbcbcf5d95e9a57229bb5203f1
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.2.4#~builtin<compat/typescript>":
-  version: 4.2.4
-  resolution: "typescript@patch:typescript@npm%3A4.2.4#~builtin<compat/typescript>::version=4.2.4&hash=d8b4e7"
+"typescript@patch:typescript@4.4.4#~builtin<compat/typescript>":
+  version: 4.4.4
+  resolution: "typescript@patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=d8b4e7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 3d8ac56cd91f6f60e69aff212cb3601c8affd8dd7b3fac115b836b7d59ab8c7b21778635f07971cbcb6035019df1abefe3047c1d46f3d42d087ceb0552af0206
+  checksum: 4a639b6886be13616582ab82abdb4ffbbf5b0458069d13c10cd5d44fc1cafa33eab005e8ac8691ad8fae249fee85844bb7d523263c4568fe9a2ca31cd3c91c3d
   languageName: node
   linkType: hard
 
