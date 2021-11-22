@@ -29,3 +29,8 @@ export const loadingState = atom({
   key: 'loadingState',
   default: false,
 });
+
+export const switchBottomSheetState = atom({
+  key: 'switchBottomSheetState',
+  default: false,
+});
